@@ -86,4 +86,31 @@ Siga os passos abaixo para criar sub-branches:
   git checkout back
   git checkout -b backEnd/<nome-do-que-esta-fazendo>
   ```
+## 9. Puxar a atualizaçao da main
+Siga os passos abaixo para mesclar os arquivos da branch main na sua branch:
 
+isso servirá para manter seu projeto atualizado 
+
+- 1. primeiro check sua branch voce precisa estar main
+
+```bash
+git branch 
+```
+- 2. de um git pull para atualizar localmente seu projeto
+
+```bash
+git pull origin main
+```
+- 3. faça a mudança pra sua branch
+
+```bash
+git checkout <nome-da-branch>
+git merge main
+```
+
+### Exemplos:
+- Para a branch `front`:
+  ```bash
+  git checkout front
+  git merge main
+  ```
