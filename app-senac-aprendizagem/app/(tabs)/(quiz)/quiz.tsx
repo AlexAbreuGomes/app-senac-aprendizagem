@@ -1,7 +1,7 @@
 import { router, Stack } from "expo-router"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { StyleSheet,Text, Button } from "react-native"
-import { BackButton } from "../../components/backButton"
+import { BackButton } from "../../../components/backButton"
 import { StatusBar } from "expo-status-bar"
 export default function Screen (){
 
