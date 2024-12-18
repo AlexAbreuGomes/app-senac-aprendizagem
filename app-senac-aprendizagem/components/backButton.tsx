@@ -16,6 +16,6 @@ export const BackButton = ({ onPress }: BackButtonProps) => {
 
 const styles = StyleSheet.create({
   button: {
-    padding: 0,  // Ajusta o espaço ao redor do ícone
+    padding: 0,  // Ajusta o espaço ao redor do ícone,
   },
 });

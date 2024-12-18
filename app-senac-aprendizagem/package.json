@@ -9,10 +9,13 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo-google-fonts/ibm-plex-mono": "^0.2.3",
+    "@expo-google-fonts/luckiest-guy": "^0.2.3",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@react-native-async-storage/async-storage": "^2.1.0",
     "expo": "~52.0.18",
     "expo-constants": "~17.0.3",
+    "expo-font": "~13.0.1",
     "expo-linking": "~7.0.3",
     "expo-router": "4.0.11",
     "expo-status-bar": "~2.0.0",
