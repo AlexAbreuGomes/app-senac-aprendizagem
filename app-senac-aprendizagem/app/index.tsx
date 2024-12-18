@@ -1,34 +1,36 @@
-import { router} from "expo-router";
+import { router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { StyleSheet, Text, Button } from "react-native";
+import { StyleSheet, Text, Button, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { Botao } from "../components/button"; // botão importado
+import { ButtonGeneric } from "../components/button"; // botão importado
+import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
+import { useFonts as IBMPlexMono_400Regular, IBMPlexMono_700Bold } from "@expo-google-fonts/ibm-plex-mono";
 
 export default function Screen() {
   const start = () => {
     router.replace("/home");
   };
 
+  useFonts({
+    LuckiestGuy: LuckiestGuy_400Regular,
+    IBMPlexMonoRegular: IBMPlexMono_400Regular,
+    IBMPlexMonoBold: IBMPlexMono_700Bold,
+  });
+
   return (
-   
-      <SafeAreaView style={styles.container}>
-        <StatusBar/>
+    <SafeAreaView style={styles.container}>
+      <StatusBar />
+      <Text style={styles.h1}>BEM-VINDO À SUA JORNADA DE APRENDIZADO!</Text>
+      <Text style={styles.p}>
+        Esse app é seu guia no início do programa jovem aprendiz, com informações, ferramenta interativa e atividades para tornar seu aprendizado mais prático.
+      </Text>
+      <Text style={styles.p}>
+      pesonalize sua expêriencia:
+      </Text>
 
-        <Text style={styles.h1}>BEM-VINDO À SUA JORNADA DE APRENDIZADO!</Text>
-        <Text style={styles.p}> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim aliquam reiciendis esse natus! Officia porro iusto non odit, commodi magni consectetur quis adipisci nisi recusandae corporis facere doloribus facilis corrupti!</Text>
-        
-
-        <Text style={styles.h1}>Testes</Text>
-        <Botao 
-          onpress={start} 
-          style={styles.button} 
-          name="começar"
-        />
-
-
-        <Button title="teste rota" onPress={start} />
-      </SafeAreaView>
-
+      <Text style={styles.h1}>Escolha seu avatar:</Text>
+      <ButtonGeneric onpress={start} style={styles.button} name="começar" />
+    </SafeAreaView>
   );
 }
 
@@ -39,22 +41,28 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   h1: {
+    fontFamily: "LuckiestGuy",
     fontSize: 22,
-    fontWeight: "bold",
-    marginBottom: 10,
+    color: "#044B8B",
   },
-
   p: {
-    fontSize: 14,
-    textAlign:'center',
-    marginBottom: 10,
+    color: "#044B8B",
+    fontFamily: "IBMPlexMonoRegular",
+    fontSize: 16,
+    textAlign: "center",
+    padding:15,
   },
-
   button: {
-    backgroundColor: 'lightblue',
-    padding: 10,
-    borderRadius: 5,
-    marginBottom: 10
-  }
-
+    width: '85%',
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: "#F7941D",
+    borderRadius: 30,
+    elevation: 10, // Altere para aumentar a intensidade
+    shadowColor: '#000', // Cor da sombra
+    shadowOffset: { width: 0, height: 4 }, // Direção da sombra
+    shadowOpacity: 0.1, // Transparência da sombra
+    shadowRadius: 5, // Raio de desfoque
+  },
 });
