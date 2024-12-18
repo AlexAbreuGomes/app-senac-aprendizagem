@@ -1,5 +1,5 @@
 import { imagensCarrossel } from "../data/carrosselAlunos"
-import { FlatList, Image, ScrollView, StyleSheet,Text, View } from "react-native"
+import { Dimensions, FlatList, Image, ScrollView, StyleSheet,Text, View } from "react-native"
 
 import { ImagemCarrossel } from "../types/carrosselTypes"
 
@@ -7,6 +7,7 @@ type Props = {
     data: ImagemCarrossel;
 }
 
+const screenWidth = Dimensions.get('window').width;
 
 export const Carrossel = ({data}: Props) => {
     return(
@@ -14,7 +15,7 @@ export const Carrossel = ({data}: Props) => {
            <Image 
             source={{uri: data.img}}
             style={styles.imgCarrossel}
-            resizeMode="cover"
+            resizeMode="stretch"
             />
         </View>       
     )
@@ -23,10 +24,9 @@ export const Carrossel = ({data}: Props) => {
 
 const styles = StyleSheet.create({
     imgCarrossel:{
-        width: 300,
-        height: 250,
+        width: screenWidth-20,
+        height: 200,
         borderRadius: 20,
-        
     }
 })
 
