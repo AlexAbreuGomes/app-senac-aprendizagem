@@ -12,8 +12,9 @@ export default function Screen() {
    
       <SafeAreaView style={styles.container}>
         <StatusBar/>
-        <Text style={styles.h1}>Testes</Text>
-
+        <Text style={styles.h1}>BEM-VINDO À SUA JORNADA DE APRENDIZADO!</Text>
+        <Text style={styles.p}> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim aliquam reiciendis esse natus! Officia porro iusto non odit, commodi magni consectetur quis adipisci nisi recusandae corporis facere doloribus facilis corrupti!</Text>
+        
         <Button title="teste rota" onPress={start} />
       </SafeAreaView>
 
@@ -29,6 +30,11 @@ const styles = StyleSheet.create({
   h1: {
     fontSize: 22,
     fontWeight: "bold",
+    marginBottom: 10,
+  },
+  p: {
+    fontSize: 14,
+    textAlign:'center',
     marginBottom: 10,
   },
 });
