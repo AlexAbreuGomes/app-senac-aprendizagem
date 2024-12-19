@@ -1,4 +1,4 @@
-import { Pressable, Text } from 'react-native';
+import { Pressable, Text, StyleSheet } from 'react-native';
 import React from 'react';
 
 type buttonProps = {
@@ -6,10 +6,18 @@ type buttonProps = {
     style?: any
     name: string
 }
-export const Botao = ({onpress, style, name}: buttonProps) => {
+export const ButtonGeneric = ({onpress, style, name}: buttonProps) => {
     return (
         <Pressable onPress={onpress} style={style}>
-            <Text>{name}</Text>
+            <Text style={[styles.button, { fontFamily: 'LuckiestGuy' }]}>{name}</Text>
         </Pressable>
     );
 }
+
+const styles = StyleSheet.create({
+  button: {
+    fontFamily: "LuckiestGuy",
+    padding: 0,  // Ajusta o espaço ao redor do ícone,
+    color: "#fff",
+  },
+});
