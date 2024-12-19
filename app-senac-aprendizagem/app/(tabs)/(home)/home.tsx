@@ -8,7 +8,6 @@ export default function Screen (){
         <SafeAreaView style={styles.container}>
             <StatusBar/>
             <Text style={styles.h1}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque rerum velit possimus nam quis maxime asperiores voluptatem, quae est tempore corporis dignissimos voluptatibus delectus corrupti voluptatum numquam aliquid modi architecto?</Text>
-
         </SafeAreaView>
     )
 }
