@@ -36,9 +36,7 @@ export default function Screen() {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar />
-
-
-      <Text style={styles.h1}>BEM-VINDO À SUA JORNADA DE APRENDIZADO!</Text>
+      <Text style={styles.h1Superior}>BEM-VINDO À SUA JORNADA DE APRENDIZADO!</Text>
       <Text style={styles.p}>
         Esse app é seu guia no início do programa jovem aprendiz, com informações, ferramenta interativa e atividades para tornar seu aprendizado mais prático.
       </Text>
@@ -46,13 +44,12 @@ export default function Screen() {
       pesonalize sua expêriencia:
       </Text>
       <NameInput onSave={saveNameToFile} />
-      <Text style={styles.h1}>Escolha seu avatar:</Text>
+      <Text style={styles.h1Inferior}>Escolha seu avatar:</Text>
       <ButtonGeneric onpress={start} style={styles.button} name="começar" />
 
     </SafeAreaView>
   );
 }
-
 
   const styles = StyleSheet.create({
     container: {
@@ -60,17 +57,22 @@ export default function Screen() {
       justifyContent: "center",
       alignItems: "center",
     },
-    h1: {
+    h1Superior: {
       fontFamily: "LuckiestGuy",
       fontSize: 22,
       color: "#044B8B",
+    },
+    h1Inferior: {
+      fontFamily: "LuckiestGuy",
+      fontSize: 22,
+      color: "#F7941D",
     },
     p: {
       color: "#044B8B",
       fontFamily: "IBMPlexMonoRegular",
       fontSize: 16,
       textAlign: "center",
-      padding:15,
+      
     },
     button: {
       width: '85%',
