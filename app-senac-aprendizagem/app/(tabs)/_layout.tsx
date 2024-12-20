@@ -1,19 +1,38 @@
 import React from "react";
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Tabs } from "expo-router";
+import { Tabs, } from "expo-router";
+import { Image } from "react-native";
 
 
 export default function TabLayout(){
     return(
        <Tabs screenOptions={{
             headerShown: false,
-            tabBarStyle: {backgroundColor: '#A8A8A8'}
+            tabBarStyle: {backgroundColor: '#ffffff', height: 50,},
+            tabBarLabelStyle: {fontSize: 11, fontWeight: 'bold'}, 
+            tabBarAccessibilityLabel: 'Navegação de abas',
+            
+            tabBarActiveTintColor: '#044B8B',
+            tabBarInactiveTintColor: 'rgba(0, 0, 0, 0.40)',
+            tabBarShowLabel: true,
+            
        }}>
             <Tabs.Screen
                 name="(home)"
                 options={{
                     title:  'Home',
-                    tabBarIcon: ({color}) => <FontAwesome size={28} name="home" color={color} />,
+                    tabBarIcon: ({ focused }) => (
+                        <Image
+                          source={
+                            focused
+                              ? require("../../assets/icon-tab-home-active.png")
+                              : require("../../assets/icon-tab-home-inative.png")
+                          }
+                          style={{ width: 29, height: 29 }}
+                          resizeMode="contain"
+                        />
+                      ),
+                
                 }}
             />
 
@@ -21,15 +40,38 @@ export default function TabLayout(){
                 name="(videos)"
                 options={{
                     title:  'Vídeos',
-                    tabBarIcon: ({color}) => <FontAwesome size={28} name="youtube" color={color} />,
+                    tabBarIcon: ({ focused }) => (
+                        <Image
+                          source={
+                            focused
+                              ? require("../../assets/icon-tab-video-ative.png")
+                              : require("../../assets/icon-tab-video-inative.png")
+                          }
+                          style={{ width: 30, height: 30 }}
+                          resizeMode="contain"
+                        />
+                      ),
+                
                 }}
+               
             />
 
             <Tabs.Screen
                 name="(quiz)"
                 options={{
                     title:  'Quiz',
-                    tabBarIcon: ({color}) => <FontAwesome size={28} name="play" color={color} />,
+                    tabBarIcon: ({ focused }) => (
+                        <Image
+                          source={
+                            focused
+                              ? require("../../assets/icon-tab-medalha-inative.png")
+                              : require("../../assets/icon-tab-medalha-active.png")
+                          }
+                          style={{ width: 34, height: 35 }}
+                          resizeMode="contain"
+                        />
+                      ),
+                
                 }}
             />
 
@@ -37,7 +79,19 @@ export default function TabLayout(){
                 name="(ata)"
                 options={{
                     title:  'Ata',
-                    tabBarIcon: ({color}) => <FontAwesome size={28} name="amazon" color={color} />,
+                    tabBarIcon: ({ focused }) => (
+                        <Image
+                          source={ 
+                            focused
+                              ? require("../../assets/icon-tab-mala-active.png")
+                              : require("../../assets/icon-tab-mala-inative.png")
+                          }
+                          style={{ width: 34, height: 35 }}
+                          resizeMode="contain"
+                    
+                        />
+                      ),
+                
                 }}
             />
 
@@ -45,7 +99,18 @@ export default function TabLayout(){
                 name="(sobreNos)"
                 options={{
                     title:  'Conheça',
-                    tabBarIcon: ({color}) => <FontAwesome size={28} name="user-circle-o" color={color} />,
+                    tabBarIcon: ({ focused }) => (
+                        <Image
+                          source={ 
+                            focused
+                              ? require("../../assets/icon-tab-conheca-active.png")
+                              : require("../../assets/icon-tab-conheca-inative.png")
+                          }
+                          style={{ width: 42, height: 45 }}
+                          resizeMode="contain"
+                        />
+                      ),
+                
                 }}
             />
        </Tabs>
