@@ -1,60 +1,71 @@
-import React from 'react';
-import { ScrollView, Image, TouchableOpacity, StyleSheet, StyleProp, ViewStyle, ImageStyle } from 'react-native';
+import React, { useState } from 'react';
+import { ScrollView, Image, TouchableOpacity, View, StyleSheet, StyleProp, ViewStyle, ImageStyle } from 'react-native';
 
-type AvatarCarouselProps = {
-  avatars: { id: number; source: any }[]; // Array de avatares
-  onAvatarSelect: (id: number) => void;  // Callback ao selecionar um avatar
-  avatarStyle?: StyleProp<ImageStyle>;  // Estilo para o avatar
-  containerStyle?: StyleProp<ViewStyle>; // Estilo para o carrossel
-  selectedAvatarId?: number;            // Avatar selecionado opcional
-};
+interface Avatar {
+  id: number;
+  source: any; // Pode ser ajustado conforme o tipo dos avatares (e.g., require/import)
+}
 
-export const AvatarCarousel = ({
+interface AvatarCarouselProps {
+  avatars: Avatar[]; // Array de avatares
+  onAvatarSelect: (id: number) => void; // Função chamada ao selecionar um avatar
+  containerStyle?: StyleProp<ViewStyle>; // Estilização do container do carrossel
+  avatarStyle?: StyleProp<ImageStyle>; // Estilização individual do avatar
+  selectedAvatarStyle?: StyleProp<ViewStyle>; // Estilo adicional para o avatar selecionado
+}
+
+const AvatarCarousel: React.FC<AvatarCarouselProps> = ({
   avatars,
   onAvatarSelect,
-  avatarStyle,
   containerStyle,
-  selectedAvatarId,
-}: AvatarCarouselProps) => {
+  avatarStyle,
+  selectedAvatarStyle,
+}) => {
+  const [selectedAvatar, setSelectedAvatar] = useState<number | null>(null);
+
+  const handleSelectAvatar = (id: number) => {
+    setSelectedAvatar(id);
+    onAvatarSelect(id); // Notifica o componente pai
+  };
+
   return (
-    <ScrollView
-      horizontal
-      showsHorizontalScrollIndicator={false}
-      contentContainerStyle={[styles.container, containerStyle]}
-    >
-      {avatars.map((avatar) => (
-        <TouchableOpacity
-          key={avatar.id}
-          onPress={() => onAvatarSelect(avatar.id)}
-          style={[
-            styles.avatarContainer,
-            selectedAvatarId === avatar.id && styles.selectedAvatar, // Aplica estilo ao selecionado
-          ]}
-        >
-          <Image source={avatar.source} style={[styles.avatar, avatarStyle]} />
-        </TouchableOpacity>
-      ))}
-    </ScrollView>
+    <View style={[styles.carousel, containerStyle]}>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        {avatars.map((avatar) => (
+          <TouchableOpacity
+            key={avatar.id}
+            onPress={() => handleSelectAvatar(avatar.id)}
+            style={[
+              styles.avatarContainer,
+              selectedAvatar === avatar.id && [styles.selectedAvatar, selectedAvatarStyle],
+            ]}
+          >
+            <Image source={avatar.source} style={[styles.avatar, avatarStyle]} />
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  carousel: {
     flexDirection: 'row',
-    paddingHorizontal: 10,
   },
   avatarContainer: {
-    marginHorizontal: 8,
+    marginHorizontal: 10,
     borderRadius: 50,
-    overflow: 'hidden',
     borderWidth: 2,
     borderColor: 'transparent',
+    overflow: 'hidden',
   },
   selectedAvatar: {
-    borderColor: '#f00', // Vermelho como padrão para selecionado
+    borderColor: '#f00', // Padrão: vermelho
   },
   avatar: {
-    width: 70,
-    height: 70,
+    width: 80,
+    height: 80, // Tamanho padrão
   },
 });
+
+export default AvatarCarousel;
