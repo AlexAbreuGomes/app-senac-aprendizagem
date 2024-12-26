@@ -1,6 +1,4 @@
-import { imagensCarrossel } from "../data/carrosselAlunos"
-import { Dimensions, FlatList, Image, ScrollView, StyleSheet,Text, View } from "react-native"
-
+import { Dimensions,  Image, StyleSheet, View } from "react-native"
 import { ImagemCarrossel } from "../types/carrosselTypes"
 
 type Props = {
@@ -20,7 +18,6 @@ export const Carrossel = ({data}: Props) => {
         </View>       
     )
 }
-
 
 const styles = StyleSheet.create({
     imgCarrossel:{
