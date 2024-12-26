@@ -5,6 +5,7 @@ import { StatusBar } from "expo-status-bar"
 
 import { Carrossel } from "../../../components/carrossel"
 import { imagensCarrossel } from "../../../data/carrosselAlunos"
+import { CourseCard } from "../../../components/boxContent"
 
 
 export default function Screen (){
@@ -34,7 +35,6 @@ export default function Screen (){
     return(
         <SafeAreaView style={styles.container}>
             <StatusBar/>
-
                 <Text>
                     SENAC APRENDIZAGEM
                 </Text>
@@ -45,8 +45,11 @@ export default function Screen (){
                     renderItem={({item}) => <Carrossel data={item}/>}
                     keyExtractor={item => item.id.toString()}
                     horizontal={true}
-                    contentContainerStyle={styles.flatlist}
+                    
                 />
+            </View>
+            <View style={styles.card}>
+            <CourseCard title="Curso 1" progress={50} onPress={() => {}} />
             </View>
         </SafeAreaView>
     )
@@ -55,8 +58,7 @@ export default function Screen (){
 const styles = StyleSheet.create({
     container:{
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+        
     },
     h1:{
         fontSize: 15,
@@ -65,13 +67,13 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 10
     },
+    card:{
+        alignItems: 'center',
+    },
 
     viewFlatlist: {
         padding: 10
     },
 
-    flatlist:{
-        height: 250,
-        gap: 20
-    },
+   
 })

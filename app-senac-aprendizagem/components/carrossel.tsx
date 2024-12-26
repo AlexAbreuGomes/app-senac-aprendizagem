@@ -11,7 +11,7 @@ const screenWidth = Dimensions.get('window').width;
 
 export const Carrossel = ({data}: Props) => {
     return(
-        <View>
+        <View >
            <Image 
             source={{uri: data.img}}
             style={styles.imgCarrossel}
