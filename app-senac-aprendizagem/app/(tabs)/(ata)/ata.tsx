@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     },
 
     areaFaq:{
+        flex:1,
         borderWidth: 2,
         borderColor: 'transparent',
         width: '100%',
