@@ -3,7 +3,7 @@ type Avatar = {
   image: any; // Tipo da imagem (pode ser ajustado dependendo do carregamento de imagens)
 };
 
-type AvatarPickerProps = {
+export type AvatarPickerProps = {
   avatars: Avatar[]; // Array de avatares
   onAvatarSelect?: (id: number) => void; // Callback para selecionar o avatar
   selectedAvatarId?: number; // ID do avatar pré-selecionado
@@ -12,5 +12,3 @@ type AvatarPickerProps = {
   avatarImageStyle?: StyleProp<ImageStyle>; // Estilo da imagem de cada avatar
   selectedAvatarStyle?: StyleProp<ViewStyle>; // Estilo do avatar selecionado
 };
-
-export const {Avatar, AvatarPickerProps}
