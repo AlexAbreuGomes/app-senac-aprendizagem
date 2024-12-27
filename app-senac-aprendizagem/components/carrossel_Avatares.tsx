@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
     height: 80,
     alignSelf: "center",
     marginVertical: 10,
+    alignItems: 'center'
   },
   listContent: {
     alignItems: "center",
