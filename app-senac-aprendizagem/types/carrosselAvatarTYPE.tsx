@@ -1,9 +1,6 @@
 import {StyleProp, ViewStyle, ImageStyle} from "react-native";
+import { Avatar } from "./AVATAR";
 
-export type Avatar = {
-  id: number;
-  image: any; // Tipo da imagem (pode ser ajustado dependendo do carregamento de imagens)
-};
 
 export type AvatarPickerProps = {
   avatars: Avatar[]; // Array de avatares

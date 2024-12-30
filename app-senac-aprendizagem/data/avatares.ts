@@ -1,4 +1,4 @@
-import { Avatar } from "../types/carrosselAvatarTYPE"
+import { Avatar } from "../types/AVATAR"
 
 export const avatars: Avatar[]  = [
   { id: 1, image: require("") },

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FlatList, Image, Pressable, StyleSheet, Dimensions, View } from "react-native";
 import { AvatarPickerProps } from "../types/carrosselAvatarTYPE"
-import { Avatar } from "../types/carrosselAvatarTYPE";
+import { Avatar } from "../types/AVATAR";
 
 const screenWidth = Dimensions.get("window").width;
 
