@@ -9,8 +9,6 @@ type Props = {
     data: Video;
 }
 
-const screenWidth = Dimensions.get('window').width
-
 export const VideoAprendizagem = ({data}: Props) => {
 
     useFonts({
@@ -24,11 +22,14 @@ export const VideoAprendizagem = ({data}: Props) => {
             <View style={styles.videoContainer}>
                 <YoutubeIframe
                   videoId={data.video}
-                  height={135}
+                  height={160}
+                  contentScale={0.7}
                 />
             </View>
-            <Text style={styles.textTitulo}>{data.titulo}</Text>
-            <Text style={styles.textSubtitulo}>{data.subtitulo}</Text>
+            <View style={styles.textContainer}>
+                <Text style={styles.textTitulo}>{data.titulo}</Text>
+                <Text style={styles.textSubtitulo}>{data.subtitulo}</Text>
+            </View>
         </View>
     )
 }
@@ -36,20 +37,29 @@ export const VideoAprendizagem = ({data}: Props) => {
 const styles = StyleSheet.create({
     areaVideo: {
         flexDirection: 'column',
-        justifyContent: 'flex-end',
         borderWidth: 1,
         borderRadius: 20,
         borderColor: '#004586',
         width: '100%',
-        height: 200,
+        height: 230,
     },
 
     videoContainer: {
         width: '100%', // Ajuste conforme necessário
+        height: '70%',
         overflow: 'hidden', // Necessário para aplicar o borderRadius
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
-      },
+        borderTopLeftRadius: 18,
+        borderTopRightRadius: 18,
+        borderWidth: 0,
+        borderColor: 'red'
+    },
+
+    textContainer:{
+        borderWidth: 0,
+        borderColor: 'pink',
+        width: '100%',
+        height: '30%',
+    },
 
     textTitulo:{
         backgroundColor: '#004586',
@@ -64,7 +74,7 @@ const styles = StyleSheet.create({
     textSubtitulo:{
         fontSize: 12,
         fontFamily: 'monospace',
-        paddingLeft: 10,
-        paddingRight: 10
+        paddingLeft: 5,
+        paddingRight: 5
     }
 })
