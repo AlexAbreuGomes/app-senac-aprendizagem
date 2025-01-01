@@ -3,23 +3,23 @@ import { Faq } from "../types/faqTypes";
 export const faqs: Faq[] = [
     {
         id: 1,
-        pergunta: 'Como cumer cu de Curioso?',
-        resposta: 'Tá curioso HAHAHAHA'
+        pergunta: 'Pergunta1',
+        resposta: 'Pergunta1'
     },
     {
         id: 2,
-        pergunta: 'Por que o cemitério é o lugar mais lotado do mundo?',
-        resposta: 'Porque as pessoas estão literalmente morrendo para entrar.'
+        pergunta: 'Pergunta2',
+        resposta: 'Resposta2'
     },
     {
         id: 3,
-        pergunta: 'Por que o necrotério é o lugar mais tranquilo da cidade?',
-        resposta: 'Porque ninguém lá reclama de nada.'
+        pergunta: 'Pergunta3',
+        resposta: 'Resposta3'
     },
     {
         id: 4,
-        pergunta: 'Qual é o lado bom de se bater em uma árvore enquanto dirige?',
-        resposta: 'Você nunca terá que se preocupar com o próximo farol.'
+        pergunta: 'Pergunta4',
+        resposta: 'Resposta4'
     },
     {
         id: 5,
