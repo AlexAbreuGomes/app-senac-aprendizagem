@@ -71,10 +71,11 @@ const styles = StyleSheet.create({
     },
 
     flatlist:{
+        width: screenWidth,
         borderWidth: 0,
-        paddingRight: 20,
-        paddingLeft: 20,
-        gap: 20
+        paddingRight: 10,
+        paddingLeft: 10,
+        gap: 30
     }
 
 })
