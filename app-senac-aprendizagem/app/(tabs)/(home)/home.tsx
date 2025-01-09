@@ -1,6 +1,7 @@
 import { SafeAreaView } from "react-native-safe-area-context";
 import React, { useState, useEffect, useRef } from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { Dimensions, FlatList, StyleSheet, Text, View } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StatusBar } from "expo-status-bar";
 import { Carrossel } from "../../../components/carrossel"; // Ajuste conforme sua estrutura
 import { imagensCarrossel } from "../../../data/carrosselAlunos"; // Ajuste conforme sua estrutura
@@ -8,6 +9,8 @@ import { Conteudos } from "../../../components/boxContent";
 import { conteudosAprendizagem } from "../../../data/boxConteudosData";
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
 import { useFonts as IBMPlexMono_400Regular, IBMPlexMono_700Bold } from "@expo-google-fonts/ibm-plex-mono";
+
+const screenWidth = Dimensions.get("window").width;
 
 export default function Screen() {
   useFonts({
@@ -18,7 +21,25 @@ export default function Screen() {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const flatListRef = useRef<FlatList>(null);
+  const [userName, setUserName] = useState<string | null>(null); // Estado para armazenar o nome do usuário
 
+  // Recupera o nome salvo
+  useEffect(() => {
+    const fetchUserName = async () => {
+      try {
+        const savedName = await AsyncStorage.getItem("name"); // Busca o nome do AsyncStorage
+        if (savedName) {
+          setUserName(savedName); // Atualiza o estado com o nome recuperado
+        }
+      } catch (error) {
+        console.error("Erro ao recuperar o nome:", error);
+      }
+    };
+
+    fetchUserName();
+  }, []);
+
+  // Intervalo do carrossel
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => {
@@ -36,10 +57,10 @@ export default function Screen() {
   }, []);
 
   const renderConteudos = ({ item }: { item: typeof conteudosAprendizagem[0] }) => (
-    <Conteudos 
-      titulo={item.titulo} 
+    <Conteudos
+      titulo={item.titulo}
       id={item.id}  // Passando o id necessário
-      onPress={item.onPress} 
+      onPress={item.onPress}
     />
   );
 
@@ -47,7 +68,6 @@ export default function Screen() {
     <SafeAreaView style={styles.container}>
       <StatusBar />
       <Text style={styles.h1}>SENAC APRENDIZAGEM</Text>
-
       <View style={styles.viewFlatlist}>
         <FlatList
           ref={flatListRef}
@@ -56,6 +76,16 @@ export default function Screen() {
           keyExtractor={(item) => item.id.toString()}
           horizontal={true}
         />
+      </View>
+
+      {/* Exibe o nome do usuário se disponível */}
+      <View style={styles.nameInput}>
+        <Text style={styles.welcome}>
+          {userName ? `Bem-vindo(a), ${userName}!` : "Bem-vindo(a)!"}
+        </Text>
+        <Text  style={styles.welcome}>
+       {userName}  
+        </Text>
       </View>
 
       <View style={styles.cardContainer}> {/* Container para centralizar os cards */}
@@ -72,6 +102,25 @@ export default function Screen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  welcome: {
+    fontSize: 18,
+    color: "#044B8B",
+    textAlign: "left",
+    fontFamily: "LuckiestGuy",
+    padding: 10,
+  },
+  nameInput: {
+    width: screenWidth - 20,
+    height: 100,
+    borderWidth: 1,
+    borderColor: "#0059B3",
+    borderRadius: 20,
+    marginLeft: 10,
+    justifyContent: "space-between",
+    alignItems: "center",
+    textAlign: "center",
+    flexDirection: "row",
   },
   h1: {
     fontSize: 30,

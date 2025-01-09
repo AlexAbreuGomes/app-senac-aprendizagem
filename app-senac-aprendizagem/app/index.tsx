@@ -1,85 +1,74 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { NameInput } from "../components/inputSaveName"; // Importando o novo componente
-
-
+import { NameInput } from "../components/inputSaveName"; // Importando o componente de entrada de nome
 import { router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { StyleSheet, Text, Button, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { ButtonGeneric } from "../components/button"; // botão importado
+import { ButtonGeneric } from "../components/button"; // Botão importado
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
 import { useFonts as IBMPlexMono, IBMPlexMono_400Regular, IBMPlexMono_700Bold, IBMPlexMono_500Medium } from "@expo-google-fonts/ibm-plex-mono";
 
 export default function Screen() {
+  const [userName, setUserName] = useState<string>(''); // Estado para armazenar o nome do usuário
 
-  const start = () => {
-    router.replace("/home");
-  };
-
-  const saveNameToFile = async (name: string) => {
+  // Função para salvar nome e redirecionar
+  const start = async () => {
     try {
-      await AsyncStorage.setItem('name', name);
-      console.log('Nome salvo com sucesso!');
+      if (userName) {
+        await AsyncStorage.setItem('name', userName); // Salvar no AsyncStorage
+        console.log('Nome salvo com sucesso!');
+      }
+      router.replace("/home"); // Redirecionar para a página inicial
     } catch (error) {
       console.error('Erro ao salvar o nome:', error);
     }
+  };
+
+  // Função para salvar o nome no estado
+  const saveNameToState = (name: string) => {
+    setUserName(name);
   };
 
   useFonts({
     LuckiestGuy: LuckiestGuy_400Regular,
     IBMPlexMonoRegular: IBMPlexMono_400Regular,
     IBMPlexMonoBold: IBMPlexMono_700Bold,
-    IBMPlexMonoMedium: IBMPlexMono_500Medium
+    IBMPlexMonoMedium: IBMPlexMono_500Medium,
   });
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar  />
-      
-
-      
+      <StatusBar />
       <View style={styles.cxBemVindo}>
-      <Text style={styles.h1Superior}>BEM-VINDO À SUA JORNADA DE APRENDIZADO!</Text>
+        <Text style={styles.h1Superior}>BEM-VINDO À SUA JORNADA DE APRENDIZADO!</Text>
       </View>
       
       <View style={styles.cxSubtitulo}>
-      <Text style={styles.p}>
-        Esse app é seu guia no início do programa jovem aprendiz, com informações, ferramenta interativa e atividades para tornar seu aprendizado mais prático.
-      </Text>
-
+        <Text style={styles.p}>
+          Esse app é seu guia no início do programa jovem aprendiz, com informações, ferramenta interativa e atividades para tornar seu aprendizado mais prático.
+        </Text>
       </View>
       
-
       <View style={styles.cxGeral}>
-      <Text style={styles.h1Inferior}>
-      pesonalize sua expêriencia:
-      </Text>
-      <View>
-      <NameInput onSave={saveNameToFile}  />
+        <Text style={styles.h1Inferior}>Pesonalize sua experiência:</Text>
+        
+        {/* Componente para digitar o nome */}
+        <NameInput onSave={saveNameToState} />
+        <Text style={styles.h1Inferior}>Escolha seu avatar:</Text>
+        <View style={styles.avatars}>
+          <Text style={styles.p}>Avatar 1</Text>
+          <Text style={styles.p}>Avatar 2</Text>
+          <Text style={styles.p}>Avatar 3</Text>
+        </View>
+        <ButtonGeneric onpress={start} style={styles.button} name="Começar" />
       </View>
-
-      
-      <Text style={styles.h1Inferior}>Escolha seu avatar:</Text>
-
-      <View style={styles.avatars}>
-        <Text style={styles.p}>Avatar 1</Text>
-        <Text style={styles.p}>Avatar 2</Text>
-        <Text style={styles.p}>Avatar 3</Text>
-      </View>
-    
-      <ButtonGeneric onpress={start} style={styles.button}  name="começar"  />
-      </View>
-
       <View style={styles.logo}>
-        <Image resizeMode="contain" style={styles.imgLogo}   source={require("../assets/logo-senac.png")} />
+        <Image resizeMode="contain" style={styles.imgLogo} source={require("../assets/logo-senac.png")} />
       </View>
-
     </SafeAreaView>
   );
 }
-
 
   const styles = StyleSheet.create({
     container: {
@@ -87,26 +76,19 @@ export default function Screen() {
       justifyContent: "space-between",
       alignItems: "center",
       paddingTop: 80,
-      backgroundColor: "#fff",
-      
+      backgroundColor: "#fff",   
     },
     cxBemVindo: {
       justifyContent: "flex-start",
       width: '85%',
       marginBottom: 10,
-
-      
     },
-
     cxSubtitulo: {
       justifyContent: "center",
       alignItems: "center",
       width: '90%',
       marginBottom: 50,
-      
-
     },
-
     cxGeral: {
       justifyContent: "center",
       alignItems: "flex-start",
@@ -130,9 +112,6 @@ export default function Screen() {
       fontSize: 16,
       marginBottom: 10,
       textAlign: "center",
-      
-      
-      
     },
     avatars: {
       flexDirection: "row",
@@ -151,7 +130,6 @@ export default function Screen() {
       shadowOffset: { width: 0, height: 2 },
       shadowOpacity: 0.25,
       shadowRadius: 3.84,
-
     },
     button: {
       width: '101%',
@@ -167,23 +145,16 @@ export default function Screen() {
       shadowOffset: { width: 0, height: 2 },
       shadowOpacity: 0.25,
       shadowRadius: 3.84,
-    
     },
     logo: {
       justifyContent: "center",
       alignItems: "center",
       width: '100%',
       height: 70,
-      backgroundColor : "#044B8B",
-      
-     
+      backgroundColor : "#044B8B", 
     },
     imgLogo: {
       width: 90,
       height: 100,
     },
-    
-    
-
-
 });
