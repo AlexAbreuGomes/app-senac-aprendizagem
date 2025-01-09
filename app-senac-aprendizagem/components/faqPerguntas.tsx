@@ -42,6 +42,8 @@ export const FaqPerguntas = ({data}: Props) =>{
 
 const styles = StyleSheet.create({
     areaPerguntaResposta:{
+
+        flex:1,
         borderWidth: 1,
         borderColor: 'transparent',
         width: '100%',

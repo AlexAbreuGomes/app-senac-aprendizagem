@@ -1,27 +1,18 @@
 import React from "react";
-import { View, Text, Pressable, StyleSheet } from "react-native";
+import { View, Text, Pressable, StyleSheet, Dimensions } from "react-native";
+import { useRouter } from "expo-router";
+import { ConteudosProps } from "../types/boxConteudosTypes";
 
-interface CourseCardProps {
-  title: string;
-  progress: number;
-  onPress: () => void;
-}
+const screenWidth = Dimensions.get("window").width;
 
-export const CourseCard: React.FC<CourseCardProps> = ({ title, progress, onPress }) => {
+export const Conteudos: React.FC<ConteudosProps> = ({ titulo, id }) => {
+  const router = useRouter();
+
   return (
-    <Pressable style={styles.card} onPress={onPress}>
+    <Pressable style={styles.card} onPress={() => router.push(`/detalhes/${id}`)}>
       <View style={styles.header}>
-        <View style={styles.icon}>
-          {/* Aqui pode adicionar um ícone SVG ou outro componente */}
-        </View>
-        <Text style={styles.title}>{title}</Text>
-      </View>
-      <View style={styles.progressContainer}>
-        <View style={[styles.progressBar, { width: `${progress}%` }]} />
-      </View>
-      <View style={styles.footer}>
-        <Text style={styles.progressText}>Progresso</Text>
-        <Text style={styles.percentage}>{progress}%</Text>
+        <View style={styles.icon} />
+        <Text style={styles.title}>{titulo}</Text>
       </View>
     </Pressable>
   );
@@ -29,9 +20,11 @@ export const CourseCard: React.FC<CourseCardProps> = ({ title, progress, onPress
 
 const styles = StyleSheet.create({
   card: {
+    width: screenWidth - 20,
+    height: 170,
     backgroundColor: "#0059B3",
-    borderRadius: 12,
-    padding: 16,
+    borderRadius: 20,
+    padding: 10,
     marginBottom: 16,
     elevation: 4,
   },
@@ -50,36 +43,8 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   title: {
-    fontSize: 16,
+    color: "#FFFFFF",
+    fontSize: 18,
     fontWeight: "bold",
-    color: "#FFF",
-    flex: 1,
-  },
-  progressContainer: {
-    height: 8,
-    backgroundColor: "#084A9E",
-    borderRadius: 4,
-    overflow: "hidden",
-  },
-  progressBar: {
-    height: "100%",
-    backgroundColor: "#FFF",
-  },
-  footer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginTop: 8,
-  },
-  progressText: {
-    fontSize: 12,
-    color: "#FFF",
-  },
-  percentage: {
-    fontSize: 12,
-    fontWeight: "bold",
-    color: "#FFF",
   },
 });
-
-

@@ -1,24 +1,23 @@
+
 import {useCallback} from 'react'
 import {Dimensions, StyleSheet, Text, View} from 'react-native'
 import { Video } from "../types/videosTypes";
-
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
-import { useFonts as IBMPlexMono_400Regular, IBMPlexMono_700Bold } from "@expo-google-fonts/ibm-plex-mono";
+import { useFonts as IBMPlexMono_400Regular, IBMPlexMono_700Bold} from "@expo-google-fonts/ibm-plex-mono";
 import YoutubeIframe from 'react-native-youtube-iframe';
-
 import * as ScreenOrientation from 'expo-screen-orientation';
 
 type Props = {
     data: Video;
 }
 
-export const VideoAprendizagem = ({data}: Props) => {
+export const VideoAprendizagem = ({ data }: Props) => {
 
     useFonts({
         LuckiestGuy: LuckiestGuy_400Regular,
-        IBMPlexMonoRegular: IBMPlexMono_400Regular,
+        IBMPlexMono: IBMPlexMono_400Regular,
         IBMPlexMonoBold: IBMPlexMono_700Bold,
-      });
+    });
 
     const onFullScreenChange = useCallback((isFullScreen: boolean) =>{
         if(isFullScreen){
@@ -41,8 +40,8 @@ export const VideoAprendizagem = ({data}: Props) => {
             <View style={styles.textContainer}>
                 <Text style={styles.textTitulo}>{data.titulo}</Text>
                 <Text style={styles.textSubtitulo}>{data.subtitulo}</Text>
-            </View>
-        </View>
+            </View></>
+
     )
 }
 
@@ -53,40 +52,39 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         borderColor: '#004586',
         width: '100%',
-        height: 230,
+        
     },
 
     videoContainer: {
         width: '100%', // Ajuste conforme necessário
-        height: '70%',
         overflow: 'hidden', // Necessário para aplicar o borderRadius
         borderTopLeftRadius: 18,
         borderTopRightRadius: 18,
         borderWidth: 0,
-        borderColor: 'red'
     },
 
-    textContainer:{
-        borderWidth: 0,
-        borderColor: 'pink',
+    textContainer: {
+        borderWidth: 1,
+        borderBottomRightRadius: 20,
+        borderBottomLeftRadius: 20,
+        borderColor: '#004586',
         width: '100%',
-        height: '30%',
     },
 
-    textTitulo:{
+    textTitulo: {
         backgroundColor: '#004586',
         color: 'white',
-        fontSize: 13,
+        fontSize: 18,
         fontFamily: 'LuckiestGuy',
         textAlign: 'justify',
-        paddingLeft: 5,
-        paddingRight: 5
+        paddingLeft: 10,
+        paddingRight: 10
     },
 
-    textSubtitulo:{
-        fontSize: 12,
-        fontFamily: 'monospace',
-        paddingLeft: 5,
-        paddingRight: 5
+    textSubtitulo: {
+        fontSize: 16,
+        fontFamily: 'IBMPlexMonoRegular',
+        paddingLeft: 10,
+        paddingRight: 10
     }
 })
