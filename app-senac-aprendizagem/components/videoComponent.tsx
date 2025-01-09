@@ -1,9 +1,11 @@
-import { Dimensions, StyleSheet, Text, View } from 'react-native'
-import { Video } from "../types/videosTypes";
 
+import {useCallback} from 'react'
+import {Dimensions, StyleSheet, Text, View} from 'react-native'
+import { Video } from "../types/videosTypes";
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
 import { useFonts as IBMPlexMono_400Regular, IBMPlexMono_700Bold} from "@expo-google-fonts/ibm-plex-mono";
 import YoutubeIframe from 'react-native-youtube-iframe';
+import * as ScreenOrientation from 'expo-screen-orientation';
 
 type Props = {
     data: Video;
@@ -17,14 +19,24 @@ export const VideoAprendizagem = ({ data }: Props) => {
         IBMPlexMonoBold: IBMPlexMono_700Bold,
     });
 
-    return (
+    const onFullScreenChange = useCallback((isFullScreen: boolean) =>{
+        if(isFullScreen){
+            ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE);
+        }else{
+            ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
+        }
+    }, []);
 
-        <><View style={styles.videoContainer}>
-            <YoutubeIframe
-                videoId={data.video}
-                height={160}
-                contentScale={0.6} />
-        </View>
+    return(
+        <View style={styles.areaVideo}>
+            <View style={styles.videoContainer}>
+                <YoutubeIframe
+                  videoId={data.video}
+                  height={160}
+                  contentScale={0.7}
+                  onFullScreenChange={onFullScreenChange}
+                />
+            </View>
             <View style={styles.textContainer}>
                 <Text style={styles.textTitulo}>{data.titulo}</Text>
                 <Text style={styles.textSubtitulo}>{data.subtitulo}</Text>

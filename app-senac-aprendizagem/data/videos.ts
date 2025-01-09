@@ -3,30 +3,30 @@ import { Video } from "../types/videosTypes";
 export const videos: Video[] = [
     {
         id: 1,
-        video: 't7Ce5Afri0k',
+        video: '8NT7oGaRHPU',
         titulo: 'Como Organizar suas Tarefas no Ambiente de Trabalho?',
         subtitulo: 'De maneira demonstrativa. As principais maneiras.'
-        /*URL Vídeo: https://www.youtube.com/watch?v=t7Ce5Afri0k */
+        /*URL Vídeo: https://www.youtube.com/watch?v=8NT7oGaRHPU */
     },
     {
         id: 2,
-        video: '7QAfy96YL88',
+        video: '8NT7oGaRHPU',
         titulo: 'Como Organizar suas Tarefas no Ambiente de Trabalho?',
         subtitulo: 'De maneira demonstrativa. As principais maneiras.'
-        /*URL Vídeo: https://www.youtube.com/watch?v=t7Ce5Afri0k */
+        /*URL Vídeo: https://www.youtube.com/watch?v=8NT7oGaRHPU */
     },
     {
         id: 3,
-        video: 'hVMxsORwntE',
+        video: '8NT7oGaRHPU',
         titulo: 'Como Organizar suas Tarefas no Ambiente de Trabalho?',
         subtitulo: 'De maneira demonstrativa. As principais maneiras.'
-        /*URL Vídeo: https://www.youtube.com/watch?v=t7Ce5Afri0k */
+        /*URL Vídeo: https://www.youtube.com/watch?v=8NT7oGaRHPU */
     },
     {
         id: 4,
-        video: 'hVMxsORwntE',
+        video: '8NT7oGaRHPU',
         titulo: 'Como Organizar suas Tarefas no Ambiente de Trabalho?',
         subtitulo: 'De maneira demonstrativa. As principais maneiras.'
-        /*URL Vídeo: https://www.youtube.com/watch?v=t7Ce5Afri0k */
+        /*URL Vídeo: https://www.youtube.com/watch?v=8NT7oGaRHPU */
     }
 ]
