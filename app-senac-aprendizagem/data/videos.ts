@@ -29,4 +29,4 @@ export const videos: Video[] = [
         subtitulo: 'De maneira demonstrativa. As principais maneiras.'
         /*URL Vídeo: https://www.youtube.com/watch?v=8NT7oGaRHPU */
     }
-]
+];

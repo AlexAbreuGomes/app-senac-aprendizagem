@@ -4,7 +4,7 @@ import React from 'react';
 
 interface NameInputProps {
   onSave: (name: string) => void; // Função chamada ao alterar o nome
-}
+};
 
 export const NameInput: React.FC<NameInputProps> = ({ onSave }) => {
   const handleChange = (value: string) => {

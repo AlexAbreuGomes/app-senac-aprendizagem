@@ -22,7 +22,7 @@ export const imagensCarrossel: ImagemCarrossel[] = [
         id: 5,
         img: 'https://jovemaprendiz2022.pro.br/wp-content/uploads/2021/01/jovem-aprendiz-senac-2022.png' 
     },
-]
+];
     
 
   

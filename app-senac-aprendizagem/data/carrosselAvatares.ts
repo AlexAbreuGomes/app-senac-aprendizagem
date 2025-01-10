@@ -1,6 +1,6 @@
-import { carrosselAvatares } from "../types/carrosselAvataresTypes";
+import { CarrosselAvatares } from "../types/carrosselAvataresTypes";
 
-export const avatares: carrosselAvatares[] = [
+export const avatares: CarrosselAvatares[] = [
     {
         id: '1',
         img: 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Lewis_Hamilton_October_2014.jpg' 
@@ -21,4 +21,12 @@ export const avatares: carrosselAvatares[] = [
         id: '5',
         img: 'https://cdn-5.motorsport.com/images/amp/01Wmy1ZY/s1000/lewis.jpg' 
     },
-]
+    {
+        id: '6',
+        img: 'https://cdn-5.motorsport.com/images/amp/01Wmy1ZY/s1000/lewis.jpg' 
+    },
+    {
+        id: '7',
+        img: 'https://cdn-5.motorsport.com/images/amp/01Wmy1ZY/s1000/lewis.jpg' 
+    },
+];

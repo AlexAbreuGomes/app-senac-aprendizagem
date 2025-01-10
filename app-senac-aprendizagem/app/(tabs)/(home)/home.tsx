@@ -112,7 +112,10 @@ const styles = StyleSheet.create({
     textAlign: "left",
     fontFamily: "LuckiestGuy",
     padding: 10,
+    flexWrap: "wrap", // Permite que o texto quebre em várias linhas
+    maxWidth: "80%", // Limita a largura máxima para que o texto quebre
   },
+  
   userImage: {
     width: 60,
     height: 60,
@@ -121,17 +124,26 @@ const styles = StyleSheet.create({
   },
   nameInput: {
     width: screenWidth - 20,
-    height: 100,
-    borderWidth: 1,
-    borderColor: "#0059B3",
+    height: 150,
+    backgroundColor: "#FFFFFF", // Fundo branco
+    
+    
     borderRadius: 20,
     marginLeft: 10,
-    justifyContent: "space-between",
-    alignItems: "center",
-    textAlign: "center",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
     flexDirection: "row",
-    paddingHorizontal: 10,
+    padding: 10,
+    shadowColor: "#0059B3", // Cor da sombra
+    shadowOffset: {
+      width: 5, // Deslocamento horizontal da sombra
+      height: 10, // Deslocamento vertical da sombra
+    },
+    shadowOpacity: 0.3, // Transparência da sombra
+    shadowRadius: 8, // Raio de desfoque da sombra
+    elevation: 15, // Elevação para Android
   },
+  
   h1: {
     fontSize: 30,
     color: "#044B8B",

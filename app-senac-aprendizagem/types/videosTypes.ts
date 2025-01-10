@@ -3,4 +3,4 @@ export type Video = {
     video: string,
     titulo: string,
     subtitulo: string
-}
+};

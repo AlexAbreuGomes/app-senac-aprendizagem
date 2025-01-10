@@ -32,17 +32,19 @@ export const CarrosselAvatar: React.FC<CarrosselAvataresProps> = ({ data, onSele
 
 const styles = StyleSheet.create({
   avatarContainer: {
-    borderRadius: 50,
-    borderWidth: 2,
+    borderRadius: 70,
+    borderWidth: 4,
     borderColor: 'transparent',
+    margin: 2,
   },
   selectedAvatar: {
     borderColor: '#F7941D',
   },
   avatarImage: {
-    width: 80,
-    height: 80,
-    borderRadius: 30,
+    width: 60,
+    height: 60,
+    borderRadius: 50,
+    
   },
 });
 

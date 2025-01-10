@@ -9,16 +9,8 @@ import { ButtonGeneric } from "../components/button";
 import { CarrosselAvatar } from '../components/carrosselAvatares'; // Importando o componente CarrosselAvatar
 import { avatares } from '../data/carrosselAvatares'; // Dados dos avatares
 import { CarrosselAvatares } from "../types/carrosselAvataresTypes";
-import {
-  useFonts,
-  LuckiestGuy_400Regular,
-} from "@expo-google-fonts/luckiest-guy";
-import {
-  useFonts as IBMPlexMono,
-  IBMPlexMono_400Regular,
-  IBMPlexMono_700Bold,
-  IBMPlexMono_500Medium,
-} from "@expo-google-fonts/ibm-plex-mono";
+import { useFonts, LuckiestGuy_400Regular,} from "@expo-google-fonts/luckiest-guy";
+import { useFonts as IBMPlexMono,IBMPlexMono_400Regular,IBMPlexMono_700Bold,IBMPlexMono_500Medium } from "@expo-google-fonts/ibm-plex-mono";
 
 export default function Screen() {
   const [userName, setUserName] = useState<string>(""); // Estado para o nome do usuário
@@ -75,14 +67,12 @@ export default function Screen() {
       <View style={styles.cxGeral}>
         <Text style={styles.h1Inferior}>Personalize sua experiência:</Text>
         <NameInput onSave={saveNameToState} />
-
         <Text style={styles.h1Inferior}>Escolha seu avatar:</Text>
         <CarrosselAvatar
           data={avatares}
           onSelectAvatar={handleSelectAvatar}
           selectedAvatarId={selectedAvatar?.id}
         />
-
         <ButtonGeneric onpress={start} style={styles.button} name="Começar" />
       </View>
 
@@ -95,7 +85,7 @@ export default function Screen() {
       </View>
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {

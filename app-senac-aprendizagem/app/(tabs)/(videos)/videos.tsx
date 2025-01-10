@@ -1,8 +1,6 @@
-import { router } from "expo-router"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { Dimensions, FlatList, Image, StyleSheet,Text, View } from "react-native"
 import { StatusBar } from "expo-status-bar"
-
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
 import { useFonts as IBMPlexMono_400Regular, IBMPlexMono_700Bold } from "@expo-google-fonts/ibm-plex-mono";
 import { videos } from "../../../data/videos";
@@ -36,11 +34,10 @@ export default function Screen (){
                     keyExtractor={item => item.id.toString()}
                     contentContainerStyle={styles.flatlist}
                     showsVerticalScrollIndicator={false}
-                />
-               
+                />    
         </SafeAreaView>
     )
-}
+};
 
 const styles = StyleSheet.create({
     container:{
@@ -48,7 +45,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         gap: 30
     },
-
     areaBanner:{
         alignItems: 'center',
         justifyContent: 'center',
@@ -57,19 +53,16 @@ const styles = StyleSheet.create({
         width: screenWidth,
         height: 180
     },
-
     imgBanner:{
         borderWidth: 0,
         width: 150,
         height: 150
     },
-
     textBanner:{
         fontSize: 24,
         fontFamily: 'LuckiestGuy',
         color: '#044B8B'
     },
-
     flatlist:{
         width: screenWidth,
         borderWidth: 0,
@@ -77,5 +70,4 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         gap: 30
     }
-
-})
+});

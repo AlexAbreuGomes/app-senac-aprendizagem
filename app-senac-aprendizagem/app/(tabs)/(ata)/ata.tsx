@@ -1,15 +1,10 @@
-import { router } from "expo-router"
 import { SafeAreaView } from "react-native-safe-area-context"
-import { StyleSheet,Text, View, Image, FlatList } from "react-native"
+import { StyleSheet,Text, View, FlatList } from "react-native"
 import { StatusBar } from "expo-status-bar"
 import { faqs } from "../../../data/faq"
 import { FaqPerguntas } from "../../../components/faqPerguntas"
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
 import { useFonts as IBMPlexMono_400Regular, IBMPlexMono_700Bold } from "@expo-google-fonts/ibm-plex-mono";
-
-
-
-
 
 export default function Screen (){
 
@@ -50,7 +45,6 @@ const styles = StyleSheet.create({
         fontFamily: 'LuckiestGuy',
         color: '#044B8B'
     },
-
     areaFaq:{
         flex:1,
         borderWidth: 2,
@@ -60,7 +54,6 @@ const styles = StyleSheet.create({
         paddingRight: 20,
         gap:20
     },
-
     tituloFAQ:{
         borderWidth: 0,
         paddingLeft: 10,
@@ -68,10 +61,9 @@ const styles = StyleSheet.create({
         fontFamily: 'LuckiestGuy',
         color: '#044B8B'
     },
-
     flatlist: {
         borderWidth: 1,
         borderColor: 'transparent',
         gap: 20,
     },
-})
+});
