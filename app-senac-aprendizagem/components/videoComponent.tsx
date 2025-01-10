@@ -40,8 +40,8 @@ export const VideoAprendizagem = ({ data }: Props) => {
             <View style={styles.textContainer}>
                 <Text style={styles.textTitulo}>{data.titulo}</Text>
                 <Text style={styles.textSubtitulo}>{data.subtitulo}</Text>
-            </View></>
-
+            </View>
+        </View>
     )
 }
 
