@@ -1,4 +1,3 @@
-
 import { useCallback } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { Video } from "../types/videosTypes";
@@ -8,16 +7,16 @@ import YoutubeIframe from 'react-native-youtube-iframe';
 import * as ScreenOrientation from 'expo-screen-orientation';
 
 type Props = {
-    data: Video;
-}
+  data: Video;
+};
 
 export const VideoAprendizagem = ({ data }: Props) => {
+  useFonts({
+    LuckiestGuy: LuckiestGuy_400Regular,
+    IBMPlexMono: IBMPlexMono_400Regular,
+    IBMPlexMonoBold: IBMPlexMono_700Bold,
+  });
 
-    useFonts({
-        LuckiestGuy: LuckiestGuy_400Regular,
-        IBMPlexMono: IBMPlexMono_400Regular,
-        IBMPlexMonoBold: IBMPlexMono_700Bold,
-    });
 
     const onFullScreenChange = useCallback((isFullScreen: boolean) => {
         if (isFullScreen) {
@@ -80,3 +79,4 @@ const styles = StyleSheet.create({
         paddingRight: 10
     },
 });
+
