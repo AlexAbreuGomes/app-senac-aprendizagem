@@ -37,18 +37,15 @@ export const FaqPerguntas = ({data}: Props) =>{
             )}
         </View>
     )
-}
-
+};
 
 const styles = StyleSheet.create({
     areaPerguntaResposta:{
-
         flex:1,
         borderWidth: 1,
         borderColor: 'transparent',
         width: '100%',
     },
-
     areaFaq:{
         flexDirection: 'row',
         alignItems: 'center',
@@ -59,7 +56,6 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         borderColor: '#044B8B' 
     },
-
     textFaq:{
         borderWidth: 1,
         borderColor: 'transparent',
@@ -69,14 +65,12 @@ const styles = StyleSheet.create({
         textAlign: 'justify', 
         color: '#044B8B'
     },
-
     iconSeta:{
         borderWidth: 1,
         borderColor: 'transparent',
         width: 38,
         height: 38,
     },
-
     respostaContainer:{
         justifyContent: 'center',
         borderWidth: 1,
@@ -89,7 +83,6 @@ const styles = StyleSheet.create({
         paddingRight: 10,
         backgroundColor: 'lightgray'
     },
-
     textResposta:{
         borderWidth: 1,
         borderColor: 'transparent',
@@ -97,4 +90,4 @@ const styles = StyleSheet.create({
         fontSize: 15,
         textAlign: 'justify' 
     }
-})
+});

@@ -17,7 +17,7 @@ export const Carrossel = ({data}: Props) => {
             />
         </View>       
     )
-}
+};
 
 const styles = StyleSheet.create({
     imgCarrossel:{
@@ -25,6 +25,6 @@ const styles = StyleSheet.create({
         height: 200,
         borderRadius: 20,
     }
-})
+});
 
 

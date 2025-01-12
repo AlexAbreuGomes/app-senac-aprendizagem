@@ -4,7 +4,7 @@ import React from 'react';
 
 type BackButtonProps = {
   onPress: () => void;
-}
+};
 
 export const BackButton = ({ onPress }: BackButtonProps) => {
   return (
@@ -12,7 +12,7 @@ export const BackButton = ({ onPress }: BackButtonProps) => {
       <Ionicons name="arrow-back" size={30} color="#2b4ff3" />
     </Pressable>
   );
-}
+};
 
 const styles = StyleSheet.create({
   button: {

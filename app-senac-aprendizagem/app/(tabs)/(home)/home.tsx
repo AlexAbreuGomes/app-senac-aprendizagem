@@ -1,6 +1,6 @@
 import { SafeAreaView } from "react-native-safe-area-context";
 import React, { useState, useEffect, useRef } from "react";
-import { Dimensions, FlatList, StyleSheet, Text, View } from "react-native";
+import { Dimensions, FlatList, StyleSheet, Text, View, Image } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StatusBar } from "expo-status-bar";
 import { Carrossel } from "../../../components/carrossel"; // Ajuste conforme sua estrutura
@@ -21,22 +21,27 @@ export default function Screen() {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const flatListRef = useRef<FlatList>(null);
-  const [userName, setUserName] = useState<string | null>(null); // Estado para armazenar o nome do usuário
+  const [userName, setUserName] = useState<string | null>(null);
+  const [userImage, setUserImage] = useState<string | null>(null);
 
-  // Recupera o nome salvo
+  // Recupera o nome e o avatar salvos
   useEffect(() => {
-    const fetchUserName = async () => {
+    const fetchUserData = async () => {
       try {
-        const savedName = await AsyncStorage.getItem("name"); // Busca o nome do AsyncStorage
-        if (savedName) {
-          setUserName(savedName); // Atualiza o estado com o nome recuperado
+        const savedName = await AsyncStorage.getItem("name");
+        const savedAvatar = await AsyncStorage.getItem("selectedAvatar");
+
+        if (savedName) setUserName(savedName);
+        if (savedAvatar) {
+          const parsedAvatar = JSON.parse(savedAvatar); // Decodifica o objeto salvo
+          setUserImage(parsedAvatar.img); // Define a URL da imagem
         }
       } catch (error) {
-        console.error("Erro ao recuperar o nome:", error);
+        console.error("Erro ao recuperar os dados:", error);
       }
     };
 
-    fetchUserName();
+    fetchUserData();
   }, []);
 
   // Intervalo do carrossel
@@ -59,7 +64,7 @@ export default function Screen() {
   const renderConteudos = ({ item }: { item: typeof conteudosAprendizagem[0] }) => (
     <Conteudos
       titulo={item.titulo}
-      id={item.id}  // Passando o id necessário
+      id={item.id} // Passando o id necessário
       onPress={item.onPress}
     />
   );
@@ -78,20 +83,18 @@ export default function Screen() {
         />
       </View>
 
-      {/* Exibe o nome do usuário se disponível */}
+      {/* Exibe o nome e a imagem do usuário */}
       <View style={styles.nameInput}>
+        {userImage && <Image source={{ uri: userImage }} style={styles.userImage} />}
         <Text style={styles.welcome}>
           {userName ? `Bem-vindo(a), ${userName}!` : "Bem-vindo(a)!"}
         </Text>
-        <Text  style={styles.welcome}>
-       {userName}  
-        </Text>
       </View>
 
-      <View style={styles.cardContainer}> {/* Container para centralizar os cards */}
+      <View style={styles.cardContainer}>
         <FlatList
           data={conteudosAprendizagem}
-          renderItem={renderConteudos}  // Usando renderConteudos para garantir que 'id' seja passado
+          renderItem={renderConteudos} // Usando renderConteudos para garantir que 'id' seja passado
           keyExtractor={(item) => item.id.toString()}
         />
       </View>
@@ -109,19 +112,38 @@ const styles = StyleSheet.create({
     textAlign: "left",
     fontFamily: "LuckiestGuy",
     padding: 10,
+    flexWrap: "wrap", // Permite que o texto quebre em várias linhas
+    maxWidth: "80%", // Limita a largura máxima para que o texto quebre
+  },
+  
+  userImage: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    marginRight: 10,
   },
   nameInput: {
     width: screenWidth - 20,
-    height: 100,
-    borderWidth: 1,
-    borderColor: "#0059B3",
+    height: 150,
+    backgroundColor: "#FFFFFF", // Fundo branco
+    
+    
     borderRadius: 20,
     marginLeft: 10,
-    justifyContent: "space-between",
-    alignItems: "center",
-    textAlign: "center",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
     flexDirection: "row",
+    padding: 10,
+    shadowColor: "#0059B3", // Cor da sombra
+    shadowOffset: {
+      width: 5, // Deslocamento horizontal da sombra
+      height: 10, // Deslocamento vertical da sombra
+    },
+    shadowOpacity: 0.3, // Transparência da sombra
+    shadowRadius: 8, // Raio de desfoque da sombra
+    elevation: 15, // Elevação para Android
   },
+  
   h1: {
     fontSize: 30,
     color: "#044B8B",
@@ -132,7 +154,7 @@ const styles = StyleSheet.create({
   viewFlatlist: {
     padding: 10,
   },
-  cardContainer: { // Adicionado para centralizar os cards
+  cardContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",

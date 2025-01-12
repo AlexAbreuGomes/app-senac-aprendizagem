@@ -26,4 +26,4 @@ export const faqs: Faq[] = [
         pergunta: 'Pergunta5',
         resposta: 'Resposta5'
     },
-]
+];
