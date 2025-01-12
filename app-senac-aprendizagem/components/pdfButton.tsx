@@ -46,28 +46,3 @@ const styles = StyleSheet.create({
 });
 
 export default PDFItem;
-
-// const PDF = () => {
-//   const handlePress = () => {
-//     // URL do PDF hospedado online
-//     const pdfUrl = 'https://drive.google.com/file/d/1Qz6v10-6LpyJwWyOE8RJUJycYA6EWvP9/view?usp=drive_link';
-//     Linking.openURL(pdfUrl)
-//       .catch((err) => console.error("Erro ao abrir o link: ", err));
-//   };
-
-//   return (
-//     <View style={styles.container}>
-//       <Button title="Baixar PDF" onPress={handlePress} />
-//     </View>
-//   );
-// };
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//   },
-// });
-
-// export default PDF;
