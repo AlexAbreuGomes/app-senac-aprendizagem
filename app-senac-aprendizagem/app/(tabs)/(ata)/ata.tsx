@@ -5,6 +5,8 @@ import { faqs } from "../../../data/faq"
 import { FaqPerguntas } from "../../../components/faqPerguntas"
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
 import { useFonts as IBMPlexMono_400Regular, IBMPlexMono_700Bold } from "@expo-google-fonts/ibm-plex-mono";
+import { router, Stack } from "expo-router"
+import { BackButton } from "../../../components/backButton"
 
 export default function Screen (){
 
@@ -15,6 +17,23 @@ export default function Screen (){
       });
 
     return(
+        <>
+
+           <Stack.Screen
+                  options={{
+                    headerShown: true,
+                    title: "",
+                    headerTitleStyle: {
+                      fontSize: 30,
+                      color: "#0361dd",
+                    },
+                    headerTitleAlign: "center",
+                    headerLeft: () => (
+                      <BackButton onPress={() => router.back()} /> // Botão de voltar
+                    ),
+                  }}
+                />
+
         <SafeAreaView style={styles.container}>
             <StatusBar/>
             <Text style={styles.h1}>O QUE É UM ATA</Text>
@@ -29,6 +48,7 @@ export default function Screen (){
                 />
             </View> 
         </SafeAreaView>
+        </>
     )
 }
 

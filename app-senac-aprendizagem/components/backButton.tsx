@@ -17,5 +17,9 @@ export const BackButton = ({ onPress }: BackButtonProps) => {
 const styles = StyleSheet.create({
   button: {
     padding: 0,  // Ajusta o espaço ao redor do ícone,
+    borderWidth: 10,  // Adiciona uma borda ao redor do ícone,
+    borderRadius: 10,  // Adiciona bordas arredondadas ao ícone,
+    borderColor: '#2b4ff3',  // Define a cor da borda do ícone,
+
   },
 });
