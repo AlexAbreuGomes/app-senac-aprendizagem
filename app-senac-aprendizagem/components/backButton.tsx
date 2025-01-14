@@ -4,18 +4,23 @@ import React from 'react';
 
 type BackButtonProps = {
   onPress: () => void;
-};
+}
 
 export const BackButton = ({ onPress }: BackButtonProps) => {
   return (
     <Pressable onPress={onPress} style={styles.button}>
-      <Ionicons name="arrow-back" size={30} color="#2b4ff3" />
+      <Ionicons name="arrow-back" size={30} color="#044B8B" />
     </Pressable>
   );
-};
+}
 
 const styles = StyleSheet.create({
   button: {
-    padding: 0,  // Ajusta o espaço ao redor do ícone,
+    padding: 7,  // Ajusta o espaço ao redor do ícone,
+    backgroundColor: "#fff",
+    borderRadius: 50,
+    marginRight: 15,
+  
+    
   },
 });
