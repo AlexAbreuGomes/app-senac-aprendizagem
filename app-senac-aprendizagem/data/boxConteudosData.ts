@@ -56,4 +56,30 @@ export const conteudosAprendizagem: ConteudoAprendizagem[] = [
       },
     ],
   },
+  {
+    id: 4,
+    titulo: "Educação",
+    descricao: "Práticas de ensino e aprendizado eficientes.",
+    texto: `A educação é o processo de facilitar a aprendizagem ou a aquisição de conhecimento, habilidades, valores, crenças e hábitos.`,
+    onPress: () => console.log("Educação"),
+    imagens: [
+      {
+        
+        descricao: "Estudantes em uma sala de aula.",
+      },
+    ],
+  },
+  {
+    id: 5,
+    titulo: "Educação",
+    descricao: "Práticas de ensino e aprendizado eficientes.",
+    texto: `A educação é o processo de facilitar a aprendizagem ou a aquisição de conhecimento, habilidades, valores, crenças e hábitos.`,
+    onPress: () => console.log("Educação"),
+    imagens: [
+      {
+        
+        descricao: "Estudantes em uma sala de aula.",
+      },
+    ],
+  },
 ];

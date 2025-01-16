@@ -74,9 +74,9 @@ export default function TabLayout(){
             />
 
             <Tabs.Screen
-                name="(ata)"
+                name="(faq)"
                 options={{
-                    title:  'Ata',
+                    title:  'Faq',
                     tabBarIcon: ({ focused }) => (
                         <Image
                           source={ 

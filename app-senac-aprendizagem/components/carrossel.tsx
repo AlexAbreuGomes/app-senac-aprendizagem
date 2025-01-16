@@ -1,5 +1,6 @@
 import { Dimensions,  Image, StyleSheet, View } from "react-native"
 import { ImagemCarrossel } from "../types/carrosselTypes"
+import React from 'react';
 
 type Props = {
     data: ImagemCarrossel;

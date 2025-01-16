@@ -3,6 +3,7 @@ import { Faq } from "../types/faqTypes"
 import {useState } from 'react'
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
 import { useFonts as IBMPlexMono_400Regular, IBMPlexMono_700Bold } from "@expo-google-fonts/ibm-plex-mono";
+import React from "react";
 
 
 type Props = {
@@ -78,7 +79,6 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         borderTopLeftRadius: 0,
         width: '100%',
-        height: 52,
         paddingLeft: 10,
         paddingRight: 10,
         backgroundColor: 'lightgray'

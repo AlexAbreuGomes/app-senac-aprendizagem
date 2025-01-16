@@ -7,7 +7,7 @@ export default function Layout() {
       screenOptions={{
         headerShown: false,  // Desativa o cabeçalho globalmente
       }}
-    > <Stack.Screen name="ata" />
+    > <Stack.Screen name="faq" />
     </Stack>
   );
 }

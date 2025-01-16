@@ -1,6 +1,6 @@
 import { SafeAreaView } from "react-native-safe-area-context";
 import React, { useState, useEffect, useRef } from "react";
-import { Dimensions, FlatList, StyleSheet, Text, View, Image } from "react-native";
+import { Dimensions, FlatList, StyleSheet, Text, View, Image, ScrollView } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StatusBar } from "expo-status-bar";
 import { Carrossel } from "../../../components/carrossel"; // Ajuste conforme sua estrutura
@@ -72,8 +72,10 @@ export default function Screen() {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar />
+      
       <Text style={styles.h1}>SENAC APRENDIZAGEM</Text>
       <View style={styles.viewFlatlist}>
+        
         <FlatList
           ref={flatListRef}
           data={imagensCarrossel}
@@ -82,8 +84,7 @@ export default function Screen() {
           horizontal={true}
         />
       </View>
-
-      {/* Exibe o nome e a imagem do usuário */}
+      <ScrollView>
       <View style={styles.nameInput}>
         {userImage && <Image source={{ uri: userImage }} style={styles.userImage} />}
         <Text style={styles.welcome}>
@@ -97,8 +98,11 @@ export default function Screen() {
           renderItem={renderConteudos} // Usando renderConteudos para garantir que 'id' seja passado
           keyExtractor={(item) => item.id.toString()}
         />
+        
       </View>
+      </ScrollView>
     </SafeAreaView>
+    
   );
 }
 
