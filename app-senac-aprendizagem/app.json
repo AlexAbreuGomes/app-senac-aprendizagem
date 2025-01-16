@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "scheme": "app-senac-aprendizagem",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/senac-logo-0.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
@@ -20,7 +20,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.alexdevmobile007.appsenacaprendizagem"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -28,6 +29,15 @@
     "plugins": [
       "expo-router",
       "expo-font"
-    ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "20359a4a-3090-4d9b-9d97-29e9b1e97d30"
+      }
+    },
+    "owner": "alexdevmobile007"
   }
 }

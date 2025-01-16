@@ -1,8 +1,6 @@
 import React from "react";
-import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Tabs, } from "expo-router";
 import { Image } from "react-native";
-
 
 export default function TabLayout(){
     return(
@@ -76,9 +74,9 @@ export default function TabLayout(){
             />
 
             <Tabs.Screen
-                name="(ata)"
+                name="(faq)"
                 options={{
-                    title:  'Ata',
+                    title:  'Faq',
                     tabBarIcon: ({ focused }) => (
                         <Image
                           source={ 
@@ -91,7 +89,6 @@ export default function TabLayout(){
                     
                         />
                       ),
-                
                 }}
             />
 
@@ -110,7 +107,6 @@ export default function TabLayout(){
                           resizeMode="contain"
                         />
                       ),
-                
                 }}
             />
        </Tabs>

@@ -10,4 +10,4 @@ export default function Layout() {
     > <Stack.Screen name="videos" />
     </Stack>
   );
-}
+};
