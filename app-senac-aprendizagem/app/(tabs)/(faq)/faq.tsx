@@ -54,7 +54,7 @@ export default function Screen (){
 
             
             <View style={styles.areaFaq}>
-                <Text style={styles.tituloFAQ}>Dúvidas Frequêntes</Text>
+                <Text style={styles.tituloFAQ}>Dúvidas Frequentes</Text>
                 <FlatList 
                     data={faqs}
                     renderItem={({item}) => <FaqPerguntas data={item}/>}
@@ -73,7 +73,6 @@ const styles = StyleSheet.create({
 
     h1:{
         fontSize: 32,
-        marginBottom: 10,
         fontFamily: 'LuckiestGuy',
         color: '#044B8B',
         alignItems: 'center',
@@ -82,24 +81,23 @@ const styles = StyleSheet.create({
     },
     areaFaq:{
         flex:1,
-        borderWidth: 2,
-        borderColor: 'transparent',
         width: '100%',
         paddingLeft: 20,
         paddingRight: 20,
         gap:20
     },
     tituloFAQ:{
-        borderWidth: 0,
         paddingLeft: 10,
-        fontSize: 20,
+        fontSize: 40,
+        marginTop:10,
         fontFamily: 'LuckiestGuy',
-        color: '#044B8B'
+        color: '#044B8B',
+        alignContent: 'center',
+        textAlign: 'center'
+
     },
     flatlist: {
-        borderWidth: 1,
-        borderColor: 'transparent',
-        gap: 20,
+        gap: 10,
     },
     viewFlatlist: {
         padding: 10,
