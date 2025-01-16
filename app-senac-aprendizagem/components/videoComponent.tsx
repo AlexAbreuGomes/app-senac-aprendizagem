@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from 'react';
 import { Dimensions, Image, Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Video } from "../types/videosTypes";
-import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
-import { useFonts as IBMPlexMono_400Regular, IBMPlexMono_700Bold } from "@expo-google-fonts/ibm-plex-mono";
+import { useFonts, LuckiestGuy_400Regular,} from "@expo-google-fonts/luckiest-guy";
+import { useFonts as IBMPlexMono,IBMPlexMono_400Regular,IBMPlexMono_700Bold,IBMPlexMono_500Medium } from "@expo-google-fonts/ibm-plex-mono";
 
 
 const screenWidth = Dimensions.get('window').width
@@ -29,10 +29,11 @@ type Props = {
 
 export const VideoAprendizagem = ({ data }: Props) => {
   useFonts({
-    LuckiestGuy: LuckiestGuy_400Regular,
-    IBMPlexMono: IBMPlexMono_400Regular,
-    IBMPlexMonoBold: IBMPlexMono_700Bold,
-  });
+         LuckiestGuy: LuckiestGuy_400Regular,
+         IBMPlexMonoRegular: IBMPlexMono_400Regular,
+         IBMPlexMonoBold: IBMPlexMono_700Bold,
+         IBMPlexMonoMedium: IBMPlexMono_500Medium,
+       });
 
   const [watched, setWatched] = useState(false);  // Estado para controlar se o vídeo foi assistido
 
@@ -117,7 +118,7 @@ const styles = StyleSheet.create({
   textbtn: {
     fontSize: 15,
     color: 'white',
-    fontFamily: 'monospace',
+    fontFamily: '',
     fontWeight: 'bold',
   },
   videoContainer: {
@@ -155,8 +156,9 @@ const styles = StyleSheet.create({
     paddingRight: 10,
   },
   textSubtitulo: {
-    fontSize: 15,
-    fontFamily: 'IBMPlexMonoRegular',
+    fontSize: 18,
+    color: '#044B8B',
+    fontFamily: 'IBMPlexMonoMedium',
     textAlign: 'justify',
     paddingLeft: 10,
     paddingRight: 10,

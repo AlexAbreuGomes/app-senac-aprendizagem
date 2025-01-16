@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
         height: 150
     },
     textBanner:{
-        fontSize: 24,
+        fontSize: 35,
         fontFamily: 'LuckiestGuy',
         color: '#044B8B'
     },

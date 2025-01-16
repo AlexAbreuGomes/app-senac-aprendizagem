@@ -51,6 +51,7 @@ export default function Screen (){
                       horizontal={true}
                     />
                   </View>
+
             
             <View style={styles.areaFaq}>
                 <Text style={styles.tituloFAQ}>Dúvidas Frequêntes</Text>

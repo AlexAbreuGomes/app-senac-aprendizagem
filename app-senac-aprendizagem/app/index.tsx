@@ -9,14 +9,12 @@ import { ButtonGeneric } from "../components/button";
 import { CarrosselAvatar } from '../components/carrosselAvatares'; // Importando o componente CarrosselAvatar
 import { avatares } from '../data/carrosselAvatares'; // Dados dos avatares
 import { CarrosselAvatares } from "../types/carrosselAvataresTypes";
-import { useFonts, LuckiestGuy_400Regular,} from "@expo-google-fonts/luckiest-guy";
-import { useFonts as IBMPlexMono,IBMPlexMono_400Regular,IBMPlexMono_700Bold,IBMPlexMono_500Medium } from "@expo-google-fonts/ibm-plex-mono";
+import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
+import { useFonts as IBMPlexMono, IBMPlexMono_400Regular, IBMPlexMono_700Bold, IBMPlexMono_500Medium } from "@expo-google-fonts/ibm-plex-mono";
 
 export default function Screen() {
   const [userName, setUserName] = useState<string>(""); // Estado para o nome do usuário
-  const [selectedAvatar, setSelectedAvatar] = useState<CarrosselAvatares | null>(
-    null
-  ); // Estado para o avatar selecionado
+  const [selectedAvatar, setSelectedAvatar] = useState<CarrosselAvatares | null>(null); // Estado para o avatar selecionado
 
   const start = async () => {
     try {
@@ -114,24 +112,26 @@ const styles = StyleSheet.create({
   },
   h1Superior: {
     fontFamily: "LuckiestGuy",
-    fontSize: 24,
+    fontSize: 30,
     color: "#044B8B",
     textAlign: "center",
   },
   h1Inferior: {
     fontFamily: "LuckiestGuy",
-    fontSize: 17,
+    fontSize: 25,
     color: "#F7941D",
+    textAlign: "left", // Garante alinhamento consistente
+    flexShrink: 1,     // Permite que o texto seja reduzido para evitar quebra
+    width: "100%",     // Ocupa toda a largura disponível
   },
   p: {
     color: "#044B8B",
-    fontFamily: "IBMPlexMonoMedium",
-    fontSize: 16,
-    marginBottom: 10,
+    fontFamily: "IBMPlexMonoBold",
+    fontSize: 20,
     textAlign: "center",
   },
   button: {
-    width: "101%",
+    width: "100%",
     height: 70,
     justifyContent: "center",
     alignItems: "center",

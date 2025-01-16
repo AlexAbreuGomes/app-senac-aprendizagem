@@ -8,16 +8,17 @@ import { imagensCarrossel } from "../../../data/carrosselAlunos"; // Ajuste conf
 import { Conteudos } from "../../../components/boxContent";
 import { conteudosAprendizagem } from "../../../data/boxConteudosData";
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
-import { useFonts as IBMPlexMono_400Regular, IBMPlexMono_700Bold } from "@expo-google-fonts/ibm-plex-mono";
+import { useFonts as IBMPlexMono, IBMPlexMono_400Regular, IBMPlexMono_700Bold, IBMPlexMono_500Medium } from "@expo-google-fonts/ibm-plex-mono";
 
 const screenWidth = Dimensions.get("window").width;
 
 export default function Screen() {
-  useFonts({
-    LuckiestGuy: LuckiestGuy_400Regular,
-    IBMPlexMonoRegular: IBMPlexMono_400Regular,
-    IBMPlexMonoBold: IBMPlexMono_700Bold,
-  });
+    useFonts({
+      LuckiestGuy: LuckiestGuy_400Regular,
+      IBMPlexMonoRegular: IBMPlexMono_400Regular,
+      IBMPlexMonoBold: IBMPlexMono_700Bold,
+      IBMPlexMonoMedium: IBMPlexMono_500Medium,
+    });
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const flatListRef = useRef<FlatList>(null);
@@ -111,7 +112,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   welcome: {
-    fontSize: 18,
+    fontSize: 25,
     color: "#044B8B",
     textAlign: "left",
     fontFamily: "LuckiestGuy",
@@ -121,17 +122,14 @@ const styles = StyleSheet.create({
   },
   
   userImage: {
-    width: 60,
-    height: 60,
+    width: 50,
+    height: 50,
     borderRadius: 30,
-    marginRight: 10,
   },
   nameInput: {
     width: screenWidth - 20,
-    height: 150,
+    height: 130,
     backgroundColor: "#FFFFFF", // Fundo branco
-    
-    
     borderRadius: 20,
     marginLeft: 10,
     justifyContent: "flex-start",

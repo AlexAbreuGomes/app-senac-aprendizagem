@@ -1,8 +1,8 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View, } from "react-native";
 import { Faq } from "../types/faqTypes"
 import {useState } from 'react'
-import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
-import { useFonts as IBMPlexMono_400Regular, IBMPlexMono_700Bold } from "@expo-google-fonts/ibm-plex-mono";
+import { useFonts, LuckiestGuy_400Regular,} from "@expo-google-fonts/luckiest-guy";
+import { useFonts as IBMPlexMono,IBMPlexMono_400Regular,IBMPlexMono_700Bold,IBMPlexMono_500Medium } from "@expo-google-fonts/ibm-plex-mono";
 import React from "react";
 
 
@@ -13,17 +13,17 @@ type Props = {
 export const FaqPerguntas = ({data}: Props) =>{
 
     const [mostrarResposta, setMostrarResposta] = useState(false);
-
     const alternarResposta = () => {
         setMostrarResposta(!mostrarResposta);
     };
 
 
-    useFonts({
-        LuckiestGuy: LuckiestGuy_400Regular,
-        IBMPlexMonoRegular: IBMPlexMono_400Regular,
-        IBMPlexMonoBold: IBMPlexMono_700Bold,
-      });
+     useFonts({
+       LuckiestGuy: LuckiestGuy_400Regular,
+       IBMPlexMonoRegular: IBMPlexMono_400Regular,
+       IBMPlexMonoBold: IBMPlexMono_700Bold,
+       IBMPlexMonoMedium: IBMPlexMono_500Medium,
+     });
 
     return(
         <View style={styles.areaPerguntaResposta}>
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-around',
-        height: 52,
+        padding: 10,
         borderWidth: 2,
         borderTopWidth: 0,
         borderRadius: 20,
@@ -61,9 +61,9 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'transparent',
         width: '80%',
-        fontSize: 15,
-        fontFamily:'IBMPlexMono_400Regular',
-        textAlign: 'justify', 
+        fontSize: 18,
+        fontFamily:'IBMPlexMonoBold',
+        textAlign: 'left', 
         color: '#044B8B'
     },
     iconSeta:{
@@ -73,21 +73,22 @@ const styles = StyleSheet.create({
         height: 38,
     },
     respostaContainer:{
-        justifyContent: 'center',
-        borderWidth: 1,
-        borderColor: 'transparent',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        padding: 10,
+        borderWidth: 2,
+        borderTopWidth: 0,
         borderRadius: 20,
-        borderTopLeftRadius: 0,
-        width: '100%',
-        paddingLeft: 10,
-        paddingRight: 10,
-        backgroundColor: 'lightgray'
+        borderColor: '#044B8B'
     },
     textResposta:{
         borderWidth: 1,
         borderColor: 'transparent',
         width: '100%',
-        fontSize: 15,
-        textAlign: 'justify' 
+        fontSize: 17,
+        fontFamily:'IBMPlexMonoMedium',
+        textAlign: 'justify', 
+        color: '#044B8B'
     }
 });

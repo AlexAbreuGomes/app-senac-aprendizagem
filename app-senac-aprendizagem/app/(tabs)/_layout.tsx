@@ -72,6 +72,24 @@ export default function TabLayout(){
                 
                 }}
             />
+            <Tabs.Screen
+                name="(ata)"
+                options={{
+                    title:  'Ata',
+                    tabBarIcon: ({ focused }) => (
+                        <Image
+                          source={
+                            focused
+                            ? require("../../assets/icon-tab-mala-active.png")
+                            : require("../../assets/icon-tab-mala-inative.png")
+                          }
+                          style={{ width: 34, height: 35 }}
+                          resizeMode="contain"
+                        />
+                      ),
+                
+                }}
+            />
 
             <Tabs.Screen
                 name="(faq)"
