@@ -5,6 +5,7 @@ import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-gu
 import { useFonts as IBMPlexMono_400Regular, IBMPlexMono_700Bold } from "@expo-google-fonts/ibm-plex-mono";
 import { videos } from "../../../data/videos";
 import { VideoAprendizagem } from "../../../components/videoComponent";
+import React from 'react';
 
 const screenWidth = Dimensions.get('window').width
 
@@ -17,6 +18,7 @@ export default function Screen (){
       });
 
     return(
+       
         <SafeAreaView style={styles.container}>
             <StatusBar/>
                <View style={styles.areaBanner}>
@@ -37,6 +39,7 @@ export default function Screen (){
                 />    
         </SafeAreaView>
     )
+   
 };
 
 const styles = StyleSheet.create({

@@ -1,8 +1,11 @@
 import React, { useCallback, useState } from 'react';
-import { Image, Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Dimensions, Image, Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Video } from "../types/videosTypes";
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
 import { useFonts as IBMPlexMono_400Regular, IBMPlexMono_700Bold } from "@expo-google-fonts/ibm-plex-mono";
+
+
+const screenWidth = Dimensions.get('window').width
 
 // Função para extrair o videoId da URL do YouTube
 const extractVideoId = (url: string): string | null => {
@@ -124,15 +127,15 @@ const styles = StyleSheet.create({
     height: '65%',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
+  },
+  btnPlayVideo: {
+    width: screenWidth-20,
+    height: '100%',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
     borderWidth: 1,
     borderBottomWidth: 0,
     borderColor: '#004586',
-  },
-  btnPlayVideo: {
-    width: 390,
-    height: 162,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
   },
   textContainer: {
     borderWidth: 1,
