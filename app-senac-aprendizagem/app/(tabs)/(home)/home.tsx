@@ -7,23 +7,29 @@ import { Carrossel } from "../../../components/carrossel"; // Ajuste conforme su
 import { imagensCarrossel } from "../../../data/carrosselAlunos"; // Ajuste conforme sua estrutura
 import { Conteudos } from "../../../components/boxContent";
 import { conteudosAprendizagem } from "../../../data/boxConteudosData";
+import { avatares } from "../../../data/carrosselAvatares"; // Lista de avatares
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
-import { useFonts as IBMPlexMono, IBMPlexMono_400Regular, IBMPlexMono_700Bold, IBMPlexMono_500Medium } from "@expo-google-fonts/ibm-plex-mono";
+import {
+  useFonts as IBMPlexMono,
+  IBMPlexMono_400Regular,
+  IBMPlexMono_700Bold,
+  IBMPlexMono_500Medium,
+} from "@expo-google-fonts/ibm-plex-mono";
 
 const screenWidth = Dimensions.get("window").width;
 
 export default function Screen() {
-    useFonts({
-      LuckiestGuy: LuckiestGuy_400Regular,
-      IBMPlexMonoRegular: IBMPlexMono_400Regular,
-      IBMPlexMonoBold: IBMPlexMono_700Bold,
-      IBMPlexMonoMedium: IBMPlexMono_500Medium,
-    });
+  useFonts({
+    LuckiestGuy: LuckiestGuy_400Regular,
+    IBMPlexMonoRegular: IBMPlexMono_400Regular,
+    IBMPlexMonoBold: IBMPlexMono_700Bold,
+    IBMPlexMonoMedium: IBMPlexMono_500Medium,
+  });
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const flatListRef = useRef<FlatList>(null);
   const [userName, setUserName] = useState<string | null>(null);
-  const [userImage, setUserImage] = useState<string | null>(null);
+  const [userImage, setUserImage] = useState<any>(null); // Para aceitar o retorno de require()
 
   // Recupera o nome e o avatar salvos
   useEffect(() => {
@@ -34,8 +40,9 @@ export default function Screen() {
 
         if (savedName) setUserName(savedName);
         if (savedAvatar) {
-          const parsedAvatar = JSON.parse(savedAvatar); // Decodifica o objeto salvo
-          setUserImage(parsedAvatar.img); // Define a URL da imagem
+          const { id } = JSON.parse(savedAvatar); // Decodifica o objeto salvo
+          const avatar = avatares.find((item) => item.id === id); // Busca o avatar correspondente
+          if (avatar) setUserImage(avatar.img); // Define a imagem com require()
         }
       } catch (error) {
         console.error("Erro ao recuperar os dados:", error);
@@ -73,10 +80,9 @@ export default function Screen() {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar />
-      
+
       <Text style={styles.h1}>SENAC APRENDIZAGEM</Text>
       <View style={styles.viewFlatlist}>
-        
         <FlatList
           ref={flatListRef}
           data={imagensCarrossel}
@@ -86,24 +92,22 @@ export default function Screen() {
         />
       </View>
       <ScrollView>
-      <View style={styles.nameInput}>
-        {userImage && <Image source={{ uri: userImage }} style={styles.userImage} />}
-        <Text style={styles.welcome}>
-          {userName ? `Bem-vindo(a), ${userName}!` : "Bem-vindo(a)!"}
-        </Text>
-      </View>
+        <View style={styles.nameInput}>
+          {userImage && <Image source={userImage} style={styles.userImage} />}
+          <Text style={styles.welcome}>
+            {userName ? `Bem-vindo(a), ${userName}!` : "Bem-vindo(a)!"}
+          </Text>
+        </View>
 
-      <View style={styles.cardContainer}>
-        <FlatList
-          data={conteudosAprendizagem}
-          renderItem={renderConteudos} // Usando renderConteudos para garantir que 'id' seja passado
-          keyExtractor={(item) => item.id.toString()}
-        />
-        
-      </View>
+        <View style={styles.cardContainer}>
+          <FlatList
+            data={conteudosAprendizagem}
+            renderItem={renderConteudos} // Usando renderConteudos para garantir que 'id' seja passado
+            keyExtractor={(item) => item.id.toString()}
+          />
+        </View>
       </ScrollView>
     </SafeAreaView>
-    
   );
 }
 
@@ -120,7 +124,7 @@ const styles = StyleSheet.create({
     flexWrap: "wrap", // Permite que o texto quebre em várias linhas
     maxWidth: "80%", // Limita a largura máxima para que o texto quebre
   },
-  
+
   userImage: {
     width: 50,
     height: 50,
@@ -145,7 +149,7 @@ const styles = StyleSheet.create({
     shadowRadius: 8, // Raio de desfoque da sombra
     elevation: 15, // Elevação para Android
   },
-  
+
   h1: {
     fontSize: 30,
     color: "#044B8B",

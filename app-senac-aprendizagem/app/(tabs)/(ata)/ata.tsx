@@ -49,8 +49,8 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     width: "100%",
-    alignItems: "flex-start",
-    justifyContent: "flex-start",
+    alignItems: "center",
+    justifyContent: "center",
     gap: 10,
     flexWrap: "wrap",
   },

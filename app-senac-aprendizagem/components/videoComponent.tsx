@@ -144,7 +144,6 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 20,
     borderColor: '#044B8B',
     width: '100%',
-    height: '35%',
   },
   textTitulo: {
     backgroundColor: '#044B8B',
@@ -162,5 +161,8 @@ const styles = StyleSheet.create({
     textAlign: 'justify',
     paddingLeft: 10,
     paddingRight: 10,
-  },
+    flexWrap: 'wrap',  // Permite que o texto quebre em várias linhas
+    overflow: 'hidden',  // Garante que o texto não ultrapasse os limites
+  }
+  
 });

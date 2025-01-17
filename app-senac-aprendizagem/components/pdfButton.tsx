@@ -35,9 +35,10 @@ export const PDFItem: React.FC<PDFItemProps> = ({ item }) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: screenWidth /2 - 30,
+    width: screenWidth * 0.42,
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
     padding: 10,
     marginVertical: 5,
     backgroundColor: '#F5F5F5',

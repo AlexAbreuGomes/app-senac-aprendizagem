@@ -3,30 +3,51 @@ import { CarrosselAvatares } from "../types/carrosselAvataresTypes";
 export const avatares: CarrosselAvatares[] = [
     {
         id: '1',
-        img: 'https://th.bing.com/th/id/R.001ad7c2fb78f6618b294f89c417333e?rik=aUnOy%2fkfLTJPcw&pid=ImgRaw&r=0' 
+        img: require('../assets/avatares/bode.png') 
     },
     {
         id: '2',
-        img: 'https://th.bing.com/th/id/OIP.y3kF2fC7L-ImpI7Vu1g6_wHaHd?w=739&h=744&rs=1&pid=ImgDetMain' 
+        img: require('../assets/avatares/cabrito.png') 
     },
     {
         id: '3',
-        img: 'https://clipart.info/images/ccovers/1495750737Feeling-Happy-emoticon-emoji-.png' 
+        img: require('../assets/avatares/cachorro_budog.png') 
     },
     {
         id: '4',
-        img: 'https://static.vecteezy.com/system/resources/previews/011/380/325/original/happy-face-emoji-free-png.png' 
+        img: require('../assets/avatares/cachorro_vermelho.png') 
     },
     {
         id: '5',
-        img: 'https://cdn.pixabay.com/photo/2019/02/19/19/45/thumbs-up-4007573_1280.png' 
+        img: require('../assets/avatares/cachorro.png') 
     },
     {
         id: '6',
-        img: 'https://th.bing.com/th/id/R.b109f8b46576eff98e70bc1a36f36c5f?rik=8VldcKPngsU3Gg&pid=ImgRaw&r=0' 
+        img: require('../assets/avatares/carneiro.png') 
     },
     {
         id: '7',
-        img: 'https://e7.pngegg.com/pngimages/421/894/png-clipart-emoticon-smiley-face-with-tears-of-joy-emoji-happiness-emoticon-whatsapp-smiley-desktop-wallpaper.png' 
+        img: require('../assets/avatares/coelho.png') 
     },
+    {
+        id: '8',
+        img: require('../assets/avatares/guaxinin.png') 
+    },
+    {
+        id: '9',
+        img: require('../assets/avatares/leao.png') 
+    },
+    {
+        id: '10',
+        img: require('../assets/avatares/lobo.png') 
+    },
+    {
+        id: '11',
+        img: require('../assets/avatares/urso_branco.png') 
+    },
+    {
+        id: '12',
+        img: require('../assets/avatares/urso_vermelho.png') 
+    },
+   
 ];
