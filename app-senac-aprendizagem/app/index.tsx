@@ -3,20 +3,20 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NameInput } from "../components/inputSaveName";
 import { router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, Dimensions } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { ButtonGeneric } from "../components/button";
 import { CarrosselAvatar } from '../components/carrosselAvatares'; // Importando o componente CarrosselAvatar
 import { avatares } from '../data/carrosselAvatares'; // Dados dos avatares
 import { CarrosselAvatares } from "../types/carrosselAvataresTypes";
-import { useFonts, LuckiestGuy_400Regular,} from "@expo-google-fonts/luckiest-guy";
-import { useFonts as IBMPlexMono,IBMPlexMono_400Regular,IBMPlexMono_700Bold,IBMPlexMono_500Medium } from "@expo-google-fonts/ibm-plex-mono";
+import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
+import { useFonts as IBMPlexMono, IBMPlexMono_400Regular, IBMPlexMono_700Bold, IBMPlexMono_500Medium } from "@expo-google-fonts/ibm-plex-mono";
+
+const screenWidth = Dimensions.get('window').width
 
 export default function Screen() {
   const [userName, setUserName] = useState<string>(""); // Estado para o nome do usuário
-  const [selectedAvatar, setSelectedAvatar] = useState<CarrosselAvatares | null>(
-    null
-  ); // Estado para o avatar selecionado
+  const [selectedAvatar, setSelectedAvatar] = useState<CarrosselAvatares | null>(null); // Estado para o avatar selecionado
 
   const start = async () => {
     try {
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-between",
     alignItems: "center",
-    paddingTop: 80,
+    paddingTop: 10,
     backgroundColor: "#fff",
   },
   cxBemVindo: {
@@ -104,7 +104,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     width: "90%",
-    marginBottom: 50,
   },
   cxGeral: {
     justifyContent: "center",
@@ -114,27 +113,31 @@ const styles = StyleSheet.create({
   },
   h1Superior: {
     fontFamily: "LuckiestGuy",
-    fontSize: 24,
+    fontSize: 30,
     color: "#044B8B",
     textAlign: "center",
   },
   h1Inferior: {
     fontFamily: "LuckiestGuy",
-    fontSize: 17,
+    fontSize: 20,
     color: "#F7941D",
+    textAlign: "left", // Garante alinhamento consistente
+    flexShrink: 1,     // Permite que o texto seja reduzido para evitar quebra
+    width: "100%",     // Ocupa toda a largura disponível
+    paddingBottom: 10, // Espaçamento inferior
   },
   p: {
     color: "#044B8B",
     fontFamily: "IBMPlexMonoMedium",
-    fontSize: 16,
-    marginBottom: 10,
+    fontSize: 20,
     textAlign: "center",
   },
   button: {
-    width: "101%",
+    width: screenWidth * 0.85,
     height: 70,
     justifyContent: "center",
     alignItems: "center",
+    textAlign: "center",
     backgroundColor: "#F7941D",
     borderRadius: 30,
     marginTop: 20,

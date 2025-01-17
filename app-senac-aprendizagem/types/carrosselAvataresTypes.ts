@@ -1,4 +1,4 @@
 export type CarrosselAvatares = {
-    id: string,
-    img: string
+    id: string;
+    img: any; // Aceita apenas objetos retornados pelo require
 };

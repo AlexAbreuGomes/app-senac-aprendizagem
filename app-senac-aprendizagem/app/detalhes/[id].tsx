@@ -1,4 +1,4 @@
-import { useRouter, useLocalSearchParams, Stack } from "expo-router";
+import { useRouter, useLocalSearchParams } from "expo-router";
 import React from "react";
 import { View, Text, StyleSheet, Button, ScrollView, TouchableOpacity } from "react-native";
 import { conteudosAprendizagem } from "../../data/boxConteudosData";
@@ -30,7 +30,7 @@ export default function Detalhes() {
       <View style={styles.container}>
         <Text style={styles.error}>Conteúdo não encontrado!</Text>
         <Button title="Voltar" onPress={() => router.back()} />
-      </View>
+      </View> 
     );
   }
 

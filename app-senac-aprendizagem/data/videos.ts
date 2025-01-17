@@ -3,7 +3,7 @@ import { Video } from "../types/videosTypes";
 export const videos: Video[] = [
     {
         id: 1,
-        video: 'https://www.youtube.com/watch?v=0GOUF8vNqzE&t=630s',
+        video: 'https://www.youtube.com/watch?v=K-ufILCBtxo',
         titulo: 'Como Organizar suas Tarefas no Ambiente de Trabalho?',
         subtitulo: 'De maneira demonstrativa. As principais maneiras.'
     },

@@ -1,15 +1,15 @@
 {
   "expo": {
-    "name": "app-senac-aprendizagem",
-    "slug": "app-senac-aprendizagem",
+    "name": "Senac Aprendizagem",
+     "slug": "app-senac-aprendizagem",
     "version": "1.0.0",
-    "scheme": "app-senac-aprendizagem",
+    "scheme": "senac-aprendizagem",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/senac-logo-0.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/senac-logo-0.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -18,9 +18,10 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/senac-logo-0.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.alexdevmobile007.senacaprendizagem"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -28,6 +29,15 @@
     "plugins": [
       "expo-router",
       "expo-font"
-    ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "20359a4a-3090-4d9b-9d97-29e9b1e97d30"
+      }
+    },
+    "owner": "alexdevmobile007"
   }
 }

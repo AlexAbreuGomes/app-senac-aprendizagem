@@ -1,22 +1,26 @@
+import { videos } from "../../../data/videos";
+import { VideoAprendizagem } from "../../../components/videoComponent";
+import React from 'react';
 import { SafeAreaView } from "react-native-safe-area-context"
 import { Dimensions, FlatList, Image, StyleSheet,Text, View } from "react-native"
 import { StatusBar } from "expo-status-bar"
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
-import { useFonts as IBMPlexMono_400Regular, IBMPlexMono_700Bold } from "@expo-google-fonts/ibm-plex-mono";
-import { videos } from "../../../data/videos";
-import { VideoAprendizagem } from "../../../components/videoComponent";
+import {useFonts as IBMPlexMono,IBMPlexMono_400Regular,IBMPlexMono_700Bold,IBMPlexMono_500Medium} from "@expo-google-fonts/ibm-plex-mono";
+
 
 const screenWidth = Dimensions.get('window').width
 
 export default function Screen (){
 
-    useFonts({
-        LuckiestGuy: LuckiestGuy_400Regular,
-        IBMPlexMonoRegular: IBMPlexMono_400Regular,
-        IBMPlexMonoBold: IBMPlexMono_700Bold,
-      });
+   useFonts({
+     LuckiestGuy: LuckiestGuy_400Regular,
+     IBMPlexMonoRegular: IBMPlexMono_400Regular,
+     IBMPlexMonoBold: IBMPlexMono_700Bold,
+     IBMPlexMonoMedium: IBMPlexMono_500Medium,
+   });
 
     return(
+       
         <SafeAreaView style={styles.container}>
             <StatusBar/>
                <View style={styles.areaBanner}>
@@ -37,8 +41,8 @@ export default function Screen (){
                 />    
         </SafeAreaView>
     )
+   
 };
-
 const styles = StyleSheet.create({
     container:{
         flex:1,
@@ -59,15 +63,16 @@ const styles = StyleSheet.create({
         height: 150
     },
     textBanner:{
-        fontSize: 24,
+        fontSize: 35,
         fontFamily: 'LuckiestGuy',
         color: '#044B8B'
     },
-    flatlist:{
+    flatlist:{ 
         width: screenWidth,
         borderWidth: 0,
         paddingRight: 10,
         paddingLeft: 10,
-        gap: 30
+        gap: 30,
+        paddingBottom: 20
     }
 });

@@ -1,89 +1,58 @@
-import { SafeAreaView } from "react-native-safe-area-context"
-import { StyleSheet,Text, View, FlatList } from "react-native"
-import { StatusBar } from "expo-status-bar"
-import { faqs } from "../../../data/faq"
-import { FaqPerguntas } from "../../../components/faqPerguntas"
-import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
-import { useFonts as IBMPlexMono_400Regular, IBMPlexMono_700Bold } from "@expo-google-fonts/ibm-plex-mono";
-import { router, Stack } from "expo-router"
-import { BackButton } from "../../../components/backButton"
 
-export default function Screen (){
+import { SafeAreaView } from "react-native-safe-area-context";
+import { StyleSheet, Text, FlatList } from "react-native";
+import { PDFItem } from "../../../components/pdfButton";
+import { PDF } from "../../../data/pdf"; // Importe o array de PDFs
+import React from "react";
+import { useFonts, LuckiestGuy_400Regular,} from "@expo-google-fonts/luckiest-guy";
+import { useFonts as IBMPlexMono,IBMPlexMono_400Regular,IBMPlexMono_700Bold,IBMPlexMono_500Medium } from "@expo-google-fonts/ibm-plex-mono";
+import { StatusBar } from "expo-status-bar";
 
-    useFonts({
+export default function Screen() {
+
+      useFonts({
         LuckiestGuy: LuckiestGuy_400Regular,
         IBMPlexMonoRegular: IBMPlexMono_400Regular,
         IBMPlexMonoBold: IBMPlexMono_700Bold,
+        IBMPlexMonoMedium: IBMPlexMono_500Medium,
       });
 
-    return(
-        <>
+  return (
+    <SafeAreaView style={styles.container}>
+      <StatusBar />
+      <Text style={styles.h1}>Ata</Text>
 
-           <Stack.Screen
-                  options={{
-                    headerShown: true,
-                    title: "",
-                    headerTitleStyle: {
-                      fontSize: 30,
-                      color: "#0361dd",
-                    },
-                    headerTitleAlign: "center",
-                    headerLeft: () => (
-                      <BackButton onPress={() => router.back()} /> // Botão de voltar
-                    ),
-                  }}
-                />
-
-        <SafeAreaView style={styles.container}>
-            <StatusBar/>
-            <Text style={styles.h1}>O QUE É UM ATA</Text>
-            
-            <View style={styles.areaFaq}>
-                <Text style={styles.tituloFAQ}>Dúvidas Frequêntes</Text>
-                <FlatList 
-                    data={faqs}
-                    renderItem={({item}) => <FaqPerguntas data={item}/>}
-                    keyExtractor={item => item.id.toString()}
-                    contentContainerStyle={styles.flatlist}
-                />
-            </View> 
-        </SafeAreaView>
-        </>
-    )
+      {/* Use FlatList para renderizar os PDFs */}
+      <FlatList
+        data={PDF} // A lista de PDFs
+        keyExtractor={(item) => item.id.toString()} // Converte o ID para string
+        renderItem={({ item }) => <PDFItem item={item} />} // Renderiza um PDFItem
+        contentContainerStyle={styles.listContainer}
+        horizontal={true}
+      />
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
-    container:{
-        flex:1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-
-    h1:{
-        fontSize: 32,
-        marginBottom: 10,
-        fontFamily: 'LuckiestGuy',
-        color: '#044B8B'
-    },
-    areaFaq:{
-        flex:1,
-        borderWidth: 2,
-        borderColor: 'transparent',
-        width: '100%',
-        paddingLeft: 20,
-        paddingRight: 20,
-        gap:20
-    },
-    tituloFAQ:{
-        borderWidth: 0,
-        paddingLeft: 10,
-        fontSize: 20,
-        fontFamily: 'LuckiestGuy',
-        color: '#044B8B'
-    },
-    flatlist: {
-        borderWidth: 1,
-        borderColor: 'transparent',
-        gap: 20,
-    },
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 20,
+  },
+  h1: {
+    fontSize: 30,
+    color: "#044B8B",
+    textAlign: "center",
+    margin: 5,
+    fontFamily: "LuckiestGuy",
+  },
+  listContainer: {
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 10,
+    flexWrap: "wrap",
+  },
 });

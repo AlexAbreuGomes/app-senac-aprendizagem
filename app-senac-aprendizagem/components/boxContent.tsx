@@ -21,7 +21,7 @@ export const Conteudos: React.FC<ConteudosProps> = ({ titulo, id }) => {
 const styles = StyleSheet.create({
   card: {
     width: screenWidth - 20,
-    height: 170,
+    height: 150,
     backgroundColor: "#0059B3",
     borderRadius: 20,
     padding: 10,
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: "#FFFFFF",
-    fontSize: 18,
-    fontWeight: "bold",
+    fontSize: 20,
+    fontFamily: "LuckiestGuy",
   },
 });

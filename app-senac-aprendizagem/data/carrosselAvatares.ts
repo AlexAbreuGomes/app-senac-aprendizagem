@@ -3,30 +3,51 @@ import { CarrosselAvatares } from "../types/carrosselAvataresTypes";
 export const avatares: CarrosselAvatares[] = [
     {
         id: '1',
-        img: 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Lewis_Hamilton_October_2014.jpg' 
+        img: require('../assets/avatares/bode.png') 
     },
     {
         id: '2',
-        img: 'https://th.bing.com/th/id/R.733916c4960bd7ad9faee11f6a51829e?rik=ng25gdrcKbTqSQ&pid=ImgRaw&r=0' 
+        img: require('../assets/avatares/cabrito.png') 
     },
     {
         id: '3',
-        img: 'https://www.f1-fansite.com/wp-content/uploads/2020/08/Lewis-Hamilton-2020-scaled.jpg' 
+        img: require('../assets/avatares/cachorro_budog.png') 
     },
     {
         id: '4',
-        img: 'https://www.motorsportmagazine.com/wp-content/uploads/2021/11/Lewis-Hamilton-with-a-Brazilian-flag-at-the-2021-grand-prix.jpg' 
+        img: require('../assets/avatares/cachorro_vermelho.png') 
     },
     {
         id: '5',
-        img: 'https://cdn-5.motorsport.com/images/amp/01Wmy1ZY/s1000/lewis.jpg' 
+        img: require('../assets/avatares/cachorro.png') 
     },
     {
         id: '6',
-        img: 'https://cdn-5.motorsport.com/images/amp/01Wmy1ZY/s1000/lewis.jpg' 
+        img: require('../assets/avatares/carneiro.png') 
     },
     {
         id: '7',
-        img: 'https://cdn-5.motorsport.com/images/amp/01Wmy1ZY/s1000/lewis.jpg' 
+        img: require('../assets/avatares/coelho.png') 
     },
+    {
+        id: '8',
+        img: require('../assets/avatares/guaxinin.png') 
+    },
+    {
+        id: '9',
+        img: require('../assets/avatares/leao.png') 
+    },
+    {
+        id: '10',
+        img: require('../assets/avatares/lobo.png') 
+    },
+    {
+        id: '11',
+        img: require('../assets/avatares/urso_branco.png') 
+    },
+    {
+        id: '12',
+        img: require('../assets/avatares/urso_vermelho.png') 
+    },
+   
 ];

@@ -22,7 +22,8 @@ export const CarrosselAvatar: React.FC<CarrosselAvataresProps> = ({ data, onSele
           ]}
           onPress={() => onSelectAvatar(item)}
         >
-          <Image source={{uri: item.img}} style={styles.avatarImage} />
+          <Image source={item.img} style={styles.avatarImage} />
+
         </TouchableOpacity>
       )}
       showsHorizontalScrollIndicator={false}

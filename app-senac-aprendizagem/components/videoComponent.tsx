@@ -1,8 +1,12 @@
 import React, { useCallback, useState } from 'react';
-import { Image, Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Dimensions, Image, Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Video } from "../types/videosTypes";
-import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
-import { useFonts as IBMPlexMono_400Regular, IBMPlexMono_700Bold } from "@expo-google-fonts/ibm-plex-mono";
+import { useFonts, LuckiestGuy_400Regular,} from "@expo-google-fonts/luckiest-guy";
+import { useFonts as IBMPlexMono,IBMPlexMono_400Regular,IBMPlexMono_700Bold,IBMPlexMono_500Medium } from "@expo-google-fonts/ibm-plex-mono";
+
+
+const screenWidth = Dimensions.get('window').width
+
 
 // Função para extrair o videoId da URL do YouTube
 const extractVideoId = (url: string): string | null => {
@@ -26,10 +30,11 @@ type Props = {
 
 export const VideoAprendizagem = ({ data }: Props) => {
   useFonts({
-    LuckiestGuy: LuckiestGuy_400Regular,
-    IBMPlexMono: IBMPlexMono_400Regular,
-    IBMPlexMonoBold: IBMPlexMono_700Bold,
-  });
+         LuckiestGuy: LuckiestGuy_400Regular,
+         IBMPlexMonoRegular: IBMPlexMono_400Regular,
+         IBMPlexMonoBold: IBMPlexMono_700Bold,
+         IBMPlexMonoMedium: IBMPlexMono_500Medium,
+       });
 
   const [watched, setWatched] = useState(false);  // Estado para controlar se o vídeo foi assistido
 
@@ -114,7 +119,8 @@ const styles = StyleSheet.create({
   textbtn: {
     fontSize: 15,
     color: 'white',
-    fontFamily: 'monospace',
+
+    fontFamily: '',
     fontWeight: 'bold',
   },
   videoContainer: {
@@ -124,15 +130,15 @@ const styles = StyleSheet.create({
     height: '65%',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
+  },
+  btnPlayVideo: {
+    width: screenWidth-20,
+    height: '100%',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
     borderWidth: 1,
     borderBottomWidth: 0,
     borderColor: '#004586',
-  },
-  btnPlayVideo: {
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    width: 372,
-    height: 162,
   },
   textContainer: {
     borderWidth: 1,
@@ -140,7 +146,6 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 20,
     borderColor: '#044B8B',
     width: '100%',
-    height: '35%',
   },
   textTitulo: {
     backgroundColor: '#044B8B',
@@ -152,10 +157,13 @@ const styles = StyleSheet.create({
     paddingRight: 10,
   },
   textSubtitulo: {
-    fontSize: 15,
-    fontFamily: 'IBMPlexMonoRegular',
+    fontSize: 18,
+    color: '#044B8B',
+    fontFamily: 'IBMPlexMonoMedium',
     textAlign: 'justify',
     paddingLeft: 10,
     paddingRight: 10,
-  },
+    flexWrap: 'wrap',  // Permite que o texto quebre em várias linhas
+    overflow: 'hidden',  // Garante que o texto não ultrapasse os limites
+  }
 });
