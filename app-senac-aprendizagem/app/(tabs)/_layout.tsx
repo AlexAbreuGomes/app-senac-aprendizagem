@@ -6,8 +6,8 @@ export default function TabLayout(){
     return(
        <Tabs screenOptions={{
             headerShown: false,
-            tabBarStyle: {backgroundColor: '#ffffff', height: 50,},
-            tabBarLabelStyle: {fontSize: 11, fontWeight: 'bold'}, 
+            tabBarStyle: {backgroundColor: '#ffffff', height: 60, paddingTop: 5,},
+            tabBarLabelStyle: {fontSize: 12,   fontWeight: 'bold'}, 
             tabBarAccessibilityLabel: 'Navegação de abas',
             
             tabBarActiveTintColor: '#044B8B',
@@ -62,8 +62,8 @@ export default function TabLayout(){
                         <Image
                           source={
                             focused
-                              ? require("../../assets/icon-tab-medalha-inative.png")
-                              : require("../../assets/icon-tab-medalha-active.png")
+                              ? require("../../assets/icon-tab-medalha-active.png")
+                              : require("../../assets/icon-tab-medalha-inative.png")
                           }
                           style={{ width: 34, height: 35 }}
                           resizeMode="contain"
@@ -99,8 +99,8 @@ export default function TabLayout(){
                         <Image
                           source={ 
                             focused
-                              ? require("../../assets/icon-tab-mala-active.png")
-                              : require("../../assets/icon-tab-mala-inative.png")
+                              ? require("../../assets/icon-tab-faq-active.png")
+                              : require("../../assets/icon-tab-faq-inative.png")
                           }
                           style={{ width: 34, height: 35 }}
                           resizeMode="contain"
