@@ -64,7 +64,7 @@ export const VideoAprendizagem = ({ data }: Props) => {
       <View style={styles.videoContainer}>
         <TouchableOpacity onPress={openYoutubeVideo}>
           <Image
-            style={styles.btnPlayVideo}
+            style={styles.imgTambnail}
             source={{ uri: videoThumbnail }}  // Exibe o thumbnail do vídeo
           />
         </TouchableOpacity>
@@ -79,9 +79,11 @@ export const VideoAprendizagem = ({ data }: Props) => {
 
 const styles = StyleSheet.create({
   areaVideo: {
+    justifyContent: 'center',
+    alignItems: 'center',
     flexDirection: 'column',
     width: '100%',
-    height: 250,
+    height: 260,
   },
   areaStatus: {
     flexDirection: 'column',
@@ -92,7 +94,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#044B8B',
     width: '100%',
     height: '55%',
-    marginBottom: -135,
+    marginBottom: -130,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     borderBottomLeftRadius: 80,
@@ -131,7 +133,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
   },
-  btnPlayVideo: {
+  imgTambnail: {
     width: screenWidth-20,
     height: '100%',
     borderTopLeftRadius: 20,

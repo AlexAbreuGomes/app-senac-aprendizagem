@@ -69,10 +69,11 @@ const styles = StyleSheet.create({
     },
     flatlist:{ 
         width: screenWidth,
-        borderWidth: 0,
         paddingRight: 10,
         paddingLeft: 10,
-        gap: 30,
-        paddingBottom: 20
+        paddingBottom: 20,
+        paddingTop: 20,
+        gap: 30
+
     }
 });
