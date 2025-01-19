@@ -7,6 +7,7 @@ import { useFonts as IBMPlexMono,IBMPlexMono_400Regular,IBMPlexMono_700Bold,IBMP
 
 const screenWidth = Dimensions.get('window').width
 
+
 // Função para extrair o videoId da URL do YouTube
 const extractVideoId = (url: string): string | null => {
   const regex = /(?:https?:\/\/(?:www\.)?youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|(?:https?:\/\/(?:www\.)?youtu\.be\/))([^"&?\/\s]{11})/;
@@ -120,6 +121,7 @@ const styles = StyleSheet.create({
   textbtn: {
     fontSize: 15,
     color: 'white',
+
     fontFamily: '',
     fontWeight: 'bold',
   },
@@ -166,5 +168,4 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',  // Permite que o texto quebre em várias linhas
     overflow: 'hidden',  // Garante que o texto não ultrapasse os limites
   }
-  
 });

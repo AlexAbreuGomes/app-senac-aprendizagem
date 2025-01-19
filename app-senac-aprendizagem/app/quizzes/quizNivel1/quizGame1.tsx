@@ -295,7 +295,7 @@ const Quiz = () => {
           style={[styles.alertButton, styles.confirmButton]}
           onPress={() => {
             setShowCustomAlert(false);
-            router.replace('/home');
+            router.replace('/quiz');
           }}
         >
           <Text style={styles.alertButtonText}>Sim</Text>

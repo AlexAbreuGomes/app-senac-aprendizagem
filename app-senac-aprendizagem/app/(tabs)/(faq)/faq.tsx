@@ -4,17 +4,18 @@ import { StatusBar } from "expo-status-bar"
 import { faqs } from "../../../data/faq"
 import { FaqPerguntas } from "../../../components/faqPerguntas"
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
-import { useFonts as IBMPlexMono_400Regular, IBMPlexMono_700Bold } from "@expo-google-fonts/ibm-plex-mono";
+import { useFonts as IBMPlexMono, IBMPlexMono_400Regular, IBMPlexMono_700Bold, IBMPlexMono_500Medium } from "@expo-google-fonts/ibm-plex-mono";
 import React, { useState, useEffect, useRef } from "react";
 import { imagensCarrossel } from "../../../data/carrosselAlunos"
 import { Carrossel } from "../../../components/carrossel"
 
 export default function Screen (){
 
-    useFonts({
+      useFonts({
         LuckiestGuy: LuckiestGuy_400Regular,
         IBMPlexMonoRegular: IBMPlexMono_400Regular,
         IBMPlexMonoBold: IBMPlexMono_700Bold,
+        IBMPlexMonoMedium: IBMPlexMono_500Medium,
       });
 
         const [currentIndex, setCurrentIndex] = useState(0);
