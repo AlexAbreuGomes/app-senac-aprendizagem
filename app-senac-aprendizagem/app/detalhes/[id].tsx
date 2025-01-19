@@ -2,9 +2,11 @@ import { useRouter, useLocalSearchParams } from "expo-router";
 import React from "react";
 import { View, Text, StyleSheet, Button, ScrollView, TouchableOpacity } from "react-native";
 import { conteudosAprendizagem } from "../../data/boxConteudosData";
+import { VideoAprendizagem } from "../../components/videoComponent";
+import { videos } from "../../data/videos";
 import { FontAwesome } from '@expo/vector-icons';
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
-import { useFonts as IBMPlexMono_400Regular, IBMPlexMono_700Bold } from "@expo-google-fonts/ibm-plex-mono";
+import {useFonts as IBMPlexMono,IBMPlexMono_400Regular,IBMPlexMono_700Bold,IBMPlexMono_500Medium} from "@expo-google-fonts/ibm-plex-mono";
 import { BackButton } from "../../components/backButton";
 
 export default function Detalhes() {
@@ -15,14 +17,19 @@ export default function Detalhes() {
     LuckiestGuy: require('@expo-google-fonts/luckiest-guy'),
   });
 
-  useFonts({
-    LuckiestGuy: LuckiestGuy_400Regular,
-    IBMPlexMonoRegular: IBMPlexMono_400Regular,
-    IBMPlexMonoBold: IBMPlexMono_700Bold,
-  });
+    useFonts({
+      LuckiestGuy: LuckiestGuy_400Regular,
+      IBMPlexMonoRegular: IBMPlexMono_400Regular,
+      IBMPlexMonoBold: IBMPlexMono_700Bold,
+      IBMPlexMonoMedium: IBMPlexMono_500Medium,
+    });
 
   // Encontra o conteúdo correspondente ao ID
   const conteudo = conteudosAprendizagem.find((item) => item.id === Number(id));
+
+  // Filtra os vídeos relacionados ao conteúdo
+  const videosDoConteudo = videos.filter((video) => video.id === Number(id));
+
   const titulo = conteudo ? conteudo.titulo : "Detalhes"; // Fallback para "Detalhes" se o conteúdo não for encontrado
 
   if (!conteudo) {
@@ -38,11 +45,23 @@ export default function Detalhes() {
 
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.containerAll}>
-        <Text style={styles.title}>{conteudo.titulo}</Text>
+      <Text style={styles.title}>{conteudo.titulo}</Text>
+      {videosDoConteudo.length > 0 && (
+        <View style={styles.videosContainer}>
+          <Text style={styles.subTitulo}>Vídeos Relacionados:</Text>
+          {videosDoConteudo.map((video) => (
+            <VideoAprendizagem key={video.id} data={video} />
+          ))}
+        </View>
+      )}
+        
         <Text style={styles.description}>{conteudo.descricao}</Text>
         <Text style={styles.text}>{conteudo.texto}</Text>
 
-        {/* Renderizar dicas, se existirem */}
+  
+
+
+        
         {conteudo.dicas && (
           <View>
             <Text style={styles.subtitle}>Dicas:</Text>
@@ -110,6 +129,14 @@ const styles = StyleSheet.create({
   container: {
     padding: 16,
     backgroundColor: "#fff",
+  },
+  videosContainer: {
+    marginTop: 16,
+  },
+  subTitulo: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 8,
   },
   containerAll: {
     flex: 1,
