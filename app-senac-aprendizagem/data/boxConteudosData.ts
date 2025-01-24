@@ -4,6 +4,7 @@ export const conteudosAprendizagem: ConteudoAprendizagem[] = [
   {
     id: 1,
     titulo: "Comunicação",
+    icon: require("../assets/icons8-communication-96.png"),
     descricao: "A importância da comunicação e práticas para aprimorar.",
     texto: `A comunicação é uma habilidade essencial em qualquer área da vida. 
     Seja na escola, no trabalho ou em casa, saber se expressar e entender os outros ajuda a evitar conflitos, 
@@ -34,6 +35,7 @@ export const conteudosAprendizagem: ConteudoAprendizagem[] = [
     id: 2,
     titulo: "teste",
     descricao: "Práticas de ensino e aprendizado eficientes.",
+    icon: require("../assets/icons8-communication-96.png"),
     texto: `A educação é o processo de facilitar a aprendizagem ou a aquisição de conhecimento, habilidades, valores, crenças e hábitos.`,
     onPress: () => console.log("Educação"),
     imagens: [
@@ -47,6 +49,7 @@ export const conteudosAprendizagem: ConteudoAprendizagem[] = [
     id: 3,
     titulo: "Educação",
     descricao: "Práticas de ensino e aprendizado eficientes.",
+    icon: require("../assets/icons8-communication-96.png"),
     texto: `A educação é o processo de facilitar a aprendizagem ou a aquisição de conhecimento, habilidades, valores, crenças e hábitos.`,
     onPress: () => console.log("Educação"),
     imagens: [
@@ -60,6 +63,7 @@ export const conteudosAprendizagem: ConteudoAprendizagem[] = [
     id: 4,
     titulo: "Educação",
     descricao: "Práticas de ensino e aprendizado eficientes.",
+    icon: require("../assets/icons8-communication-96.png"),
     texto: `A educação é o processo de facilitar a aprendizagem ou a aquisição de conhecimento, habilidades, valores, crenças e hábitos.`,
     onPress: () => console.log("Educação"),
     imagens: [
@@ -73,6 +77,7 @@ export const conteudosAprendizagem: ConteudoAprendizagem[] = [
     id: 5,
     titulo: "Educação",
     descricao: "Práticas de ensino e aprendizado eficientes.",
+    icon: require("../assets/icons8-communication-96.png"),
     texto: `A educação é o processo de facilitar a aprendizagem ou a aquisição de conhecimento, habilidades, valores, crenças e hábitos.`,
     onPress: () => console.log("Educação"),
     imagens: [

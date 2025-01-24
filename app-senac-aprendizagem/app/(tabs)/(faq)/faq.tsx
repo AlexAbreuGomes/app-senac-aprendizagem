@@ -7,7 +7,6 @@ import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-gu
 import { useFonts as IBMPlexMono, IBMPlexMono_400Regular, IBMPlexMono_700Bold, IBMPlexMono_500Medium } from "@expo-google-fonts/ibm-plex-mono";
 import React, { useState, useEffect, useRef } from "react";
 import { imagensCarrossel } from "../../../data/carrosselAlunos"
-import { Carrossel } from "../../../components/carrossel"
 
 export default function Screen (){
 
@@ -41,19 +40,6 @@ export default function Screen (){
     return(
         <SafeAreaView style={styles.container}>
             <StatusBar/>
-            <Text style={styles.h1}>SENAC APRENDIZAGEM</Text>
-                  <View style={styles.viewFlatlist}>
-                    
-                    <FlatList
-                      ref={flatListRef}
-                      data={imagensCarrossel}
-                      renderItem={({ item }) => <Carrossel data={item} />}
-                      keyExtractor={(item) => item.id.toString()}
-                      horizontal={true}
-                    />
-                  </View>
-
-            
             <View style={styles.areaFaq}>
                 <Text style={styles.tituloFAQ}>Dúvidas Frequentes</Text>
                 <FlatList 
@@ -61,6 +47,7 @@ export default function Screen (){
                     renderItem={({item}) => <FaqPerguntas data={item}/>}
                     keyExtractor={item => item.id.toString()}
                     contentContainerStyle={styles.flatlist}
+                    showsVerticalScrollIndicator={false}
                 />
             </View> 
         </SafeAreaView>

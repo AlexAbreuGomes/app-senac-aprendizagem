@@ -35,26 +35,6 @@ export default function TabLayout(){
             />
 
             <Tabs.Screen
-                name="(videos)"
-                options={{
-                    title:  'Vídeos',
-                    tabBarIcon: ({ focused }) => (
-                        <Image
-                          source={
-                            focused
-                              ? require("../../assets/icon-tab-video-ative.png")
-                              : require("../../assets/icon-tab-video-inative.png")
-                          }
-                          style={{ width: 30, height: 30 }}
-                          resizeMode="contain"
-                        />
-                      ),
-                
-                }}
-               
-            />
-
-            <Tabs.Screen
                 name="(quiz)"
                 options={{
                     title:  'Quiz',

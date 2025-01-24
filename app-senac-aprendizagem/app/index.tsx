@@ -104,11 +104,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     width: "90%",
+    height: 200,
   },
   cxGeral: {
     justifyContent: "center",
     alignItems: "flex-start",
-    marginBottom: 20,
+    marginBottom: 10,
     width: "85%",
   },
   h1Superior: {

@@ -11,7 +11,7 @@ export default function Layout() {
 
   // Encontra o título com base no ID
   const conteudo = conteudosAprendizagem.find((item) => item.id === Number(id));
-  const titulo = conteudo ? conteudo.titulo : "Conteudos" ; // Fallback para "Detalhes" se o conteúdo não for encontrado
+  const titulo = conteudo ? conteudo.titulo : "Conteúdos" ; // Fallback para "Detalhes" se o conteúdo não for encontrado
 
   return (
     <Stack

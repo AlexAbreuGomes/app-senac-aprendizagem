@@ -121,7 +121,6 @@ const styles = StyleSheet.create({
   textbtn: {
     fontSize: 15,
     color: 'white',
-
     fontFamily: '',
     fontWeight: 'bold',
   },

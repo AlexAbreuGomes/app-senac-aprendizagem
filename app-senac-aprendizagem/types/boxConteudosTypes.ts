@@ -12,6 +12,7 @@ export type Subtitulo = {
   export type ConteudoAprendizagem = {
     id: number;
     titulo: string;
+    icon?: any;
     descricao: string;
     texto: string;
     dicas?: string[];
@@ -20,6 +21,6 @@ export type Subtitulo = {
     onPress: () => void;
   };
   
-  export type ConteudosProps = Pick<ConteudoAprendizagem, "titulo" | "onPress" | "id">;
+  export type ConteudosProps = Pick<ConteudoAprendizagem, "titulo" | "onPress" | "id" | "icon">;
 
   

@@ -117,6 +117,8 @@ const styles = StyleSheet.create({
     fontFamily: 'LuckiestGuy-Regular',
     color: '#ffffff',
     textAlign: 'left',
+    flexWrap: "wrap", // Permite que o texto quebre em várias linhas
+    maxWidth: "75%", // Limita a largura máxima para que o texto quebre
   },
   title: {
     fontSize: 20,

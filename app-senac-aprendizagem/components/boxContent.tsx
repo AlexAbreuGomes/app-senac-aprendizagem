@@ -1,17 +1,19 @@
 import React from "react";
-import { View, Text, Pressable, StyleSheet, Dimensions } from "react-native";
+import { View, Text, Pressable, StyleSheet, Dimensions, Image } from "react-native";
 import { useRouter } from "expo-router";
 import { ConteudosProps } from "../types/boxConteudosTypes";
 
 const screenWidth = Dimensions.get("window").width;
 
-export const Conteudos: React.FC<ConteudosProps> = ({ titulo, id }) => {
+export const Conteudos: React.FC<ConteudosProps> = ({ titulo, id, icon }) => {
   const router = useRouter();
 
   return (
     <Pressable style={styles.card} onPress={() => router.push(`/detalhes/${id}`)}>
       <View style={styles.header}>
-        <View style={styles.icon} />
+        <View style={styles.icon}>
+          <Image source={icon} style={styles.iconImage} />
+        </View>
         <Text style={styles.title}>{titulo}</Text>
       </View>
     </Pressable>
@@ -34,13 +36,18 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   icon: {
-    width: 40,
-    height: 40,
-    backgroundColor: "#084A9E",
-    borderRadius: 20,
+    width: 50,
+    height: 50,
+    backgroundColor: "#fff",
+    borderRadius: 40,
     justifyContent: "center",
     alignItems: "center",
     marginRight: 8,
+  },
+  iconImage: {
+    width: 30,
+    height: 30,
+    resizeMode: "cover", // Ajusta o ícone para caber no círculo
   },
   title: {
     color: "#FFFFFF",

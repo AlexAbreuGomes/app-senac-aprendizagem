@@ -12,7 +12,7 @@ export const Carrossel = ({data}: Props) => {
     return(
         <View >
            <Image 
-            source={{uri: data.img}}
+            source={data.img}
             style={styles.imgCarrossel}
             resizeMode="cover"
             />

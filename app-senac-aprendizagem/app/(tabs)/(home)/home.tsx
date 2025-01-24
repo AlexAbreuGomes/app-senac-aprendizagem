@@ -68,6 +68,7 @@ export default function Screen() {
     <Conteudos
       titulo={item.titulo}
       id={item.id} // Passando o id necessário
+      icon={item.icon}
       onPress={item.onPress}
     />
   );
@@ -76,7 +77,7 @@ export default function Screen() {
     <SafeAreaView style={styles.container}>
       <StatusBar />
 
-      <Text style={styles.h1}>SENAC APRENDIZAGEM</Text>
+      <Text style={styles.h1}>CONECTA APRENDIZ</Text>
       <View style={styles.viewFlatlist}>
         <FlatList
           ref={flatListRef}

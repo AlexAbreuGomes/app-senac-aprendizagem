@@ -11,7 +11,7 @@
     "splash": {
       "image": "./assets/senac-logo-0.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#fff"
     },
     "ios": {
       "supportsTablet": true
@@ -19,7 +19,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/senac-logo-0.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#b7e4c7"
       },
       "package": "com.alexdevmobile007.senacaprendizagem"
     },

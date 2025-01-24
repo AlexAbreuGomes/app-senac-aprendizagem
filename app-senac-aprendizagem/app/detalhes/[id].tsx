@@ -7,7 +7,6 @@ import { videos } from "../../data/videos";
 import { FontAwesome } from '@expo/vector-icons';
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
 import { useFonts as IBMPlexMono, IBMPlexMono_400Regular, IBMPlexMono_700Bold, IBMPlexMono_500Medium } from "@expo-google-fonts/ibm-plex-mono";
-import { BackButton } from "../../components/backButton";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 
@@ -31,8 +30,6 @@ export default function Detalhes() {
 
   // Filtra os vídeos relacionados ao conteúdo
   const videosDoConteudo = videos.filter((video) => video.id === Number(id));
-
-  const titulo = conteudo ? conteudo.titulo : "Detalhes"; // Fallback para "Detalhes" se o conteúdo não for encontrado
 
   if (!conteudo) {
     return (
@@ -144,13 +141,13 @@ const styles = StyleSheet.create({
     borderColor: "white"
   },
   title: {
-    fontSize: 24,
+    fontSize: 35,
     fontFamily: "LuckiestGuy",
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
     alignContent: "center",
-    color: "#044B8B"
+    color: "#044B8B",
   },
   description: {
     fontSize: 16,
