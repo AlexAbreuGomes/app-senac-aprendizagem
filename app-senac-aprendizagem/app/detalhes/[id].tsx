@@ -8,6 +8,8 @@ import { FontAwesome } from '@expo/vector-icons';
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
 import {useFonts as IBMPlexMono,IBMPlexMono_400Regular,IBMPlexMono_700Bold,IBMPlexMono_500Medium} from "@expo-google-fonts/ibm-plex-mono";
 import { BackButton } from "../../components/backButton";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { StatusBar } from "expo-status-bar";
 
 export default function Detalhes() {
   const { id } = useLocalSearchParams(); // Pega o ID da URL
@@ -42,9 +44,12 @@ export default function Detalhes() {
   }
 
   return (
-
+    <SafeAreaView>
+      <StatusBar/>
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.containerAll}>
+      <Text style={styles.title}>{conteudo.titulo}</Text>
+      <Text style={styles.title}>{conteudo.titulo}</Text>
       <Text style={styles.title}>{conteudo.titulo}</Text>
       {videosDoConteudo.length > 0 && (
         <View style={styles.videosContainer}>
@@ -117,7 +122,7 @@ export default function Detalhes() {
 
       </View>
     </ScrollView>
-
+    </SafeAreaView>
   );
 
 

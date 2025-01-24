@@ -3,6 +3,7 @@ import { Stack } from "expo-router/stack";
 import React from "react";
 import { BackButton } from "../components/backButton";
 import { conteudosAprendizagem } from "../data/boxConteudosData"; // Importa os conteúdos
+import { Platform } from "react-native";
 
 export default function Layout() {
   const router = useRouter();
@@ -10,7 +11,7 @@ export default function Layout() {
 
   // Encontra o título com base no ID
   const conteudo = conteudosAprendizagem.find((item) => item.id === Number(id));
-  const titulo = conteudo ? conteudo.titulo : "" ; // Fallback para "Detalhes" se o conteúdo não for encontrado
+  const titulo = conteudo ? conteudo.titulo : "Conteudos" ; // Fallback para "Detalhes" se o conteúdo não for encontrado
 
   return (
     <Stack
@@ -30,8 +31,9 @@ export default function Layout() {
         options={{
           headerShown: true,
           title: titulo, // Usa o título dinâmico
+          headerTitleAlign: "center", // Centraliza o título
           headerTitleStyle: {
-            fontSize: 16,
+            fontSize: 30,
             fontFamily: "LuckiestGuy",
             color: "#fff", // Cor do texto do título
           },
@@ -39,14 +41,8 @@ export default function Layout() {
             backgroundColor: "#044B8B", // Cor de fundo do cabeçalho
           },
           headerTintColor: "#fff", // Define a cor da seta e do texto "voltar"
-          headerLeft: () => (
-            <BackButton
-              onPress={() => {
-                console.log("Botão de voltar pressionado!");
-                router.back();
-              }}
-            /> // Botão de voltar com log
-          ),
+          headerLeft: () =>
+            Platform.OS === "ios" ? <BackButton /> : null,
         }}
       />
     </Stack>

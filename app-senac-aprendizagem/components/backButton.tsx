@@ -1,24 +1,31 @@
-import { Pressable, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons'; // Usando ícones do Ionicons (ou escolha outro)
-import React from 'react';
+import AntDesign from "@expo/vector-icons/build/AntDesign";
+import Entypo from "@expo/vector-icons/build/Entypo";
+import { useRouter } from "expo-router";
+import { Platform, StyleSheet, TouchableOpacity } from "react-native";
 
-type BackButtonProps = {
-  onPress: () => void;
-}
 
-export const BackButton = ({ onPress }: BackButtonProps) => {
+
+
+
+import React from "react";
+
+export function BackButton() {
+  const router = useRouter();
+
   return (
-    <Pressable onPress={onPress} style={styles.button}>
-      <Ionicons name="arrow-back" size={30} color="#044B8B" />
-    </Pressable>
+    <TouchableOpacity onPress={router.back} hitSlop={40} style={styles.button}>
+      {Platform.OS === "ios" ? (
+        <AntDesign name="closecircle" size={50} color={'blue'} />
+      ) : (
+        <Entypo name="chevron-left" size={50} color={'green'} />
+      )}
+    </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   button: {
-    padding: 7,  // Ajusta o espaço ao redor do ícone,
-    backgroundColor: "#fff",
-    borderRadius: 50,
-    marginRight: 15,
+    padding: 10,
+    marginLeft: -10,
   },
 });
