@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, StatusBar, Image, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, StatusBar, Image, SafeAreaView, Platform } from 'react-native';
 import { Stack, Tabs, useRouter } from 'expo-router';
 import { useFonts } from 'expo-font'; 
 import Button from '../../../components/ButtonQuiz'; // Importando o botão padronizado
@@ -45,12 +45,9 @@ const Index = () => {
               headerStyle: {
                 backgroundColor: "#044B8B",  
               },
-              headerLeft: () => (
-                <BackButton onPress={() => {
-                  console.log("Botão de voltar pressionado!");
-                  router.back();
-                }} /> // Botão de voltar com log
-              )
+              headerTintColor: "#fff",
+              headerLeft: () =>
+                Platform.OS === "ios" ? <BackButton /> : null,
             }}
           />
  

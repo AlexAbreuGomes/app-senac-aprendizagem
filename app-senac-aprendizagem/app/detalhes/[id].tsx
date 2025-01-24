@@ -10,8 +10,6 @@ import { useFonts as IBMPlexMono, IBMPlexMono_400Regular, IBMPlexMono_700Bold, I
 import { BackButton } from "../../components/backButton";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { StatusBar } from "expo-status-bar";
 
 export default function Detalhes() {
   const { id } = useLocalSearchParams(); // Pega o ID da URL
