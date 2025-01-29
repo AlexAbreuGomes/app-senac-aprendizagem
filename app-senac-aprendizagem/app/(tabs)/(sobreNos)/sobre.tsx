@@ -4,6 +4,7 @@ import { StatusBar } from "expo-status-bar"
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
 import { useFonts as IBMPlexMono_400Regular, IBMPlexMono_700Bold } from "@expo-google-fonts/ibm-plex-mono";
 import { Linking } from "react-native";
+import React from "react";
 
 export default function Screen() {
 
@@ -34,13 +35,13 @@ export default function Screen() {
                         source={require('../../../assets/icon-conheca-one.png')}
                         style={styles.iconOne}
                     />
-                    <Text style={styles.h1}>O que é o app SABER Aprendizagem?</Text>
-                    <Text style={styles.h2}>O SABER Aprendizagem é um aplicativo criado por
-                        alunos do curso técnico de Desenvolvimento de Sistemas do SENAC-RN
-                        Zona Norte, em parceria com jovens aprendizes de 2024. O objetivo é
-                        oferecer suporte prático e motivador, tirando as dúvidas mais comuns
-                        dos aprendizes e proporcionando uma experiência de aprendizado
-                        acessível e enriquecedora.
+                    <Text style={styles.h1}>O que é o Conecta Aprendiz?</Text>
+                    <Text style={styles.h2}>O Conecta Aprendiz é um aplicativo desenvolvido por alunos do curso Técnico de
+                        Desenvolvimento de Sistemas do Senac-RN Zona Norte, em parceria com a turma
+                        08/2024 de Aprendizagem em Serviços de Supermercado também do CEP Zona
+                        Norte. O objetivo é oferecer suporte prático, dinâmico e motivador, tirando as
+                        dúvidas mais comuns dos aprendizes e proporcionando uma experiência de
+                        aprendizado acessível e enriquecedora.
                     </Text>
                 </View>
 
@@ -49,13 +50,21 @@ export default function Screen() {
                         source={require('../../../assets/icon-conheca-two.png')}
                         style={styles.iconOne}
                     />
-                    <Text style={styles.h1}>Por trás do SABER Aprendizagem</Text>
-                    <Text style={styles.h2}>A ideia surgiu ao identificar a necessidade
-                        de esclarecer dúvidas recorrentes de alunos. A dedicação dos alunos
-                        de ambos os cursos e a orientação dos professores foram fundamentais
-                        para criar uma ferramenta que apoiasse o aprendizado. O aplicativo
-                        foi desenvolvido como parte do Projeto Integrador dos alunos de
-                        Desenvolvimento de Sistemas e do projeto final dos jovens aprendizes.
+                    <Text style={styles.h1}>Por trás do Conecta Aprendiz</Text>
+                    <Text style={styles.h2}>A ideia surgiu ao identificar a necessidade de esclarecer as dúvidas mais comuns
+                        dos aprendizes, como por exemplo: primeiro dia no Senac; primeiro dia na empresa;
+                        timidez; lidando com o público, ata, lei de aprendizagem e etc.
+                        O Conecta Aprendiz visa também trazer um apoio socioemocional aos iniciantes,
+                        buscando uma conexão emocional, mostrando através dos vídeos de experiência na
+                        aprendizagem dos aprendizes concluintes dessa jornada, que eles também
+                        vivenciaram situações de medo, ansiedade, dentre outros, mas que com apoio
+                        conseguiram vencer.
+                        A dedicação dos alunos de ambos os cursos e a orientação dos professores foram
+                        fundamentais para criar uma ferramenta que apoiasse e fortalecesse o aprendizado
+                        do aprendiz.
+                        O aplicativo foi desenvolvido como parte do Projeto Integrador dos alunos de
+                        Desenvolvimento de Sistemas e Projeto Integrador III da turma 08/2024 de
+                        Supermercado.
                     </Text>
                 </View>
 
@@ -73,7 +82,7 @@ export default function Screen() {
                             Daniew Cruz,
                         </Text>
                         <Text style={styles.h2} onPress={() => Linking.openURL('https://www.linkedin.com/in/alexdeabreu/')}>
-                            Alex Abreu,
+                            Alex de Abreu Gomes,
                         </Text>
                         <Text style={styles.h2} onPress={() => Linking.openURL('https://www.linkedin.com/in/wesllen-d-b-ferreira/')}>
                             Wesllen Ferreira,
@@ -82,7 +91,7 @@ export default function Screen() {
                             Rafael Bezerra,
                         </Text>
                         <Text style={styles.h2} onPress={() => Linking.openURL('https://www.linkedin.com/in/jean-carlo-costa')}>
-                            Jean Carlo,
+                            Jean Carlo Costa,
                         </Text>
                         <Text style={styles.h2} onPress={() => Linking.openURL('https://github.com/PedroHAXGDev')}>
                             Pedro Henrique,
@@ -102,9 +111,9 @@ export default function Screen() {
                         style={styles.iconOne}
                     />
                     <Text style={styles.h1}>Conteúdo educativo</Text>
-                    <Text style={styles.h2}>Elaborado pelos alunos jovens aprendizes e pela
-                        professora Thalissa Vitória da turma de 2024, garantindo que o conteúdo
-                        seja relevante e acessível para os iniciantes.
+                    <Text style={styles.h2}>Elaborado pelos alunos Jovens Aprendizes da turma 08/2024 CEP Zona Norte/RN,
+                        e pela Instrutora Thalissa Vitória, garantindo que o conteúdo seja relevante e
+                        acessível para os iniciantes dessa jornada.
                     </Text>
                 </View>
 
