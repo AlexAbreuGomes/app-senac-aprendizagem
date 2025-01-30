@@ -104,7 +104,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     width: "90%",
-    height: 200,
+    
+    borderWidth: 0,
+    borderColor: "#044B8B", 
+
   },
   cxGeral: {
     justifyContent: "center",
