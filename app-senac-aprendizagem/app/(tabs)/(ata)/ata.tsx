@@ -50,8 +50,8 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     width: "100%",
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
     gap: 10,
     flexWrap: "wrap",
   },

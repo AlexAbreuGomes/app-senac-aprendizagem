@@ -4,7 +4,7 @@ import { StatusBar } from "expo-status-bar"
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
 import { useFonts as IBMPlexMono_400Regular, IBMPlexMono_700Bold } from "@expo-google-fonts/ibm-plex-mono";
 import { Linking } from "react-native";
-
+import React from "react";
 export default function Screen() {
 
     const [fontsLoaded] = useFonts({
