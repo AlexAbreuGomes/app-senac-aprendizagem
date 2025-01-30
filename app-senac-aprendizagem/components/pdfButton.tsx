@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 10,
+    marginLeft: 2,
     marginVertical: 5,
     backgroundColor: '#F5F5F5',
     borderRadius: 8,
@@ -48,6 +49,7 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     shadowOffset: { width: 0, height: 2 },
     elevation: 3,
+    
   },
   text: {
     fontFamily: "IBMPlexMonoBold",
