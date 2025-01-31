@@ -7,6 +7,7 @@ type buttonProps = {
     onpress: () => void
     style?: any
     name: string
+    url?: string
 };
 export const ButtonGeneric = ({onpress, style, name}: buttonProps) => {
     return (
@@ -19,10 +20,11 @@ export const ButtonGeneric = ({onpress, style, name}: buttonProps) => {
 const styles = StyleSheet.create({
   button: {
     fontFamily: "LuckiestGuy",
-    fontSize: 20,
-    width: screenWidth * 0.85,
-    textAlign: "center",
-    padding: 0,  // Ajusta o espaço ao redor do ícone,
+    fontSize: 30,
     color: "#fff",
+    justifyContent: "center",
+    alignItems: "center",
+    
+   
   },
 });

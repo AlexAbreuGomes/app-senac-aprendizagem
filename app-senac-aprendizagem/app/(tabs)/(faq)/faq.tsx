@@ -1,5 +1,5 @@
 import { SafeAreaView } from "react-native-safe-area-context"
-import { StyleSheet,Text, View, FlatList } from "react-native"
+import { StyleSheet,Text, View, FlatList, Linking, Dimensions } from "react-native"
 import { StatusBar } from "expo-status-bar"
 import { faqs } from "../../../data/faq"
 import { FaqPerguntas } from "../../../components/faqPerguntas"
@@ -7,6 +7,9 @@ import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-gu
 import { useFonts as IBMPlexMono, IBMPlexMono_400Regular, IBMPlexMono_700Bold, IBMPlexMono_500Medium } from "@expo-google-fonts/ibm-plex-mono";
 import React, { useState, useEffect, useRef } from "react";
 import { imagensCarrossel } from "../../../data/carrosselAlunos"
+import { ButtonGeneric } from "../../../components/button"
+
+const screenWidth = Dimensions.get('window').width
 
 export default function Screen (){
 
@@ -16,6 +19,10 @@ export default function Screen (){
         IBMPlexMonoBold: IBMPlexMono_700Bold,
         IBMPlexMonoMedium: IBMPlexMono_500Medium,
       });
+      
+        const openGoogleForm = () => {
+          Linking.openURL('https://forms.gle/Qg8ygLfhHoSMDBtd8');
+        };
 
         const [currentIndex, setCurrentIndex] = useState(0);
         const flatListRef = useRef<FlatList>(null);
@@ -49,7 +56,10 @@ export default function Screen (){
                     contentContainerStyle={styles.flatlist}
                     showsVerticalScrollIndicator={false}
                 />
-            </View> 
+            </View>
+            <View style={styles.viewFlatlist}>
+           <ButtonGeneric onpress={openGoogleForm} style={styles.button} name="Dúvidas" />
+           </View>
         </SafeAreaView>
     )
 }
@@ -89,5 +99,22 @@ const styles = StyleSheet.create({
     },
     viewFlatlist: {
         padding: 10,
+      },
+      button: {
+        width: screenWidth * 0.93,
+        height: 70,
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center",
+        
+        color: "#ffffff",
+        backgroundColor: "#044B8B",
+        borderRadius: 30,
+        marginBottom: 10,
+        elevation: 5,
+        shadowColor: "#F7941D",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
       },
 });
