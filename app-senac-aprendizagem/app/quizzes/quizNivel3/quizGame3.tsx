@@ -4,12 +4,12 @@ import { useRouter,useLocalSearchParams } from 'expo-router';  // Importando use
 import { COLORS } from '../../../constants/colors';
 import Button from '../../../components/ButtonQuiz';
 import { Image } from 'expo-image';
-import data from '../../../data/quizData'; 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { calculateScorePercentage, generateFinalMessage, getScoreColor } from '../../utils/scoreUtils';
 import { storeData } from '../../utils/storage';
+import quizData2 from '../../../data/quizData2';
 
 const Quiz = () => {
   const router = useRouter();  // Usando useRouter para navegação
@@ -23,7 +23,7 @@ const Quiz = () => {
   const [showScoreModal, setShowScoreModal] = useState<boolean>(false);
   const [progress, setProgress] = useState(new Animated.Value(0));
 
-  const allQuestions = data;
+  const allQuestions = quizData2;
 
   const validateAnswer = (selectedOption: string) => {
     const correct_option = allQuestions[currentQuestionIndex]['correct_option'];
@@ -78,10 +78,10 @@ const goToNextLevel = () => {
   const nextLevel = currentLevel + 1;
 
   if (nextLevel <= 3) {
-    storeData(`quizLevel${nextLevel}`, 'unlocked').then(() => {
-      router.replace('/quiz'); // Atualiza a tela
-    });
+    storeData(`quizLevel${nextLevel}`, 'unlocked');
   }
+
+  router.replace('/quiz');
 };
 
 
