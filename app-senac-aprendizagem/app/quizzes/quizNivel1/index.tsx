@@ -86,7 +86,7 @@ const Index = () => {
       {/* Substituindo o botão nativo pelo botão padronizado */}
       <Button  style={styles.button}
         title="Iniciar Quiz" 
-        onPress={() => router.replace('../../quizzes/quizNivel1/quizGame1')} 
+        onPress={() => router.replace('quizzes/quizNivel1/quizGame1')} 
         
       />
     </SafeAreaView>

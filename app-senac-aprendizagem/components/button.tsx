@@ -20,11 +20,12 @@ export const ButtonGeneric = ({onpress, style, name}: buttonProps) => {
 const styles = StyleSheet.create({
   button: {
     fontFamily: "LuckiestGuy",
-    fontSize: 30,
+    fontSize: 20,
     color: "#fff",
     justifyContent: "center",
     alignItems: "center",
-    
+    width: screenWidth * 0.85,
+    textAlign: "center",
    
   },
 });
