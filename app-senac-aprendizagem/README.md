@@ -116,3 +116,21 @@ git merge main
   git merge main
   ```
 
+
+### LEMBRANDO:
+```bash
+git fetch // rastreia branch's remotas
+```
+
+```bash
+git branch -r //exibe branch's rastreadas
+```
+
+```bash
+git checkout -b [nomebranch] origin/[nomebranchremota]
+```
+
+### Ex:
+```bash
+git checkout -b backEnd/frontEnd origin/backEnd/frontEnd
+```
