@@ -27,7 +27,6 @@ export default function Screen() {
     }, [])
   );
   
-
   const CoinButton = ({ level, unlocked }: { level: number; unlocked: boolean }) => (
     <Pressable
       onPress={() => unlocked && router.push(`../../quizzes/quizNivel${level}`)}

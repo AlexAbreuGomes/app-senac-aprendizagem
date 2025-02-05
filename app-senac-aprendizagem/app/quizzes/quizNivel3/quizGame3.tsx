@@ -1,9 +1,9 @@
 import React from 'react';
 import Quiz from '../../../components/quiz';
-import quizData2 from '../../../data/quizData2';
+import quizData3 from '../../../data/quizData3';
 
 const QuizGame3 = () => {
-  return <Quiz questions={quizData2} />;
+  return <Quiz questions={quizData3} level={3}/>;
 };
 
 export default QuizGame3;
