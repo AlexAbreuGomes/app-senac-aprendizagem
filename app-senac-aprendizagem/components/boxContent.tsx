@@ -16,6 +16,10 @@ export const Conteudos: React.FC<ConteudosProps> = ({ titulo, id, icon }) => {
         </View>
         <Text style={styles.title}>{titulo}</Text>
       </View>
+      <View style={styles.barraProgresso}>
+        <View style={styles.progresso}></View>
+        <Text style={styles.porcentagemProgresso}>0%</Text>
+      </View>
     </Pressable>
   );
 };
@@ -29,6 +33,8 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 16,
     elevation: 4,
+    borderWidth: 0,
+    borderColor: 'red'
   },
   header: {
     flexDirection: "row",
@@ -54,4 +60,31 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: "LuckiestGuy",
   },
+
+  barraProgresso:{
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+    height: 30,
+    borderWidth: 2,
+    borderRadius: 20,
+    borderColor: 'white',
+    marginTop: 30,
+    paddingLeft: 5,
+    gap: 10
+  },
+  progresso:{
+    borderTopLeftRadius: 10,
+    borderBottomLeftRadius: 10,
+    backgroundColor: 'lightgreen',
+    height: '60%',
+    width: '10%'
+  },
+
+  porcentagemProgresso:{
+    fontFamily: 'monospace',
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: 'white'
+  }
 });
