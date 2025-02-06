@@ -343,11 +343,13 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   questionContainer: {
-    marginVertical: 40,
+    marginVertical: 15,
+
   },
   questionIndex: {
     flexDirection: 'row',
     alignItems: 'flex-end',
+  
   },
   indexText: {
     color: COLORS.accent,
@@ -355,6 +357,7 @@ const styles = StyleSheet.create({
     fontFamily: 'LuckiestGuy-Regular',
     opacity: 0.9,
     marginRight: 2,
+    
   },
   totalText: {
     color: COLORS.accent,
@@ -366,15 +369,17 @@ const styles = StyleSheet.create({
     color: COLORS.white,
     fontFamily: 'LuckiestGuy-Regular',
     fontSize: 24,
+    
   },
   optionButton: {
-    borderWidth: 3,
-    height: 63,
+    borderWidth: 2,
+    minHeight: 63,
     borderRadius: 20,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
+    paddingVertical: 4,
     marginVertical: 10,
   },
   pressedOption: {
@@ -399,7 +404,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   nextButton: {
-    marginTop: 50,
+    marginTop: 20,
     width: '100%',
     backgroundColor: COLORS.accent,
     padding: 23,
