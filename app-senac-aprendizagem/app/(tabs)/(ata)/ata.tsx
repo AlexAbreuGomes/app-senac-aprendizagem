@@ -22,7 +22,11 @@ export default function Screen() {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar />
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <ScrollView 
+      contentContainerStyle={styles.scrollContainer}
+      showsVerticalScrollIndicator={false} // Remove a barra de rolagem vertical
+      >
+        
         <Text style={styles.h1}>O que é uma ata?</Text>
         <View style={styles.textOne}>
           <Text style={styles.cxTexto}>
