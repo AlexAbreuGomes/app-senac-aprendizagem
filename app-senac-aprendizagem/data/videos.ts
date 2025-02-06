@@ -24,5 +24,11 @@ export const videos: Video[] = [
         video: 'https://www.youtube.com/watch?v=XIcnpKo3UMs',
         titulo: 'Como Organizar suas Tarefas no Ambiente de Trabalho?',
         subtitulo: 'De maneira demonstrativa. As principais maneiras.'
+    },
+    {
+        id: 5,
+        video: 'https://www.youtube.com/watch?v=XIcnpKo3UMs',
+        titulo: 'Como Organizar suas Tarefas no Ambiente de Trabalho?',
+        subtitulo: 'De maneira demonstrativa. As principais maneiras.'
     }
 ];

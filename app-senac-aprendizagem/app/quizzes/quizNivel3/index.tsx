@@ -22,8 +22,6 @@ const Index = () => {
     if (!fontsLoaded) {
       return <Text>Carregando fontes...</Text>;
     }
-  
- 
 
   return (
     <>
@@ -31,7 +29,7 @@ const Index = () => {
     <Stack.Screen
             options={{
               headerShown: true,
-              title: "Quiz  do  aprendizado - Nivel 1",
+              title: "",
               headerTitleStyle: {
                 fontSize: 18,
                 color: "#ffffff",
@@ -74,7 +72,7 @@ const Index = () => {
       </View>
 
       <View style={styles.pointsContainer}>
-        <Text style={styles.pointTitle}>O que esperar:</Text>
+        <Text style={styles.pointTitle}>Parabens por terminar a etpa anterior vamos continuar:</Text>
         <Text style={styles.pointDescription}>Testar seus conhecimentos sobre [assunto específico do curso].</Text>
       </View>
 
@@ -86,7 +84,7 @@ const Index = () => {
       {/* Substituindo o botão nativo pelo botão padronizado */}
       <Button  style={styles.button}
         title="Iniciar Quiz" 
-        onPress={() => router.replace('quizzes/quizNivel1/quizGame1')} 
+        onPress={() => router.replace('quizzes/quizNivel3/quizGame3')} 
         
       />
     </SafeAreaView>

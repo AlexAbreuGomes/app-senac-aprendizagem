@@ -9,7 +9,7 @@ import { Conteudos } from "../../../components/boxContent";
 import { conteudosAprendizagem } from "../../../data/boxConteudosData";
 import { avatares } from "../../../data/carrosselAvatares"; // Lista de avatares
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
-import {useFonts as IBMPlexMono,IBMPlexMono_400Regular,IBMPlexMono_700Bold,IBMPlexMono_500Medium} from "@expo-google-fonts/ibm-plex-mono";
+import { useFonts as IBMPlexMono, IBMPlexMono_400Regular, IBMPlexMono_700Bold, IBMPlexMono_500Medium } from "@expo-google-fonts/ibm-plex-mono";
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -76,33 +76,33 @@ export default function Screen() {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar />
-
       <Text style={styles.h1}>CONECTA APRENDIZ</Text>
+      
       <View style={styles.viewFlatlist}>
         <FlatList
           ref={flatListRef}
           data={imagensCarrossel}
           renderItem={({ item }) => <Carrossel data={item} />}
           keyExtractor={(item) => item.id.toString()}
-          horizontal={true}
+          horizontal
         />
       </View>
-      <ScrollView>
-        <View style={styles.nameInput}>
-          {userImage && <Image source={userImage} style={styles.userImage} />}
-          <Text style={styles.welcome}>
-            {userName ? `Bem-vindo(a), ${userName}!` : "Bem-vindo(a)!"}
-          </Text>
-        </View>
 
-        <View style={styles.cardContainer}>
-          <FlatList
-            data={conteudosAprendizagem}
-            renderItem={renderConteudos} // Usando renderConteudos para garantir que 'id' seja passado
-            keyExtractor={(item) => item.id.toString()}
-          />
-        </View>
-      </ScrollView>
+      <FlatList
+        ListHeaderComponent={
+          <View style={styles.nameInput}>
+            {userImage && <Image source={userImage} style={styles.userImage} />}
+            <Text style={styles.welcome}>
+              {userName ? `Bem-vindo(a), ${userName}!` : "Bem-vindo(a)!"}
+            </Text>
+          </View>
+        }
+        data={conteudosAprendizagem}
+        renderItem={renderConteudos}
+        keyExtractor={(item) => item.id.toString()}
+        contentContainerStyle={styles.cardContainer} // Ajuste para garantir a rolagem
+        showsVerticalScrollIndicator={false} // Desativa a barra de rolagem
+      />
     </SafeAreaView>
   );
 }
@@ -131,11 +131,11 @@ const styles = StyleSheet.create({
     height: 130,
     backgroundColor: "#FFFFFF", // Fundo branco
     borderRadius: 20,
-    marginLeft: 10,
-    justifyContent: "flex-start",
+    justifyContent:'flex-start',
     alignItems: "flex-start",
     flexDirection: "row",
     padding: 10,
+    marginBottom: 15,
     shadowColor: "#0059B3", // Cor da sombra
     shadowOffset: {
       width: 5, // Deslocamento horizontal da sombra
@@ -157,8 +157,8 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   cardContainer: {
-    flex: 1,
-    justifyContent: "center",
+    flexGrow: 1, // Garante que o FlatList ocupe o espaço restante
+    justifyContent: "center", // Garante que o conteúdo apareça no topo
     alignItems: "center",
     padding: 10,
   },
