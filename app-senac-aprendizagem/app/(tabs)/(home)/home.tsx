@@ -10,10 +10,14 @@ import { conteudosAprendizagem } from "../../../data/boxConteudosData";
 import { avatares } from "../../../data/carrosselAvatares"; // Lista de avatares
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
 import { useFonts as IBMPlexMono, IBMPlexMono_400Regular, IBMPlexMono_700Bold, IBMPlexMono_500Medium } from "@expo-google-fonts/ibm-plex-mono";
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { calculateScorePercentage } from "../../utils/scoreUtils"; // Importando a função de cálculo de porcentagem
+
 
 const screenWidth = Dimensions.get("window").width;
 
 export default function Screen() {
+
   useFonts({
     LuckiestGuy: LuckiestGuy_400Regular,
     IBMPlexMonoRegular: IBMPlexMono_400Regular,
@@ -24,20 +28,40 @@ export default function Screen() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const flatListRef = useRef<FlatList>(null);
   const [userName, setUserName] = useState<string | null>(null);
-  const [userImage, setUserImage] = useState<any>(null); // Para aceitar o retorno de require()
+  const [userImage, setUserImage] = useState<any>(null);
+  const [quizAverage, setQuizAverage] = useState<string | null>(null); // Estado para armazenar a média de acertos
 
-  // Recupera o nome e o avatar salvos
+
+  // Recupera o nome, o avatar e as pontuações dos quizzes
   useEffect(() => {
     const fetchUserData = async () => {
       try {
+        // Recuperar nome e avatar
         const savedName = await AsyncStorage.getItem("name");
         const savedAvatar = await AsyncStorage.getItem("selectedAvatar");
 
         if (savedName) setUserName(savedName);
         if (savedAvatar) {
-          const { id } = JSON.parse(savedAvatar); // Decodifica o objeto salvo
-          const avatar = avatares.find((item) => item.id === id); // Busca o avatar correspondente
-          if (avatar) setUserImage(avatar.img); // Define a imagem com require()
+          const { id } = JSON.parse(savedAvatar);
+          const avatar = avatares.find((item) => item.id === id);
+          if (avatar) setUserImage(avatar.img);
+        }
+
+        // Recuperar as pontuações dos quizzes
+        const level1Score = await AsyncStorage.getItem("quizLevel1Score");
+        const level2Score = await AsyncStorage.getItem("quizLevel2Score");
+        const level3Score = await AsyncStorage.getItem("quizLevel3Score");
+
+        // Calcular a média das pontuações
+        const scores = [level1Score, level2Score, level3Score]
+          .map(score => score ? parseInt(score, 10) : 0) // Converter para número
+          .filter(score => !isNaN(score)); // Filtrar valores inválidos
+
+        if (scores.length > 0) {
+          const totalScore = scores.reduce((sum, score) => sum + score, 0);
+          const totalQuestions = scores.length * 10; // Supondo 10 questões por nível
+          const averagePercentage = calculateScorePercentage(totalScore, totalQuestions); // Calcular a média
+          setQuizAverage(averagePercentage); // Atualizar o estado com a média
         }
       } catch (error) {
         console.error("Erro ao recuperar os dados:", error);
@@ -46,7 +70,6 @@ export default function Screen() {
 
     fetchUserData();
   }, []);
-
   // Intervalo do carrossel
   useEffect(() => {
     const interval = setInterval(() => {
@@ -73,11 +96,12 @@ export default function Screen() {
     />
   );
 
+  // Renderização do carrossel e conteúdo
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar />
       <Text style={styles.h1}>CONECTA APRENDIZ</Text>
-      
+
       <View style={styles.viewFlatlist}>
         <FlatList
           ref={flatListRef}
@@ -92,16 +116,40 @@ export default function Screen() {
         ListHeaderComponent={
           <View style={styles.nameInput}>
             {userImage && <Image source={userImage} style={styles.userImage} />}
-            <Text style={styles.welcome}>
-              {userName ? `Bem-vindo(a), ${userName}!` : "Bem-vindo(a)!"}
-            </Text>
+
+            <View style={styles.pontuacao}>
+              <Text style={styles.welcome}>
+                {userName ? `Bem-vindo(a), ${userName}!` : "Bem-vindo(a)!"}
+              </Text>
+
+              <View style={styles.posicaoPontos}>
+                <View style={styles.pontosContainer}>
+                  <MaterialIcons name="stars" size={24} color="#F7941D" />
+                  <Text style={styles.pontos}>Total Pontos</Text>
+                </View>
+
+                <View style={styles.pontosContainer}>
+                  <MaterialIcons name="task" size={24} color="#044B8B" />
+                  <Text style={styles.conteudos}>Conteúdo Concluído</Text>
+                </View>
+
+                {quizAverage !== null && (
+                  <View style={styles.pontosContainer}>
+                    <MaterialIcons name="quiz" size={24} color="#4CAF50" />
+                    <Text style={styles.conteudos}>
+                      Média de Acertos: {quizAverage}%
+                    </Text>
+                  </View>
+                )}
+              </View>
+            </View>
           </View>
         }
         data={conteudosAprendizagem}
         renderItem={renderConteudos}
         keyExtractor={(item) => item.id.toString()}
-        contentContainerStyle={styles.cardContainer} // Ajuste para garantir a rolagem
-        showsVerticalScrollIndicator={false} // Desativa a barra de rolagem
+        contentContainerStyle={styles.cardContainer}
+        showsVerticalScrollIndicator={false}
       />
     </SafeAreaView>
   );
@@ -117,8 +165,8 @@ const styles = StyleSheet.create({
     textAlign: "left",
     fontFamily: "LuckiestGuy",
     paddingLeft: 10,
-    flexWrap: "wrap", // Permite que o texto quebre em várias linhas
-    maxWidth: "50%", // Limita a largura máxima para que o texto quebre
+    flexDirection: "row",
+
   },
 
   userImage: {
@@ -131,7 +179,7 @@ const styles = StyleSheet.create({
     height: 130,
     backgroundColor: "#FFFFFF", // Fundo branco
     borderRadius: 20,
-    justifyContent:'flex-start',
+    justifyContent: 'flex-start',
     alignItems: "flex-start",
     flexDirection: "row",
     padding: 10,
@@ -144,6 +192,38 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3, // Transparência da sombra
     shadowRadius: 8, // Raio de desfoque da sombra
     elevation: 15, // Elevação para Android
+  },
+  pontuacao: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "center",
+
+  },
+
+  posicaoPontos: {
+    flexDirection: "column",
+    justifyContent: "space-between", // Distribui os itens nas extremidades
+    width: "100%", // Garante que ocupem toda a largura disponível
+    marginTop: 35, // Espaçamento entre "Bem-vindo(a)" e os pontos
+  },
+
+  conteudos: {
+    color: "#044B8B",
+    fontFamily: "LuckiestGuy",
+    fontSize: 15,
+    marginRight: 10
+  },
+  pontosContainer: {
+    flexDirection: "row",
+    alignItems: "center",  // Centraliza verticalmente
+    justifyContent: "center", // Centraliza horizontalmente
+    marginLeft: -40
+  },
+  pontos: {
+    color: "#F7941D",
+    fontFamily: "LuckiestGuy",
+    fontSize: 15,
+    marginLeft: 5, // Espaço entre o ícone e o texto
   },
 
   h1: {
