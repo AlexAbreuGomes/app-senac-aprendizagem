@@ -5,7 +5,8 @@ export type ConteudoAprendizagem = {
   texto: string;
   icon?: any;
   onPress: () => void;
+  
 };
 
 
-export type ConteudosProps = Pick<ConteudoAprendizagem, "id" | "titulo" | "onPress" | "icon">;
+export type ConteudosProps = Pick<ConteudoAprendizagem, "id" | "titulo" | "onPress" | "icon" >;

@@ -3,8 +3,8 @@ import { Video } from "../types/videosTypes";
 export const videos: Video[] = [
     {
         id: 1,
-        video: 'https://youtu.be/h3bb7WJKcAw',
-        titulo: 'Primeiro dia no Curso'
+        video: 'https://open.spotify.com/playlist/0Fa9lcZgcWvyvcKzOBpSZk?si=e_j6ZUoATKSi5qsK-gMb1w&pi=CxclECd6RRi_y ',
+        titulo: 'Playlist para estudo e relaxamento'
     },
     {
         id: 2,

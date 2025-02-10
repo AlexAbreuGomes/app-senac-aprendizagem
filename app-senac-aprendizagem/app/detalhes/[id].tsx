@@ -51,50 +51,14 @@ export default function Detalhes() {
             {videosDoConteudo.map((video) => (
               <VideoAprendizagem key={video.id} data={video} />
             ))}
+            
           </View>
+          
         )}
         <View style={styles.container}>
 
-
           <Text style={styles.description}>{conteudo.descricao}</Text>
           <Text style={styles.text}>{conteudo.texto}</Text>
-
-          {conteudo.dicas && (
-            <View>
-              <Text style={styles.subtitle}>Dicas:</Text>
-              {conteudo.dicas.map((dica, index) => (
-                <Text key={index} style={styles.dica}>• {dica}</Text>
-              ))}
-            </View>
-          )}
-
-          {/* Renderizar subtítulos, se existirem */}
-          {conteudo.subtitulos && (
-            <View>
-              <Text style={styles.subtitle}>Subtítulos:</Text>
-              {conteudo.subtitulos.map((subtitulo, index) => (
-                <View key={index} style={styles.subsection}>
-                  <Text style={styles.subTitle}>{subtitulo.titulo}</Text>
-                  <Text style={styles.subText}>{subtitulo.conteudo}</Text>
-                  {subtitulo.imagem && (
-                    <Text style={styles.imageDesc}>{subtitulo.imagem.descricao}</Text>
-                  )}
-                </View>
-              ))}
-            </View>
-          )}
-
-          {/* Renderizar imagens, se existirem */}
-          {conteudo.imagens && (
-            <View>
-              <Text style={styles.subtitle}>Imagens:</Text>
-              {conteudo.imagens.map((imagem, index) => (
-                <Text key={index} style={styles.imageDesc}>
-                  {imagem.descricao}
-                </Text>
-              ))}
-            </View>
-          )}
 
           <View style={styles.congratulations}>
             <Text style={styles.h1}>Parabéns por concluir o conteúdo!</Text>
