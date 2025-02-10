@@ -3,7 +3,7 @@ import { ConteudoAprendizagem } from "../types/boxConteudosTypes";
 export const conteudosAprendizagem: ConteudoAprendizagem[] = [
   {
     id: 1,
-    titulo: "Comunicação",
+    titulo: "Primeiro dia no Curso",
     descricao: "A importância da comunicação e práticas para aprimorar.",
     texto: `O primeiro dia no curso de aprendizagem é um momento de grande expectativa para os jovens aprendizes. É natural sentir um misto de ansiedade e empolgação ao ingressar em um ambiente de formação profissional.
  Para começar com o pé direito, é essencial estar atento às regras do curso, ouvir atentamente as orientações dos instrutores e manter uma postura profissional desde o início. Esse é o primeiro passo para construir uma trajetória de sucesso na empresa e na carreira.
@@ -14,7 +14,7 @@ Além disso, é importante desenvolver a responsabilidade com horários, prazos 
   },
   {
     id: 2,
-    titulo: "Educação",
+    titulo: "Primeiro dia na empresa",
     descricao: "Práticas de ensino e aprendizado eficientes.",
     texto: `O primeiro dia na empresa como jovem aprendiz é um momento marcante e repleto de novos desafios. É natural sentir um pouco de nervosismo, mas a chave para um bom início é manter a calma e estar disposto a aprender. Chegar no horário, vestir-se adequadamente e demonstrar uma postura profissional são atitudes essenciais para causar uma boa impressão. Além disso, prestar atenção às regras da empresa e respeitar os colegas e supervisores ajudará a construir uma imagem positiva desde o primeiro dia. 
 Cada empresa tem sua cultura e rotina, e adaptar-se a elas demonstra maturidade e comprometimento. Fazer anotações sobre as tarefas e processos explicados pelos supervisores pode facilitar o aprendizado e evitar dúvidas no futuro. Além disso, manter uma comunicação clara e educada é fundamental, tanto para pedir ajuda quanto para esclarecer instruções. 
@@ -24,7 +24,7 @@ Por fim, é importante lembrar que erros fazem parte do aprendizado, e o mais im
   },
   {
     id: 3,
-    titulo: "Trabalho em Equipe",
+    titulo: "Mudança de Setor: Adaptação ao Novo",
     descricao: "A importância da colaboração e do trabalho conjunto.",
     texto: `A mudança de setor para um jovem aprendiz pode ser um desafio, mas também uma grande oportunidade de aprendizado. Adaptar-se a um novo ambiente exige paciência, flexibilidade e disposição para aprender. No início, é normal sentir-se um pouco perdido, por isso, observar a rotina do setor, conhecer os novos colegas e entender as expectativas da equipe são passos essenciais.  
 Além disso, é importante encarar a mudança com uma atitude positiva. Cada setor tem suas particularidades e oferece novas experiências que podem ser valiosas para o crescimento profissional.  
@@ -34,7 +34,7 @@ Ser educado, respeitoso e demonstrar interesse em contribuir para o time ajudar�
   },
   {
     id: 4,
-    titulo: "Gestão do Tempo",
+    titulo: "Experiências com Clientes",
     descricao: "Como gerenciar melhor seu tempo e aumentar a produtividade.",
     texto: `Lidar com clientes é uma experiência que exige não apenas conhecimento técnico, mas também inteligência emocional. Como jovem aprendiz, é essencial manter a calma, ser educado e ouvir atentamente as necessidades do cliente. Nem sempre as interações serão fáceis, mas saber controlar as emoções e responder com empatia pode fazer toda a diferença. 
 Respirar fundo antes de reagir a situações estressantes e buscar compreender o ponto de vista do cliente ajudam a resolver problemas de forma mais tranquila e profissional. 
@@ -44,7 +44,7 @@ Uma dica importante é sempre manter uma comunicação clara e respeitosa. Caso 
   },
   {
     id: 5,
-    titulo: "Resolução de Problemas",
+    titulo: "Como se dirigir ao cliente",
     descricao: "Estratégias para resolver problemas de forma eficaz.",
     texto: `A forma como o jovem aprendiz se dirige ao cliente faz toda a diferença no atendimento e na imagem da empresa. A comunicação assertiva é essencial para transmitir informações com clareza, respeito e profissionalismo. Falar de maneira educada, utilizando um tom de voz adequado e palavras positivas, ajuda a criar um ambiente de confiança. Além disso, é importante ouvir atentamente o cliente antes de responder, evitando interrupções e demonstrando interesse genuíno na conversa. 
 Uma dica valiosa é sempre usar um vocabulário simples e objetivo, sem termos técnicos que possam confundir o cliente. Caso haja um problema, manter a calma e oferecer soluções de forma clara e educada ajuda a evitar conflitos.  
@@ -54,7 +54,7 @@ Se não souber a resposta para alguma dúvida, ser sincero e buscar ajuda com um
   },
   {
     id: 6,
-    titulo: "Resolução de Problemas",
+    titulo: "Importância do uso de EPI",
     descricao: "Estratégias para resolver problemas de forma eficaz.",
     texto: `O uso de Equipamentos de Proteção Individual (EPI) é fundamental para garantir a segurança dos jovens aprendizes no ambiente de trabalho. Esses equipamentos, como luvas, capacetes, óculos de proteção e aventais, ajudam a prevenir acidentes e proteger contra riscos específicos de cada função.  
 É essencial que o aprendiz utilize corretamente os EPIs fornecidos pela empresa e siga todas as orientações de segurança. Negligenciar o uso desses equipamentos pode colocar em risco sua saúde e comprometer sua permanência na empresa. 
@@ -65,7 +65,7 @@ Fonte: Norma Regulamentadora 06`,
   },
   {
     id: 7,
-    titulo: "Resolução de Problemas",
+    titulo: "Experiência na Aprendizagem da Instrutora",
     descricao: "Estratégias para resolver problemas de forma eficaz.",
     texto: `Minha trajetória profissional começou como a de muitos dos meus alunos: fui uma jovem aprendiz. Lembro-me bem da ansiedade do primeiro dia, das dúvidas sobre o mercado de trabalho e do desafio de conciliar estudo e prática. 
 O tempo passou, e hoje estou do outro lado, como instrutora. A experiência como aprendiz me permite enxergar cada aluno com empatia, entendendo seus desafios e inseguranças. Sei que o aprendizado vai além do conteúdo técnico; envolve desenvolver confiança, postura profissional e habilidades que farão diferença em suas carreiras.
@@ -75,7 +75,7 @@ Cada turma me ensina algo novo, e minha missão é ser um guia nesse processo, a
   },
   {
     id: 8,
-    titulo: "Resolução de Problemas",
+    titulo: "Jornada de Sucesso Jovens Aprendizes",
     descricao: "Estratégias para resolver problemas de forma eficaz.",
     texto: `Concluir o curso de aprendizagem é mais do que encerrar uma etapa; é o marco de um começo repleto de possibilidades. Para aqueles que chegaram até aqui, cada esforço, cada desafio enfrentado e cada nova habilidade desenvolvida são provas de que a dedicação e a perseverança valem a pena. 
 Vocês não são apenas aprendizes que passaram por um curso, mas jovens que carregam consigo histórias de superação, crescimento e transformação.
@@ -87,7 +87,7 @@ Para aqueles que ainda estão no início ou no meio do caminho, inspirem-se ness
   },
   {
     id: 9,
-    titulo: "Resolução de Problemas",
+    titulo: "Conecta Aprendiz",
     descricao: "Estratégias para resolver problemas de forma eficaz.",
     texto: `No universo da aprendizagem, a criatividade e a inovação são ferramentas poderosas para inspirar e engajar. Foi com essa visão que dois aprendizes, Wivilly Martins de Oliveira e João Victor da Silva Galdino, uniram seus talentos e ideias para criar uma música que chama-se "Conecta Aprendiz". Tomaram como base a melodia e letra da música “Aquarela”, do cantor Toquinho. 
 Com letra criativa e melodia cativante, "Conecta Aprendiz" busca não apenas entreter, mas também motivar. Os aprendizes exploraram experiências vividas por eles no programa de aprendizagem, transformando desafios e conquistas em versos que refletem a realidade dos jovens que dão os primeiros passos no mercado de trabalho.
@@ -98,7 +98,7 @@ Com "Conecta Aprendiz", eles deixam uma mensagem clara: aprender pode ser desafi
   },
   {
     id: 10,
-    titulo: "Resolução de Problemas",
+    titulo: "Carteira de Trabalho Digital",
     descricao: "Estratégias para resolver problemas de forma eficaz.",
     texto: `A Carteira de Trabalho Digital é a versão eletrônica da tradicional Carteira de Trabalho e Previdência Social (CTPS) em papel. Ela foi implementada para modernizar o acesso às informações trabalhistas, permitindo que trabalhadores consultem seus contratos, salários, férias e anotações diretamente pelo aplicativo ou site do Governo Federal. 
 Integrada ao eSocial, a carteira digital elimina a necessidade do documento físico para novas contratações, tornando os processos mais ágeis e seguros tanto para empregadores quanto para empregados.
@@ -110,7 +110,7 @@ Fonte: Gov.br`,
   },
   {
     id: 11,
-    titulo: "Resolução de Problemas",
+    titulo: "Verificando CBO e Informações Salarial",
     descricao: "Estratégias para resolver problemas de forma eficaz.",
     texto: `A CBO (Classificação Brasileira de Ocupações), é uma tabela criada pelo Ministério do Trabalho e Emprego do Brasil para organizar e classificar as diversas profissões existentes no mercado de trabalho. 
 Ela descreve as ocupações de acordo com suas características, funções e responsabilidades, ajudando a identificar o perfil de cada profissão. 
@@ -127,7 +127,7 @@ Fonte: Portal Emprega Brasil`,
   },
   {
     id: 12,
-    titulo: "Resolução de Problemas",
+    titulo: "Playlist para estudo e relaxamento",
     descricao: "Estratégias para resolver problemas de forma eficaz.",
     texto: `Para tornar sua rotina de aprendizado mais leve e produtiva, o link que direciona para o Spotify traz uma seleção especial de playlist sugerida e pensada para atender às diferentes necessidades do seu dia a dia. Fazendo o cadastro na plataforma, você consegue escutar a playlist do Conecta Jovem de forma gratuita.
 Quando o assunto é estudo, a música pode ser uma grande aliada para manter o foco, aumentar a concentração e estimular a criatividade. Por

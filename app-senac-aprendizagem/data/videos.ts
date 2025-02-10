@@ -58,7 +58,7 @@ export const videos: Video[] = [
     },
     {
         id: 12,
-        video: 'https://www.youtube.com/watch?v=XIcnpKo3UMs',
+        video: 'https://open.spotify.com/playlist/0Fa9lcZgcWvyvcKzOBpSZk?si=e_j6ZUoATKSi5qsK-gMb1w&pi=CxclECd6RRi_y ',
         titulo: 'Playlist para estudo e relaxamento'
     },
 ];
