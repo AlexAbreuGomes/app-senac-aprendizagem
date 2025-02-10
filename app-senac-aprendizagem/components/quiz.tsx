@@ -11,10 +11,17 @@ import { calculateScorePercentage, generateFinalMessage, getScoreColor } from '.
 import { storeData } from '../app/utils/storage';
 
 type QuizProps = {
-  questions: any[]; // Recebe o conjunto de perguntas via props
+  questions: {
+    question: string;
+    options: string[];
+    correct_option: string;
+  }[];
+  level: number; // Adicione esta linha
 };
 
-const Quiz: React.FC<QuizProps> = ({ questions }) => {
+
+const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
+
   const router = useRouter();  // Usando useRouter para navegação
   const params = useLocalSearchParams();
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
@@ -75,17 +82,17 @@ const Quiz: React.FC<QuizProps> = ({ questions }) => {
   // Adicione no topo do arquivo
 
 
-// Modifique a função goToNextLevel
-const goToNextLevel = () => {
-  const currentLevel = parseInt(params.level?.toString() || '1');
-  const nextLevel = currentLevel + 1;
-
-  if (nextLevel <= 3) {
-    storeData(`quizLevel${nextLevel}`, 'unlocked').then(() => {
-      router.replace('/quiz'); // Atualiza a tela
-    });
-  }
-};
+  const goToNextLevel = () => {
+    const currentLevel = level; // Agora pega o level da propriedade corretamente
+    const nextLevel = currentLevel + 1;
+  
+    if (nextLevel <= 3) {
+      storeData(`quizLevel${nextLevel}`, 'unlocked').then(() => {
+        router.replace('/quiz'); // Atualiza a tela
+      });
+    }
+  };
+  
 
 
   //alert para voltar para home

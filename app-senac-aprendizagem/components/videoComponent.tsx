@@ -46,6 +46,10 @@ export const VideoAprendizagem = ({ data }: Props) => {
 
   const videoThumbnail = getVideoThumbnail(data.video);  // Pega a URL do thumbnail
 
+  const thumbnailSource = videoThumbnail
+    ? { uri: videoThumbnail }
+    : require("../assets/alunos/capaSpotify.jpeg");
+
   return (
     <View style={styles.areaVideo}>
       {watched && (
@@ -65,13 +69,12 @@ export const VideoAprendizagem = ({ data }: Props) => {
         <TouchableOpacity onPress={openYoutubeVideo}>
           <Image
             style={styles.imgTambnail}
-            source={{ uri: videoThumbnail }}  // Exibe o thumbnail do vídeo
+            source={thumbnailSource}  // Exibe o thumbnail do vídeo
           />
         </TouchableOpacity>
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.textTitulo}>{data.titulo}</Text>
-        <Text style={styles.textSubtitulo}>{data.subtitulo}</Text>
       </View>
     </View>
   );
@@ -156,6 +159,8 @@ const styles = StyleSheet.create({
     textAlign: 'justify',
     paddingLeft: 10,
     paddingRight: 10,
+    borderBottomLeftRadius: 19,
+    borderBottomRightRadius: 19,
   },
   textSubtitulo: {
     fontSize: 18,

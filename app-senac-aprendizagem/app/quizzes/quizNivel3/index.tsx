@@ -22,8 +22,6 @@ const Index = () => {
     if (!fontsLoaded) {
       return <Text>Carregando fontes...</Text>;
     }
-  
- 
 
   return (
     <>

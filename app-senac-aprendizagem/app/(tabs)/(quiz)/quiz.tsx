@@ -7,6 +7,7 @@ import React, { useCallback, useEffect, useState } from "react"
 import { getData } from "../../utils/storage"
 import { COLORS } from "../../../constants/colors"
 import { ResetButton } from "../../../components/resetButton"
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Screen() {
   const [unlockedLevels, setUnlockedLevels] = useState<number>(1);
@@ -27,7 +28,6 @@ export default function Screen() {
     }, [])
   );
   
-
   const CoinButton = ({ level, unlocked }: { level: number; unlocked: boolean }) => (
     <Pressable
       onPress={() => unlocked && router.push(`../../quizzes/quizNivel${level}`)}

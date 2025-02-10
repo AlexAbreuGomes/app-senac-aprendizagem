@@ -3,16 +3,15 @@ import React, { useState, useEffect, useRef } from "react";
 import { Dimensions, FlatList, StyleSheet, Text, View, Image, ScrollView } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StatusBar } from "expo-status-bar";
-import { Carrossel } from "../../../components/carrossel"; // Ajuste conforme sua estrutura
-import { imagensCarrossel } from "../../../data/carrosselAlunos"; // Ajuste conforme sua estrutura
+import { Carrossel } from "../../../components/carrossel"; 
+import { imagensCarrossel } from "../../../data/carrosselAlunos"; 
 import { Conteudos } from "../../../components/boxContent";
 import { conteudosAprendizagem } from "../../../data/boxConteudosData";
-import { avatares } from "../../../data/carrosselAvatares"; // Lista de avatares
+import { avatares } from "../../../data/carrosselAvatares"; 
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
 import { useFonts as IBMPlexMono, IBMPlexMono_400Regular, IBMPlexMono_700Bold, IBMPlexMono_500Medium } from "@expo-google-fonts/ibm-plex-mono";
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import { calculateScorePercentage } from "../../utils/scoreUtils"; // Importando a função de cálculo de porcentagem
-
+import { calculateScorePercentage } from "../../utils/scoreUtils"; 
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -29,14 +28,13 @@ export default function Screen() {
   const flatListRef = useRef<FlatList>(null);
   const [userName, setUserName] = useState<string | null>(null);
   const [userImage, setUserImage] = useState<any>(null);
-  const [quizAverage, setQuizAverage] = useState<string | null>(null); // Estado para armazenar a média de acertos
+  const [quizAverage, setQuizAverage] = useState<string | null>(null);
 
+  const [percentage, setPercentage] = useState<number>(0);  // Mudar para número
 
-  // Recupera o nome, o avatar e as pontuações dos quizzes
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        // Recuperar nome e avatar
         const savedName = await AsyncStorage.getItem("name");
         const savedAvatar = await AsyncStorage.getItem("selectedAvatar");
 
@@ -46,40 +44,36 @@ export default function Screen() {
           const avatar = avatares.find((item) => item.id === id);
           if (avatar) setUserImage(avatar.img);
         }
-
-        // Recuperar as pontuações dos quizzes
-        const level1Score = await AsyncStorage.getItem("quizLevel1Score");
-        const level2Score = await AsyncStorage.getItem("quizLevel2Score");
-        const level3Score = await AsyncStorage.getItem("quizLevel3Score");
-
-        // Calcular a média das pontuações
-        const scores = [level1Score, level2Score, level3Score]
-          .map(score => score ? parseInt(score, 10) : 0) // Converter para número
-          .filter(score => !isNaN(score)); // Filtrar valores inválidos
-
-        if (scores.length > 0) {
-          const totalScore = scores.reduce((sum, score) => sum + score, 0);
-          const totalQuestions = scores.length * 10; // Supondo 10 questões por nível
-          const averagePercentage = calculateScorePercentage(totalScore, totalQuestions); // Calcular a média
-          setQuizAverage(averagePercentage); // Atualizar o estado com a média
-        }
       } catch (error) {
         console.error("Erro ao recuperar os dados:", error);
       }
     };
 
+    const loadScore = async () => {
+      try {
+        const storedScore = await AsyncStorage.getItem("quizScore");
+        if (storedScore) {
+          const { score, totalQuestions } = JSON.parse(storedScore);
+          const percent = calculateScorePercentage(score, totalQuestions); 
+          setPercentage(percent); // Armazena o valor como número
+          console.log("Pontuação carregada:", { score, totalQuestions, percent });
+        }
+      } catch (error) {
+        console.error("Erro ao carregar pontuação:", error);
+      }
+    };
+
+    loadScore();
     fetchUserData();
   }, []);
-  // Intervalo do carrossel
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => {
         const nextIndex = (prevIndex + 1) % imagensCarrossel.length;
-
         if (flatListRef.current) {
           flatListRef.current.scrollToIndex({ index: nextIndex, animated: true });
         }
-
         return nextIndex;
       });
     }, 3000);
@@ -90,13 +84,13 @@ export default function Screen() {
   const renderConteudos = ({ item }: { item: typeof conteudosAprendizagem[0] }) => (
     <Conteudos
       titulo={item.titulo}
-      id={item.id} // Passando o id necessário
+      id={item.id}
       icon={item.icon}
       onPress={item.onPress}
     />
   );
+  console.log("Porcentagem: ", percentage);
 
-  // Renderização do carrossel e conteúdo
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar />
@@ -116,7 +110,7 @@ export default function Screen() {
         ListHeaderComponent={
           <View style={styles.nameInput}>
             {userImage && <Image source={userImage} style={styles.userImage} />}
-
+            
             <View style={styles.pontuacao}>
               <Text style={styles.welcome}>
                 {userName ? `Bem-vindo(a), ${userName}!` : "Bem-vindo(a)!"}
@@ -125,22 +119,13 @@ export default function Screen() {
               <View style={styles.posicaoPontos}>
                 <View style={styles.pontosContainer}>
                   <MaterialIcons name="stars" size={24} color="#F7941D" />
-                  <Text style={styles.pontos}>Total Pontos</Text>
+                  <Text style={styles.pontos}>{"Total Pontos:"} {percentage.toFixed(2)}%</Text>
                 </View>
 
                 <View style={styles.pontosContainer}>
                   <MaterialIcons name="task" size={24} color="#044B8B" />
                   <Text style={styles.conteudos}>Conteúdo Concluído</Text>
                 </View>
-
-                {quizAverage !== null && (
-                  <View style={styles.pontosContainer}>
-                    <MaterialIcons name="quiz" size={24} color="#4CAF50" />
-                    <Text style={styles.conteudos}>
-                      Média de Acertos: {quizAverage}%
-                    </Text>
-                  </View>
-                )}
               </View>
             </View>
           </View>
