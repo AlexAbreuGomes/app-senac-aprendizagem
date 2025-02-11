@@ -24,14 +24,18 @@ export const ResetButton = () => {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#FF4444',
-    padding: 15,
+    backgroundColor: '#044B8B',
+    padding: 2,
+    width: 80,
     borderRadius: 10,
+    marginLeft: 10,
     marginTop: 20,
+    elevation: 3,
   },
   text: {
-    color: 'white',
+    color: '#ffffff57',
     fontFamily: 'IBM-Plex-Mono',
-    fontSize: 16,
+    fontSize: 12,
+    textAlign: 'center',
   }
 });
