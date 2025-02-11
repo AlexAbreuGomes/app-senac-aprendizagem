@@ -93,7 +93,7 @@ export default function Detalhes() {
             <Text style={styles.h2}>clique no botão abaixo para seguir para o próximo tema e continuar aprendendo!</Text>
           </View>
 
-          <TouchableOpacity onPress={() => router.back()} style={styles.button}>
+          <TouchableOpacity onPress={markContentAsCompleted} style={styles.button}>
             <Text style={styles.textButton}>Próximo Tema</Text>
             <View style={styles.icon}>
               <FontAwesome name="arrow-right" size={20 as const} color="#F7941D" />

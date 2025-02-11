@@ -22,6 +22,13 @@ export const Conteudos: React.FC<ConteudosProps> = ({ titulo, id, icon, isComple
         </View>
         <Text style={styles.title}>{titulo}</Text>
       </View>
+      {isCompleted && (
+      <View style={styles.conteinerCheck}> 
+        <View style={styles.areaCheck}>
+          <FontAwesome name="check" size={18} color="white"/>
+        </View>
+      </View>
+      )}
     </Pressable>
   );
 };
@@ -62,5 +69,22 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontSize: 20,
     fontFamily: "LuckiestGuy",
+  },
+
+  conteinerCheck:{
+    marginTop: 30,
+    borderWidth: 0,
+    justifyContent: 'center',
+    alignItems: 'flex-end', 
+  },
+
+  areaCheck:{
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 30,
+    width: 25,
+    height: 25,
+    backgroundColor: 'lightgreen',
+   
   },
 });
