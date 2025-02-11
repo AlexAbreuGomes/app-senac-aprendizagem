@@ -70,9 +70,9 @@ export default function Detalhes() {
           </View>
 
           <TouchableOpacity onPress={() => router.back()} style={styles.button}>
-            <Text style={styles.textButton}>Concluir Conteúdo</Text>
+            <Text style={styles.textButton}>Próximo Tema</Text>
             <View style={styles.icon}>
-              <FontAwesome name="check" size={20 as const} color="lightgreen"/>
+              <FontAwesome name="arrow-right" size={20 as const} color="#F7941D" />
             </View>
           </TouchableOpacity>
 
@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "lightgreen",
+    backgroundColor: "#F7941D",
     borderRadius: 30,
     marginTop: 20,
     marginBottom: 10,

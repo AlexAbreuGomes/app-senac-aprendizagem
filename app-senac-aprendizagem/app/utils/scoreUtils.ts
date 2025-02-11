@@ -1,52 +1,47 @@
-export const calculateScorePercentage = (score: number, totalQuestions: number): number => {
+export const calculateScorePercentage = (score: number, totalQuestions: number): string => {
   if (totalQuestions === 0) {
-    return 0; // Retorna 0 caso não haja questões
+    return '0.00'; // Retorna 0% caso não haja questões
   }
-  return (score / totalQuestions) * 100; // Retorna o valor como número
-};
+  const percentage = (score / totalQuestions) * 100;
+  return percentage.toFixed(2); // Retorna o valor com 2 casas decimais
 
-
-const getPercentage = (score: number, totalQuestions: number): number => {
-  return totalQuestions === 0 ? 0 : (score / totalQuestions) * 100;
 };
 
 export const getScoreColor = (score: number, totalQuestions: number): string => {
-  return getPercentage(score, totalQuestions) >= 70 ? 'green' : 'red';
-};
+  const percentage = (score / totalQuestions) * 100;
 
-export const generateFinalMessage = (score: number, totalQuestions: number): string => {
-  const percentage = getPercentage(score, totalQuestions);
-
-  if (percentage === 100) {
-    return "Perfeito! Você acertou todas as questões! Incrível! 🎉";
-  } else if (percentage >= 90) {
-    return "Ótimo desempenho! Você quase gabaritou, continue assim! 🚀";
-  } else if (percentage >= 80) {
-    return "Muito bom! Você está quase lá, falta pouco! 👏";
-  } else if (percentage >= 70) {
-    return "Bom trabalho! Você acertou a maioria, continue evoluindo!";
-  } else if (percentage >= 50) {
-    return "Você está no caminho certo, com um pouco mais de treino vai ficar ótimo!";
-  } else if (percentage >= 30) {
-    return "Boa tentativa! Continue praticando e verá progresso!";
-  } else if (percentage >= 10) {
-    return "Não desista! Aprender é um processo, cada erro te ensina algo!";
+  if (percentage >= 70) {
+    return 'green'; // Verde para percentuais de 70% ou mais
   } else {
-    return "Ops! Parece que algo deu errado. Que tal revisar e tentar de novo? 😅";
+    return 'red'; // Vermelho para percentuais abaixo de 70%
   }
 };
 
 
-
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
-// Função para salvar a pontuação ao finalizar o quiz
-export const saveQuizScore = async (score: number, totalQuestions: number) => {
+export const generateFinalMessage = (score: number, totalQuestions: number): string => {
+  const percentage = (score / totalQuestions) * 100;
   
-  try {
-    await AsyncStorage.setItem("quizScore", JSON.stringify({ score, totalQuestions }));
-    console.log("Pontuação salva:", { score, totalQuestions }); // Adicione esta linha
-  } catch (error) {
-    console.error("Erro ao salvar pontuação:", error);
+  if (percentage === 100) {
+    return "Perfeito! Você acertou todas as questões! Não deixou passar nada, incrível! 🎉";
+  } else if (percentage >= 90) {
+    return  "Incrível! Você acertou a maior parte, só faltaram alguns detalhes. Continue assim! 🚀";
+  } else if (percentage >= 85) {
+    return  "Parabéns! Ótimo trabalho, vamos para o próximo nível! 🎯";
+  } else if (percentage >= 80) {
+    return  "Bom trabalho! Você acertou a maior parte, só mais um empurrãozinho e fica perfeito! 👏";
+  } else if (percentage >= 70) {
+    return "Bom trabalho! Você acertou a maior parte, continue assim!";
+  }  else if (percentage >= 50) {
+    return "Continue tentando, você está no caminho certo!";
+  } else if (percentage >= 40) {
+    return "Não desista! Você está perto de melhorar, só mais um pouco!";
+  } else if (percentage >= 30) {
+    return "Boa tentativa! Não se preocupe, a prática leva à perfeição!";
+  } else if (percentage >= 20) {
+    return "Não desista! A cada tentativa você fica mais perto de dominar!";
+  } else if (percentage >= 10) {
+    return "Não se preocupe, você vai melhorar a cada tentativa!";
+  } else {
+    return "Acho que você encontrou a única forma de errar todas as questões! Mas não se preocupe, 100 tentativas é um bom começo! 😅";
   }
 };

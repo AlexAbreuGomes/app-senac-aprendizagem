@@ -7,7 +7,7 @@ import { Image } from 'expo-image';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import AntDesign from '@expo/vector-icons/AntDesign';
-import { calculateScorePercentage, generateFinalMessage, getScoreColor, saveQuizScore } from '../app/utils/scoreUtils';
+import { calculateScorePercentage, generateFinalMessage, getScoreColor } from '../app/utils/scoreUtils';
 import { storeData } from '../app/utils/storage';
 
 type QuizProps = {
@@ -49,9 +49,6 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
   const handleNext = () => {
     if (currentQuestionIndex === allQuestions.length - 1) {
       setShowScoreModal(true);
-      const value = calculateScorePercentage(score, allQuestions.length)
-      saveQuizScore(value, 3 )
-
     } else {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setCurrentOptionSelected(null);
@@ -90,7 +87,6 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
     const nextLevel = currentLevel + 1;
   
     if (nextLevel <= 3) {
-      console.log("Teste storeData")
       storeData(`quizLevel${nextLevel}`, 'unlocked').then(() => {
         router.replace('/quiz'); // Atualiza a tela
       });
