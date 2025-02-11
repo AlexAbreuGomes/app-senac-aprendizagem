@@ -97,18 +97,6 @@ export default function Screen() {
     // Opcional: adicionar um listener para atualizar quando a tela ficar em foco, caso o usuário conclua um conteúdo e retorne à home
   }, []);
 
-  //Reset dos Checks
-  const resetCompletedContents = async () => {
-    try {
-      const storageKey = "completedContentIds";
-      await AsyncStorage.removeItem(storageKey);
-      setCompletedContentIds([]);
-      console.log("Conteúdos concluídos resetados!");
-    } catch (error) {
-      console.error("Erro ao resetar conteúdos concluídos:", error);
-    }
-  };
-
   //atualiza quando a tela ficar em foco, caso o usuário conclua um conteúdo e retorne à home
   useFocusEffect(
     React.useCallback(() => {
@@ -144,6 +132,7 @@ export default function Screen() {
           renderItem={({ item }) => <Carrossel data={item} />}
           keyExtractor={(item) => item.id.toString()}
           horizontal
+          showsHorizontalScrollIndicator={false}
         />
       </View>
 
@@ -162,10 +151,6 @@ export default function Screen() {
         contentContainerStyle={styles.cardContainer} // Ajuste para garantir a rolagem
         showsVerticalScrollIndicator={false} // Desativa a barra de rolagem
       />
-
-      <TouchableOpacity onPress={resetCompletedContents} style={styles.resetButton}>
-        <Text>Resetar Conteúdos Concluídos</Text>
-      </TouchableOpacity>
     </SafeAreaView>
   );
 }
@@ -225,13 +210,4 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 10,
   },
-
-  resetButton:{
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'red',
-    borderRadius: 20,
-    width: 220,
-    height: 30
-  }
 });
