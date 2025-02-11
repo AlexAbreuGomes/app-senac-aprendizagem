@@ -10,6 +10,8 @@ import { conteudosAprendizagem } from "../../../data/boxConteudosData";
 import { avatares } from "../../../data/carrosselAvatares"; // Lista de avatares
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
 import { useFonts as IBMPlexMono, IBMPlexMono_400Regular, IBMPlexMono_700Bold, IBMPlexMono_500Medium } from "@expo-google-fonts/ibm-plex-mono";
+import { TouchableOpacity } from "react-native";
+import { useFocusEffect } from "expo-router";
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -69,9 +71,66 @@ export default function Screen() {
       titulo={item.titulo}
       id={item.id} // Passando o id necessário
       icon={item.icon}
+      isCompleted={completedContentIds.includes(item.id)} // passa true se o conteúdo estiver concluído
       onPress={item.onPress}
     />
   );
+
+  //novo
+  const [completedContentIds, setCompletedContentIds] = useState<number[]>([]);
+
+  useEffect(() => {
+    const fetchCompletedContent = async () => {
+      try {
+        const storageKey = "completedContentIds";
+        const stored = await AsyncStorage.getItem(storageKey);
+        if (stored) {
+          setCompletedContentIds(JSON.parse(stored));
+        }
+      } catch (error) {
+        console.error("Erro ao recuperar conteúdos concluídos:", error);
+      }
+    };
+
+    fetchCompletedContent();
+    
+    // Opcional: adicionar um listener para atualizar quando a tela ficar em foco, caso o usuário conclua um conteúdo e retorne à home
+  }, []);
+
+  //Reset dos Checks
+  const resetCompletedContents = async () => {
+    try {
+      const storageKey = "completedContentIds";
+      await AsyncStorage.removeItem(storageKey);
+      setCompletedContentIds([]);
+      console.log("Conteúdos concluídos resetados!");
+    } catch (error) {
+      console.error("Erro ao resetar conteúdos concluídos:", error);
+    }
+  };
+
+  //atualiza quando a tela ficar em foco, caso o usuário conclua um conteúdo e retorne à home
+  useFocusEffect(
+    React.useCallback(() => {
+      const fetchCompletedContent = async () => {
+        try {
+          const storageKey = "completedContentIds";
+          const stored = await AsyncStorage.getItem(storageKey);
+          if (stored) {
+            setCompletedContentIds(JSON.parse(stored));
+          } else {
+            setCompletedContentIds([]);
+          }
+        } catch (error) {
+          console.error("Erro ao recuperar conteúdos concluídos:", error);
+        }
+      };
+
+      fetchCompletedContent();
+    }, [])
+  );
+
+
 
   return (
     <SafeAreaView style={styles.container}>
@@ -103,6 +162,10 @@ export default function Screen() {
         contentContainerStyle={styles.cardContainer} // Ajuste para garantir a rolagem
         showsVerticalScrollIndicator={false} // Desativa a barra de rolagem
       />
+
+      <TouchableOpacity onPress={resetCompletedContents} style={styles.resetButton}>
+        <Text>Resetar Conteúdos Concluídos</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
@@ -162,4 +225,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 10,
   },
+
+  resetButton:{
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'red',
+    borderRadius: 20,
+    width: 220,
+    height: 30
+  }
 });

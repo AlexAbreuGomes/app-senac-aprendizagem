@@ -2,16 +2,22 @@ import React from "react";
 import { View, Text, Pressable, StyleSheet, Dimensions, Image } from "react-native";
 import { useRouter } from "expo-router";
 import { ConteudosProps } from "../types/boxConteudosTypes";
+import { FontAwesome } from '@expo/vector-icons';
 
 const screenWidth = Dimensions.get("window").width;
 
-export const Conteudos: React.FC<ConteudosProps> = ({ titulo, id, icon }) => {
+//novo
+interface ConteudosExtendedProps extends ConteudosProps {
+  isCompleted?: boolean; // nova prop opcional
+}
+
+export const Conteudos: React.FC<ConteudosProps> = ({ titulo, id, icon, isCompleted }) => {
   const router = useRouter();
 
   return (
     <Pressable style={styles.card} onPress={() => router.push(`/detalhes/${id}`)}>
       <View style={styles.header}>
-        <View style={styles.icon}>
+        <View style={[styles.icon, isCompleted && styles.iconCompleted]}>
           <Image source={icon} style={styles.iconImage} />
         </View>
         <Text style={styles.title}>{titulo}</Text>
@@ -43,6 +49,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginRight: 8,
+  },
+  iconCompleted: { 
+    backgroundColor: "lightgreen", // Fundo verde para indicar conclusão
   },
   iconImage: {
     width: 30,

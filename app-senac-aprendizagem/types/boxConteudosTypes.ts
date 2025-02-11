@@ -8,5 +8,7 @@ export type ConteudoAprendizagem = {
   
 };
 
+export type ConteudosProps = Pick<ConteudoAprendizagem, "id" | "titulo" | "onPress" | "icon"> & {
+  isCompleted?: boolean;
+};
 
-export type ConteudosProps = Pick<ConteudoAprendizagem, "id" | "titulo" | "onPress" | "icon" >;
