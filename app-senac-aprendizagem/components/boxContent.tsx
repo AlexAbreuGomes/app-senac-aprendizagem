@@ -42,6 +42,8 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 16,
     elevation: 4,
+    
+    
   },
   header: {
     flexDirection: "row",
@@ -69,6 +71,8 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontSize: 20,
     fontFamily: "LuckiestGuy",
+    flexWrap: "wrap", // Permite que o texto quebre em várias linhas
+    maxWidth: "85%", // Limita a largura máxima para que o texto quebre
   },
 
   conteinerCheck:{
@@ -85,6 +89,5 @@ const styles = StyleSheet.create({
     width: 25,
     height: 25,
     backgroundColor: 'lightgreen',
-   
   },
 });
