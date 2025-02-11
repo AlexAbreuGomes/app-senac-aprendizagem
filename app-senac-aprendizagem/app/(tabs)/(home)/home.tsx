@@ -3,15 +3,15 @@ import React, { useState, useEffect, useRef } from "react";
 import { Dimensions, FlatList, StyleSheet, Text, View, Image, ScrollView } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StatusBar } from "expo-status-bar";
-import { Carrossel } from "../../../components/carrossel"; 
-import { imagensCarrossel } from "../../../data/carrosselAlunos"; 
+import { Carrossel } from "../../../components/carrossel";
+import { imagensCarrossel } from "../../../data/carrosselAlunos";
 import { Conteudos } from "../../../components/boxContent";
 import { conteudosAprendizagem } from "../../../data/boxConteudosData";
-import { avatares } from "../../../data/carrosselAvatares"; 
+import { avatares } from "../../../data/carrosselAvatares";
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
 import { useFonts as IBMPlexMono, IBMPlexMono_400Regular, IBMPlexMono_700Bold, IBMPlexMono_500Medium } from "@expo-google-fonts/ibm-plex-mono";
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import { calculateScorePercentage } from "../../utils/scoreUtils"; 
+import { calculateScorePercentage } from "../../utils/scoreUtils";
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -52,9 +52,10 @@ export default function Screen() {
     const loadScore = async () => {
       try {
         const storedScore = await AsyncStorage.getItem("quizScore");
+        console.log(" Teste StoreScore",storedScore);
         if (storedScore) {
           const { score, totalQuestions } = JSON.parse(storedScore);
-          const percent = calculateScorePercentage(score, totalQuestions); 
+          const percent = calculateScorePercentage(score, totalQuestions);
           setPercentage(percent); // Armazena o valor como número
           console.log("Pontuação carregada:", { score, totalQuestions, percent });
         }
@@ -89,7 +90,7 @@ export default function Screen() {
       onPress={item.onPress}
     />
   );
-  console.log("Porcentagem: ", percentage);
+ 
 
   return (
     <SafeAreaView style={styles.container}>
@@ -110,7 +111,7 @@ export default function Screen() {
         ListHeaderComponent={
           <View style={styles.nameInput}>
             {userImage && <Image source={userImage} style={styles.userImage} />}
-            
+
             <View style={styles.pontuacao}>
               <Text style={styles.welcome}>
                 {userName ? `Bem-vindo(a), ${userName}!` : "Bem-vindo(a)!"}
@@ -126,6 +127,7 @@ export default function Screen() {
                   <MaterialIcons name="task" size={24} color="#044B8B" />
                   <Text style={styles.conteudos}>Conteúdo Concluído</Text>
                 </View>
+
               </View>
             </View>
           </View>
@@ -227,4 +229,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 10,
   },
+
 });

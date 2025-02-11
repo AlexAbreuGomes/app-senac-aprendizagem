@@ -42,6 +42,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // Função para salvar a pontuação ao finalizar o quiz
 export const saveQuizScore = async (score: number, totalQuestions: number) => {
+  
   try {
     await AsyncStorage.setItem("quizScore", JSON.stringify({ score, totalQuestions }));
     console.log("Pontuação salva:", { score, totalQuestions }); // Adicione esta linha
