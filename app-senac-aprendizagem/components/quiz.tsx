@@ -47,12 +47,11 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
   };
 
   const handleNext = () => {
-    const quizId = "quiz1"; // Exemplo de identificador fixo
-  
     if (currentQuestionIndex === allQuestions.length - 1) {
       setShowScoreModal(true);
-      const value = calculateScorePercentage(score, allQuestions.length);
-      saveQuizScore(quizId, value, allQuestions.length); // Passando 3 argumentos agora
+      const value = calculateScorePercentage(score, allQuestions.length)
+      saveQuizScore(value, allQuestions.length);
+
     } else {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setCurrentOptionSelected(null);
@@ -60,7 +59,7 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
       setIsOptionsDisabled(false);
       setShowNextButton(false);
     }
-  
+
     Animated.timing(progress, {
       toValue: currentQuestionIndex + 1,
       duration: 1000,
@@ -89,11 +88,13 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
   const goToNextLevel = () => {
     const currentLevel = level; // Agora pega o level da propriedade corretamente
     const nextLevel = currentLevel + 1;
-  
+    // const value = calculateScorePercentage(score, allQuestions.length)
+    // saveQuizScore(value, allQuestions.length);
     if (nextLevel <= 3) {
       console.log("Teste storeData")
       storeData(`quizLevel${nextLevel}`, 'unlocked').then(() => {
         router.replace('/quiz'); // Atualiza a tela
+        
       });
     }
   };

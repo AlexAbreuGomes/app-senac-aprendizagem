@@ -54,39 +54,22 @@ export default function Screen() {
   }, []);
 
   useEffect(() => {
-    const loadScores = async () => {
+    const loadScore = async () => {
       try {
-        // Obter todas as chaves do AsyncStorage
-        const allKeys = await AsyncStorage.getAllKeys();
-  
-        // Filtrar as chaves que começam com 'quizScore_'
-        const quizKeys = allKeys.filter(key => key.startsWith('quizScore_'));
-  
-        // Carregar pontuações de todos os quizzes
-        const quizScores = [];
-  
-        for (let key of quizKeys) {
-          const storedScore = await AsyncStorage.getItem(key);
-          if (storedScore) {
-            const { score, totalQuestions } = JSON.parse(storedScore);
-            const percent = calculateScorePercentage(score, totalQuestions);
-            quizScores.push(percent);
-          }
-        }
-  
-        if (quizScores.length > 0) {
-          // Calcular a média das porcentagens
-          const totalPercent = quizScores.reduce((acc, curr) => acc + curr, 0);
-          const averagePercent = totalPercent / quizScores.length;
-          setPercentage(averagePercent); // Armazena a média das porcentagens
-          console.log("Pontuação média carregada:", averagePercent);
+        const storedScore = await AsyncStorage.getItem("quizScore");
+        console.log("Teste StoreScore", storedScore);
+        if (storedScore) {
+          const { score, totalQuestions } = JSON.parse(storedScore);
+          // Se score já for a porcentagem, então não precisa de cálculo.
+          setPercentage(score); // Exibe o score diretamente
+          console.log("Pontuação carregada:", { score, totalQuestions });
         }
       } catch (error) {
         console.error("Erro ao carregar pontuação:", error);
       }
     };
-  
-    loadScores();
+
+    loadScore();
   }, []);
 
   useEffect(() => {
