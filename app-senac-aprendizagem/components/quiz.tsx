@@ -47,11 +47,12 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
   };
 
   const handleNext = () => {
+    const quizId = "quiz1"; // Exemplo de identificador fixo
+  
     if (currentQuestionIndex === allQuestions.length - 1) {
       setShowScoreModal(true);
-      const value = calculateScorePercentage(score, allQuestions.length)
-      saveQuizScore(value, 3 )
-
+      const value = calculateScorePercentage(score, allQuestions.length);
+      saveQuizScore(quizId, value, allQuestions.length); // Passando 3 argumentos agora
     } else {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setCurrentOptionSelected(null);
@@ -59,7 +60,7 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
       setIsOptionsDisabled(false);
       setShowNextButton(false);
     }
-
+  
     Animated.timing(progress, {
       toValue: currentQuestionIndex + 1,
       duration: 1000,
@@ -109,15 +110,17 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
 
 
 
-  const scorePercentage = calculateScorePercentage(score, allQuestions.length);
-  const isButtonDisabled = parseFloat(scorePercentage) < 70;
+  const scorePercentage: number = calculateScorePercentage(score, allQuestions.length);
+const isButtonDisabled = scorePercentage < 70;
 
 
-  const scorePercentageLogo = calculateScorePercentage(score, allQuestions.length);
-  const isPositiveScore = parseFloat(scorePercentageLogo) >= 70;
-  const imageSource = isPositiveScore
-    ? require('../assets/images/medalha.gif')  // Imagem para pontuação positiva
-    : require('../assets/images/metas2.gif');  // Imagem para pontuação negativa
+
+const scorePercentageLogo: number = calculateScorePercentage(score, allQuestions.length);
+const isPositiveScore = scorePercentageLogo >= 70; // Comparação direta sem parseFloat
+
+const imageSource = isPositiveScore
+  ? require('../assets/images/medalha.gif')  // Imagem para pontuação positiva
+  : require('../assets/images/metas2.gif');  // Imagem para pontuação negativa
 
 
 

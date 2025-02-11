@@ -1,4 +1,8 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useRouter } from 'expo-router';  // Importando o useRouter
+
 export const calculateScorePercentage = (score: number, totalQuestions: number): number => {
+
   if (totalQuestions === 0) {
     return 0; // Retorna 0 caso não haja questões
   }
@@ -7,8 +11,13 @@ export const calculateScorePercentage = (score: number, totalQuestions: number):
 
 
 const getPercentage = (score: number, totalQuestions: number): number => {
+
+  console.log(`Calculando porcentagem...`);
+  console.log(`Score: ${score}, Total Questions: ${totalQuestions}`);
+
   return totalQuestions === 0 ? 0 : (score / totalQuestions) * 100;
 };
+
 
 export const getScoreColor = (score: number, totalQuestions: number): string => {
   return getPercentage(score, totalQuestions) >= 70 ? 'green' : 'red';
@@ -16,6 +25,7 @@ export const getScoreColor = (score: number, totalQuestions: number): string => 
 
 export const generateFinalMessage = (score: number, totalQuestions: number): string => {
   const percentage = getPercentage(score, totalQuestions);
+  console.log(`A porcentagem é: ${percentage}%`);
 
   if (percentage === 100) {
     return "Perfeito! Você acertou todas as questões! Incrível! 🎉";
@@ -38,15 +48,15 @@ export const generateFinalMessage = (score: number, totalQuestions: number): str
 
 
 
-import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 // Função para salvar a pontuação ao finalizar o quiz
-export const saveQuizScore = async (score: number, totalQuestions: number) => {
-  
+export const saveQuizScore = async (quizId: string, score: number, totalQuestions: number) => {
   try {
-    await AsyncStorage.setItem("quizScore", JSON.stringify({ score, totalQuestions }));
-    console.log("Pontuação salva:", { score, totalQuestions }); // Adicione esta linha
+    const quizScore = { score, totalQuestions };
+    await AsyncStorage.setItem(`quizScore_${quizId}`, JSON.stringify(quizScore));
+    console.log(`Pontuação do ${quizId} salva:`, quizScore);
   } catch (error) {
-    console.error("Erro ao salvar pontuação:", error);
+    console.error(`Erro ao salvar pontuação do ${quizId}:`, error);
   }
 };
