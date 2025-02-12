@@ -1,11 +1,24 @@
-export const calculateScorePercentage = (score: number, totalQuestions: number): string => {
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useRouter } from 'expo-router';  // Importando o useRouter
+
+export const calculateScorePercentage = (score: number, totalQuestions: number): number => {
+
   if (totalQuestions === 0) {
     return '0.00'; // Retorna 0% caso não haja questões
   }
   const percentage = (score / totalQuestions) * 100;
   return percentage.toFixed(2); // Retorna o valor com 2 casas decimais
 
+const getPercentage = (score: number, totalQuestions: number): number => {
+
+  console.log(`Calculando porcentagem...`);
+  console.log(`Score: ${score}, Total Questions: ${totalQuestions}`);
+
+  return totalQuestions === 0 ? 0 : (score / totalQuestions) * 100;
+
 };
+
 
 export const getScoreColor = (score: number, totalQuestions: number): string => {
   const percentage = (score / totalQuestions) * 100;
@@ -17,6 +30,9 @@ export const getScoreColor = (score: number, totalQuestions: number): string => 
   }
 };
 
+export const generateFinalMessage = (score: number, totalQuestions: number): string => {
+  const percentage = getPercentage(score, totalQuestions);
+  console.log(`A porcentagem é: ${percentage}%`);
 
 export const generateFinalMessage = (score: number, totalQuestions: number): string => {
   const percentage = (score / totalQuestions) * 100;
@@ -42,6 +58,17 @@ export const generateFinalMessage = (score: number, totalQuestions: number): str
   } else if (percentage >= 10) {
     return "Não se preocupe, você vai melhorar a cada tentativa!";
   } else {
-    return "Acho que você encontrou a única forma de errar todas as questões! Mas não se preocupe, 100 tentativas é um bom começo! 😅";
+    return "Ops! Parece que algo deu errado. Que tal revisar e tentar de novo? 😅";
+  }
+};
+
+// Função para salvar a pontuação ao finalizar o quiz
+export const saveQuizScore = async (nameScore: string, score: number, totalQuestions: number) => {
+  
+  try {
+    await AsyncStorage.setItem(nameScore, JSON.stringify({ score, totalQuestions }));
+    console.log("Pontuação salva:", { score, totalQuestions }); // Adicione esta linha
+  } catch (error) {
+    console.error("Erro ao salvar pontuação:", error);
   }
 };

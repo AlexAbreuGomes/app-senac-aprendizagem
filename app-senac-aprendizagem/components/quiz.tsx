@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { SafeAreaView, Text, Pressable, View, Modal, Animated, StatusBar, StyleSheet, Alert } from 'react-native';
-import { useRouter,useLocalSearchParams } from 'expo-router';  // Importando useRouter
+import { useRouter, useLocalSearchParams } from 'expo-router';  // Importando useRouter
 import { COLORS } from '../constants/colors';
 import Button from '../components/ButtonQuiz';
-import { Image } from 'expo-image'; 
+import { Image } from 'expo-image';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { calculateScorePercentage, generateFinalMessage, getScoreColor } from '../app/utils/scoreUtils';
 import { storeData } from '../app/utils/storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type QuizProps = {
   questions: {
@@ -46,9 +47,31 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
     setShowNextButton(true);
   };
 
-  const handleNext = () => {
+  const getStoredData = async (key: string) => {
+    try {
+      const value = await AsyncStorage.getItem(key);
+      return value !== null ? value : null; // Retorna o valor ou null se não existir
+    } catch (error) {
+      console.error("Erro ao buscar os dados:", error);
+      return null;
+    }
+  };
+
+  const handleNext = async () => {
     if (currentQuestionIndex === allQuestions.length - 1) {
       setShowScoreModal(true);
+      
+      const value = calculateScorePercentage(score, allQuestions.length);
+  
+      const existingScore = await getStoredData(`quizScore${level}`);
+      
+      if (!existingScore) {  
+        saveQuizScore(`quizScore${level}`, value, allQuestions.length);
+      }
+  
+      // ✅ Agora marcamos o nível como concluído
+      await storeData(`quizCompletedLevel${level}`, 'true');
+  
     } else {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setCurrentOptionSelected(null);
@@ -56,13 +79,15 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
       setIsOptionsDisabled(false);
       setShowNextButton(false);
     }
-
+  
     Animated.timing(progress, {
       toValue: currentQuestionIndex + 1,
       duration: 1000,
       useNativeDriver: false,
     }).start();
   };
+  
+
 
   const restartQuiz = () => {
     setShowScoreModal(false);
@@ -85,32 +110,35 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
   const goToNextLevel = () => {
     const currentLevel = level; // Agora pega o level da propriedade corretamente
     const nextLevel = currentLevel + 1;
-  
+
     if (nextLevel <= 3) {
       storeData(`quizLevel${nextLevel}`, 'unlocked').then(() => {
         router.replace('/quiz'); // Atualiza a tela
+
       });
     }
   };
-  
+
 
 
   //alert para voltar para home
   const [showCustomAlert, setShowCustomAlert] = useState(false);
-  
+
   const goToHome = () => {
     setShowCustomAlert(true);
   };
-  
 
 
 
-  const scorePercentage = calculateScorePercentage(score, allQuestions.length);
-  const isButtonDisabled = parseFloat(scorePercentage) < 70;
+
+  const scorePercentage: number = calculateScorePercentage(score, allQuestions.length);
+  const isButtonDisabled = scorePercentage < 70;
 
 
-  const scorePercentageLogo = calculateScorePercentage(score, allQuestions.length);
-  const isPositiveScore = parseFloat(scorePercentageLogo) >= 70;
+
+  const scorePercentageLogo: number = calculateScorePercentage(score, allQuestions.length);
+  const isPositiveScore = scorePercentageLogo >= 70; // Comparação direta sem parseFloat
+
   const imageSource = isPositiveScore
     ? require('../assets/images/medalha.gif')  // Imagem para pontuação positiva
     : require('../assets/images/metas2.gif');  // Imagem para pontuação negativa
@@ -133,7 +161,7 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
   const renderOptions = () => {
     return (
       <View>
-        {allQuestions[currentQuestionIndex]?.options.map((option:string) => (
+        {allQuestions[currentQuestionIndex]?.options.map((option: string) => (
           <Pressable
             key={option}
             onPress={() => validateAnswer(option)}
@@ -159,27 +187,27 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
           >
             <Text style={styles.optionText}>{option}</Text>
             {option === correctOption ? (
-                 <View style={{
-                  width: 35, height: 35, borderRadius: 30,  marginLeft: 5, 
-                  backgroundColor: COLORS.success,
-                  justifyContent: 'center', alignItems: 'center', 
+              <View style={{
+                width: 35, height: 35, borderRadius: 30, marginLeft: 5,
+                backgroundColor: COLORS.success,
+                justifyContent: 'center', alignItems: 'center',
               }}>
-                  <MaterialCommunityIcons name="check" style={{
-                      color: COLORS.white,
-                      fontSize: 27
-                  }} />
+                <MaterialCommunityIcons name="check" style={{
+                  color: COLORS.white,
+                  fontSize: 27
+                }} />
               </View>
             ) : option === currentOptionSelected ? (
               <View style={{
-                width: 35, height: 35, borderRadius: 30,  marginLeft: 5, 
+                width: 35, height: 35, borderRadius: 30, marginLeft: 5,
                 backgroundColor: COLORS.error,
                 justifyContent: 'center', alignItems: 'center'
-            }}>
+              }}>
                 <MaterialCommunityIcons name="close" style={{
-                    color: COLORS.white,
-                    fontSize: 27
+                  color: COLORS.white,
+                  fontSize: 27
                 }} />
-            </View>
+              </View>
             ) : null}
           </Pressable>
         ))}
@@ -191,7 +219,7 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
     if (showNextButton) {
       return (
         <Button
-          title="Próxima" 
+          title="Próxima"
           onPress={handleNext}
           style={styles.nextButton}
         />
@@ -265,13 +293,20 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
                 </Pressable>
 
                 <Pressable
-                  onPress={goToNextLevel}
+                  onPress={() => {
+                    if (level === 3) {
+                      router.replace('/home'); // No último nível, volta para a home
+                    } else {
+                      goToNextLevel();
+                    }
+                  }}
                   style={[styles.nextLevelButton, isButtonDisabled && { opacity: 0.5 }]}
                   disabled={isButtonDisabled}
                 >
-                  <Text style={styles.nextLevelText}>Próximo Nível</Text>
-                  <MaterialIcons name="navigate-next" size={35} color="#ffffff" />
+                  <Text style={styles.nextLevelText}>{level === 3 ? "Finalizar" : "Próximo Nível"}</Text>
+                  <MaterialIcons name={level === 3 ? "check-circle" : "navigate-next"} size={35} color="#ffffff" />
                 </Pressable>
+
 
               </View>
 
@@ -295,36 +330,36 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
 
 
         <Modal
-  visible={showCustomAlert}
-  transparent={true}
-  animationType="fade"
->
-  <View style={styles.modalOverlay}>
-    <View style={styles.customAlertContainer}>
-      <Text style={styles.customAlertTitle}>Confirmar</Text>
-      <Text style={styles.customAlertMessage}>
-        Você realmente quer voltar à página inicial?
-      </Text>
-      <View style={styles.customAlertButtons}>
-        <Pressable
-          style={[styles.alertButton, styles.cancelButton]}
-          onPress={() => setShowCustomAlert(false)}
+          visible={showCustomAlert}
+          transparent={true}
+          animationType="fade"
         >
-          <Text style={styles.alertButtonText}>Cancelar</Text>
-        </Pressable>
-        <Pressable
-          style={[styles.alertButton, styles.confirmButton]}
-          onPress={() => {
-            setShowCustomAlert(false);
-            router.replace('/quiz');
-          }}
-        >
-          <Text style={styles.alertButtonText}>Sim</Text>
-        </Pressable>
-      </View>
-    </View>
-  </View>
-</Modal>
+          <View style={styles.modalOverlay}>
+            <View style={styles.customAlertContainer}>
+              <Text style={styles.customAlertTitle}>Confirmar</Text>
+              <Text style={styles.customAlertMessage}>
+                Você realmente quer voltar à página inicial?
+              </Text>
+              <View style={styles.customAlertButtons}>
+                <Pressable
+                  style={[styles.alertButton, styles.cancelButton]}
+                  onPress={() => setShowCustomAlert(false)}
+                >
+                  <Text style={styles.alertButtonText}>Cancelar</Text>
+                </Pressable>
+                <Pressable
+                  style={[styles.alertButton, styles.confirmButton]}
+                  onPress={() => {
+                    setShowCustomAlert(false);
+                    router.replace('/quiz');
+                  }}
+                >
+                  <Text style={styles.alertButtonText}>Sim</Text>
+                </Pressable>
+              </View>
+            </View>
+          </View>
+        </Modal>
 
       </View>
     </SafeAreaView>
@@ -345,13 +380,13 @@ const styles = StyleSheet.create({
   questionContainer: {
     marginTop: 20,
     marginBottom: 15,
-    
+
 
   },
   questionIndex: {
     flexDirection: 'row',
     alignItems: 'flex-end',
-  
+
   },
   indexText: {
     color: COLORS.accent,
@@ -359,14 +394,14 @@ const styles = StyleSheet.create({
     fontFamily: 'LuckiestGuy-Regular',
     opacity: 0.99,
     marginRight: 2,
-    
+
   },
   totalText: {
     color: COLORS.accent,
     fontSize: 24,
     opacity: 0.9,
     fontFamily: 'LuckiestGuy-Regular',
-    
+
   },
   questionText: {
     color: COLORS.white,
@@ -376,7 +411,7 @@ const styles = StyleSheet.create({
     lineHeight: 25,
     maxWidth: '95%',
     marginTop: 5,
-    
+
   },
   optionButton: {
     borderWidth: 3,
@@ -399,9 +434,9 @@ const styles = StyleSheet.create({
     fontFamily: 'LuckiestGuy-Regular',
     lineHeight: 21,
     width: '88%',
-     textAlign: 'justify',
-    
-     
+    textAlign: 'justify',
+
+
   },
   iconContainer: {
     width: 32, // Tamanho exato do ícone
@@ -423,10 +458,10 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     elevation: 5,
 
-    
-    
-  
-    
+
+
+
+
   },
   pressedNextButton: {
     opacity: 0.7, // Reduz a opacidade quando pressionado
@@ -488,8 +523,8 @@ const styles = StyleSheet.create({
   },
   modalText2: {
     fontSize: 28,
-   
-   marginBottom: 30,
+
+    marginBottom: 30,
     width: '70%',
     height: 80,
     textAlign: 'center',
@@ -628,7 +663,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginHorizontal: 5,
     elevation: 5, // Para sombra no Android
-    
+
   },
   cancelButton: {
     backgroundColor: COLORS.accent,
@@ -639,7 +674,7 @@ const styles = StyleSheet.create({
   alertButtonText: {
     fontSize: 16,
     color: COLORS.white,
-     fontFamily: 'LuckiestGuy-Regular'
+    fontFamily: 'LuckiestGuy-Regular'
   },
 });
 
