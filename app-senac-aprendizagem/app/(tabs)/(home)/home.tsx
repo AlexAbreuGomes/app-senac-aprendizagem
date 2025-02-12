@@ -3,20 +3,19 @@ import React, { useState, useEffect, useRef } from "react";
 import { Dimensions, FlatList, StyleSheet, Text, View, Image, ScrollView } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StatusBar } from "expo-status-bar";
-import { Carrossel } from "../../../components/carrossel";
-import { imagensCarrossel } from "../../../data/carrosselAlunos";
+import { Carrossel } from "../../../components/carrossel"; // Ajuste conforme sua estrutura
+import { imagensCarrossel } from "../../../data/carrosselAlunos"; // Ajuste conforme sua estrutura
 import { Conteudos } from "../../../components/boxContent";
 import { conteudosAprendizagem } from "../../../data/boxConteudosData";
-import { avatares } from "../../../data/carrosselAvatares";
+import { avatares } from "../../../data/carrosselAvatares"; // Lista de avatares
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
 import { useFonts as IBMPlexMono, IBMPlexMono_400Regular, IBMPlexMono_700Bold, IBMPlexMono_500Medium } from "@expo-google-fonts/ibm-plex-mono";
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import { calculateScorePercentage } from "../../utils/scoreUtils";
+import { TouchableOpacity } from "react-native";
+import { useFocusEffect } from "expo-router";
 
 const screenWidth = Dimensions.get("window").width;
 
 export default function Screen() {
-
   useFonts({
     LuckiestGuy: LuckiestGuy_400Regular,
     IBMPlexMonoRegular: IBMPlexMono_400Regular,
@@ -27,11 +26,9 @@ export default function Screen() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const flatListRef = useRef<FlatList>(null);
   const [userName, setUserName] = useState<string | null>(null);
-  const [userImage, setUserImage] = useState<any>(null);
-  const [quizAverage, setQuizAverage] = useState<string | null>(null);
+  const [userImage, setUserImage] = useState<any>(null); // Para aceitar o retorno de require()
 
-  const [percentage, setPercentage] = useState<number>(0);  // Mudar para número
-
+  // Recupera o nome e o avatar salvos
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -40,15 +37,14 @@ export default function Screen() {
 
         if (savedName) setUserName(savedName);
         if (savedAvatar) {
-          const { id } = JSON.parse(savedAvatar);
-          const avatar = avatares.find((item) => item.id === id);
-          if (avatar) setUserImage(avatar.img);
+          const { id } = JSON.parse(savedAvatar); // Decodifica o objeto salvo
+          const avatar = avatares.find((item) => item.id === id); // Busca o avatar correspondente
+          if (avatar) setUserImage(avatar.img); // Define a imagem com require()
         }
       } catch (error) {
         console.error("Erro ao recuperar os dados:", error);
       }
     };
-
 
     fetchUserData();
   }, []);
@@ -81,15 +77,21 @@ export default function Screen() {
     };
 
     loadScore();
+
+    fetchUserData();
+
   }, []);
 
+  // Intervalo do carrossel
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => {
         const nextIndex = (prevIndex + 1) % imagensCarrossel.length;
+
         if (flatListRef.current) {
           flatListRef.current.scrollToIndex({ index: nextIndex, animated: true });
         }
+
         return nextIndex;
       });
     }, 3000);
@@ -100,18 +102,60 @@ export default function Screen() {
   const renderConteudos = ({ item }: { item: typeof conteudosAprendizagem[0] }) => (
     <Conteudos
       titulo={item.titulo}
-      id={item.id}
+      id={item.id} // Passando o id necessário
       icon={item.icon}
+      isCompleted={completedContentIds.includes(item.id)} // passa true se o conteúdo estiver concluído
       onPress={item.onPress}
     />
   );
 
+  //novo
+  const [completedContentIds, setCompletedContentIds] = useState<number[]>([]);
+
+  useEffect(() => {
+    const fetchCompletedContent = async () => {
+      try {
+        const storageKey = "completedContentIds";
+        const stored = await AsyncStorage.getItem(storageKey);
+        if (stored) {
+          setCompletedContentIds(JSON.parse(stored));
+        }
+      } catch (error) {
+        console.error("Erro ao recuperar conteúdos concluídos:", error);
+      }
+    };
+
+    fetchCompletedContent();
+    
+    // Opcional: adicionar um listener para atualizar quando a tela ficar em foco, caso o usuário conclua um conteúdo e retorne à home
+  }, []);
+
+  //atualiza quando a tela ficar em foco, caso o usuário conclua um conteúdo e retorne à home
+  useFocusEffect(
+    React.useCallback(() => {
+      const fetchCompletedContent = async () => {
+        try {
+          const storageKey = "completedContentIds";
+          const stored = await AsyncStorage.getItem(storageKey);
+          if (stored) {
+            setCompletedContentIds(JSON.parse(stored));
+          } else {
+            setCompletedContentIds([]);
+          }
+        } catch (error) {
+          console.error("Erro ao recuperar conteúdos concluídos:", error);
+        }
+      };
+
+      fetchCompletedContent();
+    }, [])
+  );
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar />
       <Text style={styles.h1}>CONECTA APRENDIZ</Text>
-
+      
       <View style={styles.viewFlatlist}>
         <FlatList
           ref={flatListRef}
@@ -119,6 +163,7 @@ export default function Screen() {
           renderItem={({ item }) => <Carrossel data={item} />}
           keyExtractor={(item) => item.id.toString()}
           horizontal
+          showsHorizontalScrollIndicator={false}
         />
       </View>
 
@@ -126,32 +171,16 @@ export default function Screen() {
         ListHeaderComponent={
           <View style={styles.nameInput}>
             {userImage && <Image source={userImage} style={styles.userImage} />}
-
-            <View style={styles.pontuacao}>
-              <Text style={styles.welcome}>
-                {userName ? `Bem-vindo(a), ${userName}!` : "Bem-vindo(a)!"}
-              </Text>
-
-              <View style={styles.posicaoPontos}>
-                <View style={styles.pontosContainer}>
-                  <MaterialIcons name="stars" size={24} color="#F7941D" />
-                  <Text style={styles.pontos}>{"Total Pontos:"} {percentage.toFixed(2)}%</Text>
-                </View>
-
-                <View style={styles.pontosContainer}>
-                  <MaterialIcons name="task" size={24} color="#044B8B" />
-                  <Text style={styles.conteudos}>Conteúdo Concluído</Text>
-                </View>
-
-              </View>
-            </View>
+            <Text style={styles.welcome}>
+              {userName ? `Bem-vindo(a), ${userName}!` : "Bem-vindo(a)!"}
+            </Text>
           </View>
         }
         data={conteudosAprendizagem}
         renderItem={renderConteudos}
         keyExtractor={(item) => item.id.toString()}
-        contentContainerStyle={styles.cardContainer}
-        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.cardContainer} // Ajuste para garantir a rolagem
+        showsVerticalScrollIndicator={false} // Desativa a barra de rolagem
       />
     </SafeAreaView>
   );
@@ -167,8 +196,8 @@ const styles = StyleSheet.create({
     textAlign: "left",
     fontFamily: "LuckiestGuy",
     paddingLeft: 10,
-    flexDirection: "row",
-
+    flexWrap: "wrap", // Permite que o texto quebre em várias linhas
+    maxWidth: "50%", // Limita a largura máxima para que o texto quebre
   },
 
   userImage: {
@@ -181,7 +210,7 @@ const styles = StyleSheet.create({
     height: 130,
     backgroundColor: "#FFFFFF", // Fundo branco
     borderRadius: 20,
-    justifyContent: 'flex-start',
+    justifyContent:'flex-start',
     alignItems: "flex-start",
     flexDirection: "row",
     padding: 10,
@@ -194,38 +223,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3, // Transparência da sombra
     shadowRadius: 8, // Raio de desfoque da sombra
     elevation: 15, // Elevação para Android
-  },
-  pontuacao: {
-    flex: 1,
-    flexDirection: "column",
-    justifyContent: "center",
-
-  },
-
-  posicaoPontos: {
-    flexDirection: "column",
-    justifyContent: "space-between", // Distribui os itens nas extremidades
-    width: "100%", // Garante que ocupem toda a largura disponível
-    marginTop: 35, // Espaçamento entre "Bem-vindo(a)" e os pontos
-  },
-
-  conteudos: {
-    color: "#044B8B",
-    fontFamily: "LuckiestGuy",
-    fontSize: 15,
-    marginRight: 10
-  },
-  pontosContainer: {
-    flexDirection: "row",
-    alignItems: "center",  // Centraliza verticalmente
-    justifyContent: "center", // Centraliza horizontalmente
-    marginLeft: -40
-  },
-  pontos: {
-    color: "#F7941D",
-    fontFamily: "LuckiestGuy",
-    fontSize: 15,
-    marginLeft: 5, // Espaço entre o ícone e o texto
   },
 
   h1: {
@@ -244,5 +241,4 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 10,
   },
-
 });

@@ -1,4 +1,3 @@
-
 import { router, Stack, useFocusEffect } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StyleSheet, Text, Pressable, View, StatusBar, Image, Animated } from "react-native";
@@ -7,14 +6,12 @@ import { Ionicons } from "@expo/vector-icons"; // Importando o ícone de check
 import { getData } from "../../utils/storage";
 import { COLORS } from "../../../constants/colors";
 import { ResetButton } from "../../../components/resetButton";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const coinImages = {
   1: require("../../../assets/images/moeda01.png"),
   2: require("../../../assets/images/moeda02.png"),
   3: require("../../../assets/images/moeda03.png"),
 } as const;
-
 
 export default function Screen() {
   const [unlockedLevels, setUnlockedLevels] = useState<number>(1);

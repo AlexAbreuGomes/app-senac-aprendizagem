@@ -9,6 +9,8 @@ import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-gu
 import { useFonts as IBMPlexMono, IBMPlexMono_400Regular, IBMPlexMono_700Bold, IBMPlexMono_500Medium } from "@expo-google-fonts/ibm-plex-mono";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 export default function Detalhes() {
   const { id } = useLocalSearchParams(); // Pega o ID da URL
@@ -40,6 +42,28 @@ export default function Detalhes() {
     );
   }
 
+  //novo
+  const markContentAsCompleted = async () => {
+    try {
+      const storageKey = "completedContentIds";
+      const stored = await AsyncStorage.getItem(storageKey);
+      const completedIds = stored ? JSON.parse(stored) as number[] : [];
+  
+      // Converte o id da URL para número
+      const currentId = Number(id);
+  
+      // Se ainda não estiver concluído, adiciona o ID
+      if (!completedIds.includes(currentId)) {
+        completedIds.push(currentId);
+        await AsyncStorage.setItem(storageKey, JSON.stringify(completedIds));
+      }
+    } catch (error) {
+      console.error("Erro ao salvar conteúdo concluído:", error);
+    }
+    router.back();
+  };
+  
+
   return (
     <SafeAreaView>
       <StatusBar />
@@ -69,10 +93,10 @@ export default function Detalhes() {
             <Text style={styles.h2}>clique no botão abaixo para seguir para o próximo tema e continuar aprendendo!</Text>
           </View>
 
-          <TouchableOpacity onPress={() => router.back()} style={styles.button}>
-            <Text style={styles.textButton}>Concluir Conteúdo</Text>
+          <TouchableOpacity onPress={markContentAsCompleted}  style={styles.button}>
+            <Text style={styles.textButton}>Próximo Tema</Text>
             <View style={styles.icon}>
-              <FontAwesome name="check" size={20 as const} color="lightgreen"/>
+              <FontAwesome name="arrow-right" size={20 as const} color="#F7941D" />
             </View>
           </TouchableOpacity>
 
@@ -187,7 +211,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "lightgreen",
+    backgroundColor: "#F7941D",
     borderRadius: 30,
     marginTop: 20,
     marginBottom: 10,
