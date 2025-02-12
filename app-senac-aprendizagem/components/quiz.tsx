@@ -50,7 +50,7 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
     if (currentQuestionIndex === allQuestions.length - 1) {
       setShowScoreModal(true);
       const value = calculateScorePercentage(score, allQuestions.length)
-      saveQuizScore(value, allQuestions.length);
+      saveQuizScore(`quizScore${level}`,value, allQuestions.length);
 
     } else {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
