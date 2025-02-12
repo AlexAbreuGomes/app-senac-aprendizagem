@@ -49,39 +49,6 @@ export default function Screen() {
     fetchUserData();
   }, []);
 
-  useEffect(() => {
-    const loadScore = async () => {
-      try {
-        const storedScore1 = await AsyncStorage.getItem("quizScore1");
-        const storedScore2 = await AsyncStorage.getItem("quizScore2");
-        const storedScore3 = await AsyncStorage.getItem("quizScore3");
-        console.log("Teste StoreScore", storedScore1);
-        if (storedScore3 && storedScore2 && storedScore1 ) {
-          const modulo3 = JSON.parse(storedScore3);
-          const modulo2 = JSON.parse(storedScore2);
-          const modulo1 = JSON.parse(storedScore1);
-          const mediaScore = (modulo1.score+modulo2.score+modulo3.score )/3
-          setPercentage(mediaScore); // Exibe o score diretamente
-        } else if (storedScore2 && storedScore1){
-          const modulo2 = JSON.parse(storedScore2);
-          const modulo1 = JSON.parse(storedScore1);
-          const mediaScore = (modulo1.score+modulo2.score )/2
-          setPercentage(mediaScore);
-        } else if (storedScore1){
-          const modulo1 = JSON.parse(storedScore1);
-          setPercentage(modulo1.score);
-        }
-      } catch (error) {
-        console.error("Erro ao carregar pontuação:", error);
-      }
-    };
-
-    loadScore();
-
-    fetchUserData();
-
-  }, []);
-
   // Intervalo do carrossel
   useEffect(() => {
     const interval = setInterval(() => {
@@ -150,6 +117,8 @@ export default function Screen() {
       fetchCompletedContent();
     }, [])
   );
+
+
 
   return (
     <SafeAreaView style={styles.container}>
