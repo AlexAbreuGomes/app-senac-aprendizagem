@@ -32,8 +32,16 @@ export default function Screen() {
 
   const CoinButton = ({ level, unlocked }: { level: keyof typeof coinImages; unlocked: boolean }) => {
     const scaleAnim = useRef(new Animated.Value(1)).current;
-    const isCompleted = level < unlockedLevels; // Se o nível já foi concluído
-
+    const [isCompleted, setIsCompleted] = useState(false);
+  
+    useEffect(() => {
+      const checkCompletion = async () => {
+        const completed = await getData(`quizCompletedLevel${level}`);
+        setIsCompleted(completed === "true"); 
+      };
+      checkCompletion();
+    }, [unlockedLevels, isCompleted]); // ✅ Agora verifica sempre que algo mudar
+  
     useEffect(() => {
       if (level === unlockedLevels) {
         Animated.loop(
@@ -44,7 +52,7 @@ export default function Screen() {
         ).start();
       }
     }, [level, unlockedLevels]);
-
+  
     return (
       <Pressable
         onPress={() => unlocked && router.push(`../../quizzes/quizNivel${level}`)}
@@ -56,8 +64,8 @@ export default function Screen() {
             style={[
               styles.coinImage,
               !unlocked && styles.lockedCoin,
+              isCompleted && styles.completedCoin, // ✅ Agora a moeda finalizada recebe o check
               level === unlockedLevels && { transform: [{ scale: scaleAnim }] },
-              isCompleted && styles.completedCoin, // Moeda já concluída
             ]}
           />
           {isCompleted && (
@@ -67,7 +75,8 @@ export default function Screen() {
       </Pressable>
     );
   };
-
+  
+  
   return (
     <>
       <Stack.Screen options={{ headerShown: false }} />

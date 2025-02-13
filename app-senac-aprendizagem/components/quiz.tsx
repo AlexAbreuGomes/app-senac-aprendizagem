@@ -7,8 +7,9 @@ import { Image } from 'expo-image';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import AntDesign from '@expo/vector-icons/AntDesign';
-import { calculateScorePercentage, generateFinalMessage, getScoreColor } from '../app/utils/scoreUtils';
+import { calculateScorePercentage, generateFinalMessage, getScoreColor, saveQuizScore } from '../app/utils/scoreUtils';
 import { storeData } from '../app/utils/storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type QuizProps = {
   questions: {
@@ -32,6 +33,8 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
   const [showNextButton, setShowNextButton] = useState<boolean>(false);
   const [showScoreModal, setShowScoreModal] = useState<boolean>(false);
   const [progress, setProgress] = useState(new Animated.Value(0));
+  const [unlockedLevels, setUnlockedLevels] = useState<number>(1);
+
 
   const allQuestions = questions;
 
@@ -46,23 +49,52 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
     setShowNextButton(true);
   };
 
-  const handleNext = () => {
-    if (currentQuestionIndex === allQuestions.length - 1) {
-      setShowScoreModal(true);
-    } else {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-      setCurrentOptionSelected(null);
-      setCorrectOption(null);
-      setIsOptionsDisabled(false);
-      setShowNextButton(false);
+
+
+const getStoredData = async (key: string) => {
+  try {
+    const value = await AsyncStorage.getItem(key);
+    return value !== null ? value : null; // Retorna o valor ou null se não existir
+  } catch (error) {
+    console.error("Erro ao buscar os dados:", error);
+    return null;
+  }
+};
+
+
+const handleNext = async () => {
+  if (currentQuestionIndex === allQuestions.length - 1) {
+    setShowScoreModal(true);
+
+    const value = parseFloat(calculateScorePercentage(score, allQuestions.length));
+
+
+    // Verifica se já existe uma pontuação salva
+    const existingScore = await getStoredData(`quizScore${level}`);
+
+    if (!existingScore) {  
+      saveQuizScore(`quizScore${level}`, value, allQuestions.length);
     }
 
-    Animated.timing(progress, {
-      toValue: currentQuestionIndex + 1,
-      duration: 1000,
-      useNativeDriver: false,
-    }).start();
-  };
+    // ✅ Agora salvamos que este nível foi concluído
+    await storeData(`quizCompletedLevel${level}`, "true");
+
+  } else {
+    setCurrentQuestionIndex(currentQuestionIndex + 1);
+    setCurrentOptionSelected(null);
+    setCorrectOption(null);
+    setIsOptionsDisabled(false);
+    setShowNextButton(false);
+  }
+
+  Animated.timing(progress, {
+    toValue: currentQuestionIndex + 1,
+    duration: 1000,
+    useNativeDriver: false,
+  }).start();
+};
+
+
 
   const restartQuiz = () => {
     setShowScoreModal(false);
@@ -80,18 +112,23 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
   };
 
   // Adicione no topo do arquivo
-
-
-  const goToNextLevel = () => {
-    const currentLevel = level; // Agora pega o level da propriedade corretamente
-    const nextLevel = currentLevel + 1;
   
-    if (nextLevel <= 3) {
-      storeData(`quizLevel${nextLevel}`, 'unlocked').then(() => {
-        router.replace('/quiz'); // Atualiza a tela
-      });
-    }
-  };
+    const goToNextLevel = async () => {
+      const currentLevel = level;
+      const nextLevel = currentLevel + 1;
+    
+      if (nextLevel <= 3) {
+        console.log("Teste storeData");
+        await storeData(`quizLevel${nextLevel}`, "unlocked");
+        await storeData(`quizCompletedLevel${currentLevel}`, "true"); // ✅ Marca o nível como concluído
+    
+        setUnlockedLevels((prev) => Math.max(prev, nextLevel)); // ✅ Atualiza o estado corretamente
+    
+        router.replace("/quiz");
+      }
+    };
+    
+  
   
 
 
