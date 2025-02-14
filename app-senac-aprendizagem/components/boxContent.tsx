@@ -2,20 +2,33 @@ import React from "react";
 import { View, Text, Pressable, StyleSheet, Dimensions, Image } from "react-native";
 import { useRouter } from "expo-router";
 import { ConteudosProps } from "../types/boxConteudosTypes";
+import { FontAwesome } from '@expo/vector-icons';
 
 const screenWidth = Dimensions.get("window").width;
 
-export const Conteudos: React.FC<ConteudosProps> = ({ titulo, id, icon }) => {
+//novo
+interface ConteudosExtendedProps extends ConteudosProps {
+  isCompleted?: boolean; // nova prop opcional
+}
+
+export const Conteudos: React.FC<ConteudosProps> = ({ titulo, id, icon, isCompleted }) => {
   const router = useRouter();
 
   return (
     <Pressable style={styles.card} onPress={() => router.push(`/detalhes/${id}`)}>
       <View style={styles.header}>
-        <View style={styles.icon}>
+        <View style={[styles.icon, isCompleted && styles.iconCompleted]}>
           <Image source={icon} style={styles.iconImage} />
         </View>
         <Text style={styles.title}>{titulo}</Text>
       </View>
+      {isCompleted && (
+      <View style={styles.conteinerCheck}> 
+        <View style={styles.areaCheck}>
+          <FontAwesome name="check" size={18} color="white"/>
+        </View>
+      </View>
+      )}
     </Pressable>
   );
 };
@@ -29,6 +42,9 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 16,
     elevation: 4,
+    
+    
+    
   },
   header: {
     flexDirection: "row",
@@ -44,6 +60,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginRight: 8,
   },
+  iconCompleted: { 
+    backgroundColor: "lightgreen", // Fundo verde para indicar conclusão
+  },
   iconImage: {
     width: 30,
     height: 30,
@@ -53,5 +72,25 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontSize: 20,
     fontFamily: "LuckiestGuy",
+    flexWrap: "wrap", // Permite que o texto quebre em várias linhas
+    maxWidth: "85%", // Limita a largura máxima para que o texto quebre
+
+  },
+
+  conteinerCheck:{
+    marginTop: 30,
+    borderWidth: 0,
+    justifyContent: 'center',
+    alignItems: 'flex-end', 
+  },
+
+  areaCheck:{
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 30,
+    width: 25,
+    height: 25,
+    backgroundColor: 'lightgreen',
+
   },
 });
