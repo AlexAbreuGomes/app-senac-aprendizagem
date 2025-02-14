@@ -92,28 +92,27 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-between",
     alignItems: "center",
-    paddingTop: 10,
-    backgroundColor: "#fff",
+  
   },
   cxBemVindo: {
     justifyContent: "flex-start",
-    width: "85%",
-    marginBottom: 10,
+    width: "100%",
+    padding: 10,
+    marginTop: 40,
+    
   },
   cxSubtitulo: {
     justifyContent: "center",
     alignItems: "center",
+    alignContent: "center",
     width: "90%",
     
-    borderWidth: 0,
-    borderColor: "#044B8B", 
-
   },
   cxGeral: {
     justifyContent: "center",
     alignItems: "flex-start",
-    marginBottom: 10,
     width: "85%",
+   
   },
   h1Superior: {
     fontFamily: "LuckiestGuy",
@@ -129,12 +128,16 @@ const styles = StyleSheet.create({
     flexShrink: 1,     // Permite que o texto seja reduzido para evitar quebra
     width: "100%",     // Ocupa toda a largura disponível
     paddingBottom: 10, // Espaçamento inferior
+    
   },
   p: {
     color: "#044B8B",
     fontFamily: "IBMPlexMonoMedium",
     fontSize: 20,
     textAlign: "center",
+    flexWrap: "wrap", // Permite quebra de linha
+    width: "100%",
+    lineHeight: 25, // Ajusta o espaçamento entre linhas
   },
   button: {
     width: screenWidth * 0.85,
