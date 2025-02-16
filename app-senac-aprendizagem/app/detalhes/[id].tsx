@@ -1,6 +1,6 @@
 import { useRouter, useLocalSearchParams } from "expo-router";
 import React from "react";
-import { View, Text, StyleSheet, Button, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, Button, ScrollView, TouchableOpacity, Dimensions } from "react-native";
 import { conteudosAprendizagem } from "../../data/boxConteudosData";
 import { VideoAprendizagem } from "../../components/videoComponent";
 import { videos } from "../../data/videos";
@@ -10,6 +10,8 @@ import { useFonts as IBMPlexMono, IBMPlexMono_400Regular, IBMPlexMono_700Bold, I
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
+const screenWidth = Dimensions.get("window").width;
 
 
 export default function Detalhes() {
@@ -82,7 +84,7 @@ export default function Detalhes() {
         <View style={styles.container}>
 
           <Text style={styles.description}>{conteudo.descricao}</Text>
-          <Text style={styles.text}>{conteudo.texto}</Text>
+          <Text style= {styles.text}>{conteudo.texto}</Text>
 
           <View style={styles.congratulations}>
             <Text style={styles.h1}>Parabéns por concluir o conteúdo!</Text>
@@ -94,7 +96,7 @@ export default function Detalhes() {
           </View>
 
           <TouchableOpacity onPress={markContentAsCompleted}  style={styles.button}>
-            <Text style={styles.textButton}>Próximo Tema</Text>
+            <Text style={styles.textButton}>Concluído</Text>
             <View style={styles.icon}>
               <FontAwesome name="arrow-right" size={20 as const} color="#F7941D" />
             </View>
@@ -110,12 +112,12 @@ export default function Detalhes() {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
+    paddingLeft: 15,
+    paddingRight: 15,
   },
   videosContainer: {
-    marginTop: 16,
-    marginBottom: 10,
-    padding:10,
+    paddingLeft: 10,
+    paddingRight: 10
   },
   subTitulo: {
     fontSize: 20,
@@ -130,26 +132,27 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 35,
+    width: screenWidth -20 ,
     fontFamily: "LuckiestGuy",
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
     alignContent: "center",
     color: "#044B8B",
+
   },
   description: {
-    fontSize: 16,
+    fontSize: 20,
     marginBottom: 16,
-    fontFamily: "IBMPlexMonoMedium",
-    marginTop: 10,
+    fontFamily: "LuckiestGuy",
     color: "#044B8B",
     justifyContent: "center",
     alignItems: "center",
-    textAlign: "justify",
+    textAlign: "center",
   },
   text: {
     fontSize: 16,
-    marginBottom: 16,
+    marginBottom: 10,
     fontFamily: "IBMPlexMonoMedium",
     color: "#044B8B",
     justifyContent: "center",
