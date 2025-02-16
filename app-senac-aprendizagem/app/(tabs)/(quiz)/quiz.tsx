@@ -6,6 +6,9 @@ import { Ionicons } from "@expo/vector-icons"; // Importando o ícone de check
 import { getData } from "../../utils/storage";
 import { COLORS } from "../../../constants/colors";
 import { ResetButton } from "../../../components/resetButton";
+import { Dimensions } from "react-native";
+
+const { width, height } = Dimensions.get("window");
 
 const coinImages = {
   1: require("../../../assets/images/moeda01.png"),
@@ -33,15 +36,15 @@ export default function Screen() {
   const CoinButton = ({ level, unlocked }: { level: keyof typeof coinImages; unlocked: boolean }) => {
     const scaleAnim = useRef(new Animated.Value(1)).current;
     const [isCompleted, setIsCompleted] = useState(false);
-  
+
     useEffect(() => {
       const checkCompletion = async () => {
         const completed = await getData(`quizCompletedLevel${level}`);
-        setIsCompleted(completed === "true"); 
+        setIsCompleted(completed === "true");
       };
       checkCompletion();
-    }, [unlockedLevels, isCompleted]); // ✅ Agora verifica sempre que algo mudar
-  
+    }, [unlockedLevels]); // ✅ Verifica sempre que unlockedLevels mudar
+
     useEffect(() => {
       if (level === unlockedLevels) {
         Animated.loop(
@@ -52,7 +55,7 @@ export default function Screen() {
         ).start();
       }
     }, [level, unlockedLevels]);
-  
+
     return (
       <Pressable
         onPress={() => unlocked && router.push(`../../quizzes/quizNivel${level}`)}
@@ -64,19 +67,19 @@ export default function Screen() {
             style={[
               styles.coinImage,
               !unlocked && styles.lockedCoin,
-              isCompleted && styles.completedCoin, // ✅ Agora a moeda finalizada recebe o check
-              level === unlockedLevels && { transform: [{ scale: scaleAnim }] },
+              isCompleted && styles.completedCoin, // ✅ Aplica estilo de moeda concluída
+              level === unlockedLevels && { transform: [{ scale: scaleAnim }] }, // ✅ Animação para o nível atual
             ]}
           />
+          {/* Exibe o ícone de checkmark apenas se o nível estiver concluído com 70% de acertos */}
           {isCompleted && (
-            <Ionicons name="checkmark-circle" size={25} color="#F7941D" style={styles.checkIcon} />
+            <Ionicons name="checkmark-circle" size={24} color="#F7941D" style={styles.checkIcon} />
           )}
         </View>
       </Pressable>
     );
   };
-  
-  
+
   return (
     <>
       <Stack.Screen options={{ headerShown: false }} />
@@ -86,12 +89,11 @@ export default function Screen() {
           <Text style={styles.title}>Quiz do Aprendizado</Text>
           <Text style={styles.description}>
             Mostre seu conhecimento!
-            <Text style={{ fontFamily: "IBM-Plex-Mono", fontSize: 16 }}>
+            <Text style={{ fontFamily: "IBM-Plex-Mono", fontSize: 15 }}>
               Toque nas moedas para começar, responda ao quiz e, ao completar, você desbloqueia os próximos.
             </Text>
-            Acumule pontos, complete os três desafios. 
+            Acumule pontos, complete os três desafios.
           </Text>
-
         </View>
 
         <View style={styles.imgEscada}>
@@ -119,56 +121,59 @@ const styles = StyleSheet.create({
   },
   header: {
     width: "100%",
-    marginBottom: 20,
-    justifyContent: "flex-start",
+    height: 145,
+    justifyContent: "center",
     alignItems: "center",
     backgroundColor: COLORS.background,
-    padding: 15,
   },
   description: {
     fontSize: 15,
     color: COLORS.white,
-    marginBottom: 5,
     textAlign: "justify",
     fontFamily: "IBM-Plex-Mono2",
+    lineHeight: 19,
+    width: "100%",
+    height: 100,
+    paddingHorizontal: 17,
+    marginBottom: 2 
   },
   title: {
-    fontSize: 21,
+    fontSize: 20,
+    marginBottom: 5,
+    width: "100%",
+    textAlign: "center",
     fontFamily: "LuckiestGuy-Regular",
     color: COLORS.white,
-    marginBottom: 5,
   },
   imgEscada: {
-    width: '150%',
-    height: 535,
+    width: width * 1.7, // Mantém a proporção de 150% do width da tela
+    height: 490,
     justifyContent: "flex-end",
     alignItems: "flex-end",
-    marginBottom: -51,
-    marginLeft: 331,
+    marginLeft: width * 0.26, // Usa proporção da largura da tela
     resizeMode: "contain",
   },
   coinContainer: {
     position: "absolute",
-    top: "50%",
-    left: "10%",
-    width: "80%",
-    height: "50%",
-    justifyContent: "space-between",
+    top: height * 0.2, // 50% da altura da tela
+    left: width * 0.099, // 10% da largura da tela
+    width: width * 0.90, // 80% da largura da tela
+    height: height * 0.7, // 50% da altura da tela
   },
   coinPosition1: {
     position: "absolute",
-    bottom: "12.4%",
-    left: "60%",
+    top: height * 0.523, // 12.4% da altura da tela
+    left: width * 0.55, // 60% da largura da tela
   },
   coinPosition2: {
     position: "absolute",
-    bottom: "53%",
-    left: "27%",
+    bottom: height * 0.252, // 53% da altura da tela
+    left: width * 0.27, // 27% da largura da tela
   },
   coinPosition3: {
     position: "absolute",
-    bottom: "105.4%",
-    right: "77%",
+    bottom: height * 0.530, // 105.4% da altura da tela (pode precisar de ajuste)
+    right: width * 0.73, // 77% da largura da tela
   },
   coinWrapper: {
     position: "relative",
@@ -176,8 +181,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   coinImage: {
-    width: 100,
-    height: 120,
+    width: width * 0.22, // 20% da largura da tela (ajustável)
+    height: width * 0.28, // Mantém a proporção quadrada
     resizeMode: "contain",
   },
   lockedCoin: {
@@ -188,8 +193,8 @@ const styles = StyleSheet.create({
   },
   checkIcon: {
     position: "absolute",
-    top: "50%",
-    left: "52%",
+    top: "54%",
+    left: "55%",
     transform: [{ translateX: -20 }, { translateY: -20 }],
   },
   resetSection: {
@@ -198,6 +203,5 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "flex-start",
     marginBottom: 5,
-
   },
 });

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { SafeAreaView, Text, Pressable, View, Modal, Animated, StatusBar, StyleSheet, Alert } from 'react-native';
-import { useRouter,useLocalSearchParams } from 'expo-router';  // Importando useRouter
+import { useRouter, useLocalSearchParams } from 'expo-router';  // Importando useRouter
 import { COLORS } from '../constants/colors';
 import Button from '../components/ButtonQuiz';
-import { Image } from 'expo-image'; 
+import { Image } from 'expo-image';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import AntDesign from '@expo/vector-icons/AntDesign';
@@ -51,48 +51,48 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
 
 
 
-const getStoredData = async (key: string) => {
-  try {
-    const value = await AsyncStorage.getItem(key);
-    return value !== null ? value : null; // Retorna o valor ou null se não existir
-  } catch (error) {
-    console.error("Erro ao buscar os dados:", error);
-    return null;
-  }
-};
+  const getStoredData = async (key: string) => {
+    try {
+      const value = await AsyncStorage.getItem(key);
+      return value !== null ? value : null; // Retorna o valor ou null se não existir
+    } catch (error) {
+      console.error("Erro ao buscar os dados:", error);
+      return null;
+    }
+  };
 
 
-const handleNext = async () => {
-  if (currentQuestionIndex === allQuestions.length - 1) {
-    setShowScoreModal(true);
+  const handleNext = async () => {
+    if (currentQuestionIndex === allQuestions.length - 1) {
+      setShowScoreModal(true);
 
-    const value = parseFloat(calculateScorePercentage(score, allQuestions.length));
+      const value = parseFloat(calculateScorePercentage(score, allQuestions.length));
 
 
-    // Verifica se já existe uma pontuação salva
-    const existingScore = await getStoredData(`quizScore${level}`);
+      // Verifica se já existe uma pontuação salva
+      const existingScore = await getStoredData(`quizScore${level}`);
 
-    if (!existingScore) {  
-      saveQuizScore(`quizScore${level}`, value, allQuestions.length);
+      if (!existingScore) {
+        saveQuizScore(`quizScore${level}`, value, allQuestions.length);
+      }
+
+      // ✅ Agora salvamos que este nível foi concluído
+      await storeData(`quizCompletedLevel${level}`, "true");
+
+    } else {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      setCurrentOptionSelected(null);
+      setCorrectOption(null);
+      setIsOptionsDisabled(false);
+      setShowNextButton(false);
     }
 
-    // ✅ Agora salvamos que este nível foi concluído
-    await storeData(`quizCompletedLevel${level}`, "true");
-
-  } else {
-    setCurrentQuestionIndex(currentQuestionIndex + 1);
-    setCurrentOptionSelected(null);
-    setCorrectOption(null);
-    setIsOptionsDisabled(false);
-    setShowNextButton(false);
-  }
-
-  Animated.timing(progress, {
-    toValue: currentQuestionIndex + 1,
-    duration: 1000,
-    useNativeDriver: false,
-  }).start();
-};
+    Animated.timing(progress, {
+      toValue: currentQuestionIndex + 1,
+      duration: 1000,
+      useNativeDriver: false,
+    }).start();
+  };
 
 
 
@@ -111,33 +111,39 @@ const handleNext = async () => {
     }).start();
   };
 
-  // Adicione no topo do arquivo
-  
-    const goToNextLevel = async () => {
-      const currentLevel = level;
-      const nextLevel = currentLevel + 1;
-    
-      if (nextLevel <= 3) {
-        await storeData(`quizLevel${nextLevel}`, "unlocked");
-        await storeData(`quizCompletedLevel${currentLevel}`, "true"); // ✅ Marca o nível como concluído
-    
-        setUnlockedLevels((prev) => Math.max(prev, nextLevel)); // ✅ Atualiza o estado corretamente
-    
-        router.replace("/quiz");
-      }
-    };
-    
-  
-  
+
+  const [showCongratsModal, setShowCongratsModal] = useState(false);
+
+  const finishQuiz = () => {
+    setShowCongratsModal(true);
+  };
+
+
+
+  const goToNextLevel = async () => {
+    const currentLevel = level;
+    const nextLevel = currentLevel + 1;
+
+    if (nextLevel <= 3) {
+      console.log("Teste storeData");
+      await storeData(`quizLevel${nextLevel}`, "unlocked");
+      await storeData(`quizCompletedLevel${currentLevel}`, "true"); // ✅ Marca o nível como concluído
+
+      setUnlockedLevels((prev) => Math.max(prev, nextLevel)); // ✅ Atualiza o estado corretamente
+
+      router.replace("/quiz");
+    }
+  };
+
 
 
   //alert para voltar para home
   const [showCustomAlert, setShowCustomAlert] = useState(false);
-  
+
   const goToHome = () => {
     setShowCustomAlert(true);
   };
-  
+
 
 
 
@@ -169,7 +175,7 @@ const handleNext = async () => {
   const renderOptions = () => {
     return (
       <View>
-        {allQuestions[currentQuestionIndex]?.options.map((option:string) => (
+        {allQuestions[currentQuestionIndex]?.options.map((option: string) => (
           <Pressable
             key={option}
             onPress={() => validateAnswer(option)}
@@ -195,27 +201,27 @@ const handleNext = async () => {
           >
             <Text style={styles.optionText}>{option}</Text>
             {option === correctOption ? (
-                 <View style={{
-                  width: 35, height: 35, borderRadius: 30,  marginLeft: 5, 
-                  backgroundColor: COLORS.success,
-                  justifyContent: 'center', alignItems: 'center', 
+              <View style={{
+                width: 35, height: 35, borderRadius: 30, marginLeft: 5,
+                backgroundColor: COLORS.success,
+                justifyContent: 'center', alignItems: 'center',
               }}>
-                  <MaterialCommunityIcons name="check" style={{
-                      color: COLORS.white,
-                      fontSize: 27
-                  }} />
+                <MaterialCommunityIcons name="check" style={{
+                  color: COLORS.white,
+                  fontSize: 27
+                }} />
               </View>
             ) : option === currentOptionSelected ? (
               <View style={{
-                width: 35, height: 35, borderRadius: 30,  marginLeft: 5, 
+                width: 35, height: 35, borderRadius: 30, marginLeft: 5,
                 backgroundColor: COLORS.error,
                 justifyContent: 'center', alignItems: 'center'
-            }}>
+              }}>
                 <MaterialCommunityIcons name="close" style={{
-                    color: COLORS.white,
-                    fontSize: 27
+                  color: COLORS.white,
+                  fontSize: 27
                 }} />
-            </View>
+              </View>
             ) : null}
           </Pressable>
         ))}
@@ -227,7 +233,7 @@ const handleNext = async () => {
     if (showNextButton) {
       return (
         <Button
-          title="Próxima" 
+          title="Próxima"
           onPress={handleNext}
           style={styles.nextButton}
         />
@@ -300,14 +306,36 @@ const handleNext = async () => {
                   {/* <Text style={styles.restartButtonText}>Reiniciar</Text> */}
                 </Pressable>
 
-                <Pressable
+                {/* <Pressable
                   onPress={goToNextLevel}
                   style={[styles.nextLevelButton, isButtonDisabled && { opacity: 0.5 }]}
                   disabled={isButtonDisabled}
                 >
                   <Text style={styles.nextLevelText}>Próximo Nível</Text>
                   <MaterialIcons name="navigate-next" size={35} color="#ffffff" />
-                </Pressable>
+                </Pressable> */}
+
+
+                {level === 3 ? (
+                  <Pressable
+                    onPress={finishQuiz}
+                    style={[styles.nextLevelButton, isButtonDisabled && { opacity: 0.5 }]}
+                    disabled={isButtonDisabled}
+                  >
+                    <Text style={styles.nextLevelTextFinal}>Finalizar</Text>
+                    <MaterialIcons name="stairs" size={30} color="#ffffff" />
+                  </Pressable>
+                ) : (
+                  <Pressable
+                    onPress={goToNextLevel}
+                    style={[styles.nextLevelButton, isButtonDisabled && { opacity: 0.5 }]}
+                    disabled={isButtonDisabled}
+                  >
+                    <Text style={styles.nextLevelText}>Próximo Nível</Text>
+                    <MaterialIcons name="navigate-next" size={35} color="#ffffff" />
+                  </Pressable>
+                )}
+
 
               </View>
 
@@ -327,40 +355,68 @@ const handleNext = async () => {
 
 
 
+        {/* Modal de Parabéns */}
+        <Modal visible={showCongratsModal} transparent={true} animationType="fade">
+          <View style={styles.modalOverlay2}>
+            <View style={styles.customAlertContainer2}>
+              <Text style={styles.customAlertTitle2}>🎉 Parabéns! 🎉</Text>
+              
+                <Text style={{ fontFamily: 'IBM-Plex-Mono', fontSize: 16, marginBottom: 10, color: COLORS.primary }}>Você concluiu com sucesso!</Text> <Text style={styles.customAlertMessage2}> Cada desafio superado é um degrau rumo a um futuro brilhante.
+                Continue evoluindo com determinação, pois o sucesso é construído um passo de cada vez. Lembre-se: o futuro é de quem nunca para de crescer! 
+              </Text>
+
+              <Pressable
+                style={[styles.alertButton2, styles.confirmButton]}
+                onPress={() => {
+                  setShowCongratsModal(false);
+                  router.replace("/quiz"); // Ajuste conforme necessário
+                }}
+              >
+                <Text style={styles.alertButtonText2}>OK</Text>
+              </Pressable>
+            </View>
+          </View>
+        </Modal>
+
+
+
+
+
+
 
 
 
         <Modal
-  visible={showCustomAlert}
-  transparent={true}
-  animationType="fade"
->
-  <View style={styles.modalOverlay}>
-    <View style={styles.customAlertContainer}>
-      <Text style={styles.customAlertTitle}>Confirmar</Text>
-      <Text style={styles.customAlertMessage}>
-        Você realmente quer voltar à página inicial?
-      </Text>
-      <View style={styles.customAlertButtons}>
-        <Pressable
-          style={[styles.alertButton, styles.cancelButton]}
-          onPress={() => setShowCustomAlert(false)}
+          visible={showCustomAlert}
+          transparent={true}
+          animationType="fade"
         >
-          <Text style={styles.alertButtonText}>Cancelar</Text>
-        </Pressable>
-        <Pressable
-          style={[styles.alertButton, styles.confirmButton]}
-          onPress={() => {
-            setShowCustomAlert(false);
-            router.replace('/quiz');
-          }}
-        >
-          <Text style={styles.alertButtonText}>Sim</Text>
-        </Pressable>
-      </View>
-    </View>
-  </View>
-</Modal>
+          <View style={styles.modalOverlay}>
+            <View style={styles.customAlertContainer}>
+              <Text style={styles.customAlertTitle}>Confirmar</Text>
+              <Text style={styles.customAlertMessage}>
+                Você realmente quer voltar à página inicial?
+              </Text>
+              <View style={styles.customAlertButtons}>
+                <Pressable
+                  style={[styles.alertButton, styles.cancelButton]}
+                  onPress={() => setShowCustomAlert(false)}
+                >
+                  <Text style={styles.alertButtonText}>Cancelar</Text>
+                </Pressable>
+                <Pressable
+                  style={[styles.alertButton, styles.confirmButton]}
+                  onPress={() => {
+                    setShowCustomAlert(false);
+                    router.replace('/quiz');
+                  }}
+                >
+                  <Text style={styles.alertButtonText}>Sim</Text>
+                </Pressable>
+              </View>
+            </View>
+          </View>
+        </Modal>
 
       </View>
     </SafeAreaView>
@@ -381,13 +437,13 @@ const styles = StyleSheet.create({
   questionContainer: {
     marginTop: 20,
     marginBottom: 15,
-    
+
 
   },
   questionIndex: {
     flexDirection: 'row',
     alignItems: 'flex-end',
-  
+
   },
   indexText: {
     color: COLORS.accent,
@@ -395,14 +451,14 @@ const styles = StyleSheet.create({
     fontFamily: 'LuckiestGuy-Regular',
     opacity: 0.99,
     marginRight: 2,
-    
+
   },
   totalText: {
     color: COLORS.accent,
     fontSize: 24,
     opacity: 0.9,
     fontFamily: 'LuckiestGuy-Regular',
-    
+
   },
   questionText: {
     color: COLORS.white,
@@ -412,7 +468,7 @@ const styles = StyleSheet.create({
     lineHeight: 25,
     maxWidth: '95%',
     marginTop: 5,
-    
+
   },
   optionButton: {
     borderWidth: 3,
@@ -435,9 +491,9 @@ const styles = StyleSheet.create({
     fontFamily: 'LuckiestGuy-Regular',
     lineHeight: 21,
     width: '88%',
-     textAlign: 'justify',
-    
-     
+    textAlign: 'justify',
+
+
   },
   iconContainer: {
     width: 32, // Tamanho exato do ícone
@@ -459,10 +515,10 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     elevation: 5,
 
-    
-    
-  
-    
+
+
+
+
   },
   pressedNextButton: {
     opacity: 0.7, // Reduz a opacidade quando pressionado
@@ -524,8 +580,8 @@ const styles = StyleSheet.create({
   },
   modalText2: {
     fontSize: 28,
-   
-   marginBottom: 30,
+
+    marginBottom: 30,
     width: '70%',
     height: 80,
     textAlign: 'center',
@@ -614,7 +670,12 @@ const styles = StyleSheet.create({
     color: COLORS.white,
     marginLeft: 10,
   },
-
+  nextLevelTextFinal: {
+    fontSize: 20,
+    fontFamily: 'LuckiestGuy-Regular',
+    textAlign: 'center',
+    color: COLORS.white,
+  },
   nextLevelText: {
     fontSize: 16,
     fontFamily: 'LuckiestGuy-Regular',
@@ -664,7 +725,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginHorizontal: 5,
     elevation: 5, // Para sombra no Android
-    
+
   },
   cancelButton: {
     backgroundColor: COLORS.accent,
@@ -675,7 +736,54 @@ const styles = StyleSheet.create({
   alertButtonText: {
     fontSize: 16,
     color: COLORS.white,
-     fontFamily: 'LuckiestGuy-Regular'
+    fontFamily: 'LuckiestGuy-Regular'
+  },
+
+
+
+
+
+
+  modalOverlay2: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
+  customAlertContainer2: {
+    width: 300,
+    padding: 20,
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    alignItems: "center",
+  },
+  customAlertTitle2: {
+    fontSize: 20,
+    fontFamily: "LuckiestGuy-Regular",
+    color: COLORS.primary,
+    marginBottom: 10,
+    textAlign: "center",
+  },
+  customAlertMessage2: {
+    fontSize: 16,
+    fontFamily: "IBM-Plex-Mono",
+    color: COLORS.primary,
+    textAlign: "center",
+    marginBottom: 20,
+  },
+  alertButton2: {
+    padding: 10,
+    width: "100%",
+    alignItems: "center",
+    borderRadius: 10,
+  },
+  confirmButton2: {
+    backgroundColor: "#4CAF50",
+  },
+  alertButtonText2: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
   },
 });
 

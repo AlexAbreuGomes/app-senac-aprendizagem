@@ -57,8 +57,8 @@ const Index = () => {
       <StatusBar barStyle="light-content" backgroundColor={COLORS.background}  translucent={true}  />
       
       <View style={styles.header}>
-        <Image source={require('../../../assets/images/icon-gear-quiz1.png')} style={styles.image} />
-        <Text style={styles.title1}>Fundamentos do Conteúdo aprendido</Text>
+        <Image source={require('../../../assets/images/iconDesafioConhecimento.png')} style={styles.image} />
+        <Text style={styles.title1}>Desafio de conhecimento</Text>
       </View>
      
 
@@ -110,6 +110,7 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     marginRight: 2,
+    marginBottom: 15,
     resizeMode: 'contain',
   },
   title1: {
