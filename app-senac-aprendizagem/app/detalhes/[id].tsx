@@ -125,11 +125,6 @@ const styles = StyleSheet.create({
     fontFamily: "LuckiestGuy",
     color: "#044B8B"
   },
-  containerAll: {
-    flex: 1,
-    borderWidth: 1,
-    borderColor: "white"
-  },
   title: {
     fontSize: 35,
     width: screenWidth -20 ,
@@ -212,7 +207,7 @@ const styles = StyleSheet.create({
     width: "101%",
     height: 70,
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "space-evenly",
     alignItems: "center",
     backgroundColor: "#F7941D",
     borderRadius: 30,
@@ -240,6 +235,7 @@ const styles = StyleSheet.create({
     color: "#ffffff",
     fontFamily: "LuckiestGuy",
     fontSize: 20,
+    marginLeft: 90,
   },
   congratulations: {
     marginTop: 20,
