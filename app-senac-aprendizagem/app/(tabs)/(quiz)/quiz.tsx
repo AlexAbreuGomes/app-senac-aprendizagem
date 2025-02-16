@@ -7,6 +7,10 @@ import { getData } from "../../utils/storage";
 import { COLORS } from "../../../constants/colors";
 import { ResetButton } from "../../../components/resetButton";
 import { Dimensions } from "react-native";
+import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
+import { useFonts as IBMPlexMono, IBMPlexMono_400Regular, IBMPlexMono_700Bold, IBMPlexMono_500Medium } from "@expo-google-fonts/ibm-plex-mono";
+
+
 
 const { width, height } = Dimensions.get("window");
 
@@ -17,6 +21,16 @@ const coinImages = {
 } as const;
 
 export default function Screen() {
+
+  useFonts({
+    LuckiestGuy: LuckiestGuy_400Regular,
+    IBMPlexMonoRegular: IBMPlexMono_400Regular,
+    IBMPlexMonoBold: IBMPlexMono_700Bold,
+    IBMPlexMonoMedium: IBMPlexMono_500Medium,
+  });
+
+
+
   const [unlockedLevels, setUnlockedLevels] = useState<number>(1);
 
   useFocusEffect(
@@ -89,20 +103,23 @@ export default function Screen() {
           <Text style={styles.title}>Quiz do Aprendizado</Text>
           <Text style={styles.description}>
             Mostre seu conhecimento!
-            <Text style={{ fontFamily: "IBM-Plex-Mono", fontSize: 15 }}>
+            <Text style={{ fontFamily: "IBMPlexMonoBold", fontSize: 16 }}>
               Toque nas moedas para começar, responda ao quiz e, ao completar, você desbloqueia os próximos.
             </Text>
             Acumule pontos, complete os três desafios.
           </Text>
         </View>
 
-        <View style={styles.imgEscada}>
-          <Image source={require("../../../assets/images/escada.png")} style={styles.imgEscada} />
-        </View>
+        
+        
         <View style={styles.coinContainer}>
-          <View style={styles.coinPosition1}><CoinButton level={1} unlocked={true} /></View>
-          <View style={styles.coinPosition2}><CoinButton level={2} unlocked={unlockedLevels >= 2} /></View>
+
+        
+        
           <View style={styles.coinPosition3}><CoinButton level={3} unlocked={unlockedLevels >= 3} /></View>
+          <View style={styles.coinPosition2}><CoinButton level={2} unlocked={unlockedLevels >= 2} /></View>
+          <View style={styles.coinPosition1}><CoinButton level={1} unlocked={true} />
+          </View>
         </View>
         <View style={styles.resetSection}>
           <ResetButton />
@@ -115,65 +132,58 @@ export default function Screen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: COLORS.background2,
+    justifyContent: "space-evenly",
   },
   header: {
     width: "100%",
-    height: 145,
+    height: 165,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: COLORS.background,
   },
   description: {
-    fontSize: 15,
+    fontSize: 16,
     color: COLORS.white,
     textAlign: "justify",
-    fontFamily: "IBM-Plex-Mono2",
-    lineHeight: 19,
+    fontFamily: "IBMPlexMonoRegular",
     width: "100%",
-    height: 100,
-    paddingHorizontal: 17,
-    marginBottom: 2 
+    height: 125,
+    paddingHorizontal: 20,
   },
   title: {
     fontSize: 20,
     marginBottom: 5,
     width: "100%",
     textAlign: "center",
-    fontFamily: "LuckiestGuy-Regular",
+    fontFamily: "LuckiestGuy",
     color: COLORS.white,
   },
-  imgEscada: {
-    width: width * 1.7, // Mantém a proporção de 150% do width da tela
-    height: 490,
-    justifyContent: "flex-end",
-    alignItems: "flex-end",
-    marginLeft: width * 0.26, // Usa proporção da largura da tela
+ 
+  imgIcon: {
+    width: width * 0.15, // 20% da largura da tela (ajustável)
+    height: width * 0.15, // Mantém a proporção quadrada
     resizeMode: "contain",
+  
   },
   coinContainer: {
-    position: "absolute",
-    top: height * 0.2, // 50% da altura da tela
-    left: width * 0.099, // 10% da largura da tela
-    width: width * 0.90, // 80% da largura da tela
-    height: height * 0.7, // 50% da altura da tela
+    width: "100%",
+    height: "58%",
+    marginTop: 70,
+    paddingHorizontal: 20,
+    justifyContent: "space-evenly",
+
   },
   coinPosition1: {
-    position: "absolute",
-    top: height * 0.523, // 12.4% da altura da tela
-    left: width * 0.55, // 60% da largura da tela
+    alignItems: "flex-end",
+
   },
   coinPosition2: {
-    position: "absolute",
-    bottom: height * 0.252, // 53% da altura da tela
-    left: width * 0.27, // 27% da largura da tela
+    alignItems: "center",
   },
   coinPosition3: {
-    position: "absolute",
-    bottom: height * 0.530, // 105.4% da altura da tela (pode precisar de ajuste)
-    right: width * 0.73, // 77% da largura da tela
+    alignItems: "flex-start",
   },
   coinWrapper: {
     position: "relative",
@@ -181,8 +191,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   coinImage: {
-    width: width * 0.22, // 20% da largura da tela (ajustável)
-    height: width * 0.28, // Mantém a proporção quadrada
+    width: width * 0.28, // 20% da largura da tela (ajustável)
+    height: width * 0.35, // Mantém a proporção quadrada
     resizeMode: "contain",
   },
   lockedCoin: {
@@ -193,8 +203,8 @@ const styles = StyleSheet.create({
   },
   checkIcon: {
     position: "absolute",
-    top: "54%",
-    left: "55%",
+    top: "52%",
+    left: "53%",
     transform: [{ translateX: -20 }, { translateY: -20 }],
   },
   resetSection: {
