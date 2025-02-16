@@ -55,8 +55,8 @@ const Index = () => {
       <StatusBar barStyle="light-content" backgroundColor={COLORS.background}  translucent={true}  />
       
       <View style={styles.header}>
-        <Image source={require('../../../assets/images/icon-gear-quiz1.png')} style={styles.image} />
-        <Text style={styles.title1}>Fundamentos do Conteúdo aprendido</Text>
+        <Image source={require('../../../assets/images/iconMestreDesafio.png')} style={styles.image} />
+        <Text style={styles.title1}>Mestre dos Conteúdos aprendidos</Text>
       </View>
      
 
@@ -105,19 +105,19 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   image: {
-    width: 80,
+    width: 62,
     height: 80,
-    marginRight: 2,
+    marginRight: 5,
     resizeMode: 'contain',
   },
   title1: {
-    width: '90%',
+    width: '95%',
     fontSize: 24,
     fontFamily: 'LuckiestGuy-Regular',
     color: '#ffffff',
     textAlign: 'left',
     flexWrap: "wrap", // Permite que o texto quebre em várias linhas
-    maxWidth: "75%", // Limita a largura máxima para que o texto quebre
+    maxWidth: "78%", // Limita a largura máxima para que o texto quebre
   },
   title: {
     fontSize: 20,
