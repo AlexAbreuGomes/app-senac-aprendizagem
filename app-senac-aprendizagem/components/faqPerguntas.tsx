@@ -1,6 +1,6 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Animated, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Faq } from "../types/faqTypes";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
 import {
   useFonts as IBMPlexMono,
@@ -27,11 +27,32 @@ export const FaqPerguntas = ({ data }: Props) => {
     IBMPlexMonoMedium: IBMPlexMono_500Medium,
   });
 
+
+  // Valor animado para controlar a rotação do ícone
+  const rotation = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.timing(rotation, {
+      toValue: mostrarResposta ? 1 : 0,
+      duration: 200, // duração da animação em milissegundos
+      useNativeDriver: true,
+    }).start();
+  }, [mostrarResposta]);
+
+  // Interpolação para converter o valor numérico em ângulo
+  const rotateInterpolate = rotation.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '90deg'],
+  });
+
   return (
     <View style={styles.areaPerguntaResposta}>
       <TouchableOpacity style={styles.areaFaq} onPress={alternarResposta}>
         <Text style={styles.textFaq}>{data.pergunta}</Text>
-        <Image style={styles.iconSeta} source={require("../assets/icon-seta-down.png")} />
+        {/* Envolvendo a imagem em um Animated.View para aplicar a rotação */}
+        <Animated.View style={{ transform: [{ rotate: rotateInterpolate }] }}>
+          <Image style={styles.iconSeta} source={require("../assets/icon-seta-right.png")} />
+        </Animated.View>
       </TouchableOpacity>
       {mostrarResposta && (
         <View style={styles.respostaContainer}>
@@ -53,9 +74,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     padding: 15,
     borderWidth: 2,
+    borderTopWidth: 0,
     borderRadius: 20,
     borderColor: "#044B8B",
-    backgroundColor: "#F0F8FF", // Fundo leve para destaque
+    backgroundColor: "#FAFBFD", // Fundo leve para destaque
   },
   textFaq: {
     flex: 1, // Adicionado para evitar quebra de linha
@@ -65,8 +87,8 @@ const styles = StyleSheet.create({
     color: "#044B8B",
   },
   iconSeta: {
-    width: 24,
-    height: 24,
+    width: 30,
+    height: 30,
   },
   respostaContainer: {
     marginTop: 5, // Espaço entre pergunta e resposta
