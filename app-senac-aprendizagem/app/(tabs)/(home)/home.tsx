@@ -96,7 +96,6 @@ export default function Screen() {
         const storedScore1 = await AsyncStorage.getItem("quizScore1");
         const storedScore2 = await AsyncStorage.getItem("quizScore2");
         const storedScore3 = await AsyncStorage.getItem("quizScore3");
-        console.log("Teste StoreScore", storedScore1);
         if (storedScore3 && storedScore2 && storedScore1) {
           const modulo3 = JSON.parse(storedScore3);
           const modulo2 = JSON.parse(storedScore2);

@@ -118,7 +118,6 @@ const handleNext = async () => {
       const nextLevel = currentLevel + 1;
     
       if (nextLevel <= 3) {
-        console.log("Teste storeData");
         await storeData(`quizLevel${nextLevel}`, "unlocked");
         await storeData(`quizCompletedLevel${currentLevel}`, "true"); // ✅ Marca o nível como concluído
     
