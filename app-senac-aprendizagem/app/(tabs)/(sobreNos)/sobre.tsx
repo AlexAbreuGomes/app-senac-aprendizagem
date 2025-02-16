@@ -1,5 +1,5 @@
 import { SafeAreaView } from "react-native-safe-area-context"
-import { StyleSheet, Text, View, Image, ScrollView } from "react-native"
+import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity } from "react-native"
 import { StatusBar } from "expo-status-bar"
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
 import { useFonts as IBMPlexMono, IBMPlexMono_400Regular, IBMPlexMono_700Bold, IBMPlexMono_500Medium } from "@expo-google-fonts/ibm-plex-mono";
@@ -12,12 +12,12 @@ export default function Screen() {
     //     LuckiestGuy: require('@expo-google-fonts/luckiest-guy'),
     // });
 
-  useFonts({
-    LuckiestGuy: LuckiestGuy_400Regular,
-    IBMPlexMonoRegular: IBMPlexMono_400Regular,
-    IBMPlexMonoBold: IBMPlexMono_700Bold,
-    IBMPlexMonoMedium: IBMPlexMono_500Medium,
-  });
+    useFonts({
+        LuckiestGuy: LuckiestGuy_400Regular,
+        IBMPlexMonoRegular: IBMPlexMono_400Regular,
+        IBMPlexMonoBold: IBMPlexMono_700Bold,
+        IBMPlexMonoMedium: IBMPlexMono_500Medium,
+    });
 
     return (
         <SafeAreaView style={styles.container}>
@@ -38,7 +38,7 @@ export default function Screen() {
                     />
                     <Text style={styles.h1}>O que é o Conecta Aprendiz?</Text>
                     <Text style={styles.h2}>O Conecta Aprendiz é um aplicativo desenvolvido por alunos do curso Técnico de
-                        Desenvolvimento de Sistemas do Senac-RN Zona Norte, em parceria com a turma
+                        Desenvolvimento de Sistemas do Senac-RN Zona Norte da turma 2023.14.109, em parceria com a turma
                         08/2024 de Aprendizagem em Serviços de Supermercado também do CEP Zona
                         Norte. O objetivo é oferecer suporte prático, dinâmico e motivador, tirando as
                         dúvidas mais comuns dos aprendizes e proporcionando uma experiência de
@@ -52,21 +52,20 @@ export default function Screen() {
                         style={styles.iconOne}
                     />
                     <Text style={styles.h1}>Por trás do Conecta Aprendiz</Text>
-                    <Text style={styles.h2}>A ideia surgiu ao identificar a necessidade de esclarecer as dúvidas mais comuns
-                        dos aprendizes, como por exemplo: primeiro dia no Senac; primeiro dia na empresa;
-                        timidez; lidando com o público, ata, lei de aprendizagem e etc.
-                        O Conecta Aprendiz visa também trazer um apoio socioemocional aos iniciantes,
-                        buscando uma conexão emocional, mostrando através dos vídeos de experiência na
-                        aprendizagem dos aprendizes concluintes dessa jornada, que eles também
-                        vivenciaram situações de medo, ansiedade, dentre outros, mas que com apoio
-                        conseguiram vencer.
-                        A dedicação dos alunos de ambos os cursos e a orientação dos professores foram
-                        fundamentais para criar uma ferramenta que apoiasse e fortalecesse o aprendizado
-                        do aprendiz.
-                        O aplicativo foi desenvolvido como parte do Projeto Integrador dos alunos de
-                        Desenvolvimento de Sistemas e Projeto Integrador III da turma 08/2024 de
-                        Supermercado.
+
+                    <Text style={styles.h2}>
+                        A ideia surgiu ao identificar a necessidade de esclarecer as dúvidas mais comuns dos aprendizes, como por exemplo: primeiro dia no Senac, primeiro dia na empresa, timidez, lidando com o público, ata, lei de aprendizagem e etc.
+                        {"\n\n"}
+
+                        O Conecta Aprendiz visa também trazer um apoio socioemocional aos iniciantes, buscando uma conexão emocional. Através dos vídeos de experiência na aprendizagem dos aprendizes concluintes dessa jornada, mostramos que eles também vivenciaram situações de medo, ansiedade, dentre outros, mas que, com apoio, conseguiram vencer.
+                        {"\n\n"}
+
+                        A dedicação dos alunos de ambos os cursos e a orientação dos professores foram fundamentais para criar uma ferramenta que apoiasse e fortalecesse o aprendizado do aprendiz.
+                        {"\n\n"}
+
+                        O aplicativo foi desenvolvido como parte do Projeto Integrador dos alunos de Desenvolvimento de Sistemas da turma 2023.14.109 e Projeto Integrador III da turma 08/2024 de Supermercado.
                     </Text>
+
                 </View>
 
                 <View style={styles.textThree}>
@@ -75,35 +74,34 @@ export default function Screen() {
                         style={styles.iconOne}
                     />
 
-                    <Text style={styles.h1}>Equipe de Desenvolvimento</Text>
-                    <Text style={styles.h2}>Desenvolvido por:</Text>
+                    <Text style={styles.h1}>Aplicativo Desenvolvido por:</Text>
+                    
 
                     <View style={styles.linking}>
-                        <Text style={styles.h2} onPress={() => Linking.openURL('https://www.linkedin.com/in/daniewcruz/')}>
-                            Daniew Cruz,
-                        </Text>
-                        <Text style={styles.h2} onPress={() => Linking.openURL('https://www.linkedin.com/in/alexdeabreu/')}>
-                            Alex de Abreu Gomes,
-                        </Text>
-                        <Text style={styles.h2} onPress={() => Linking.openURL('https://www.linkedin.com/in/wesllen-d-b-ferreira/')}>
-                            Wesllen Ferreira,
-                        </Text>
-                        <Text style={styles.h2} onPress={() => Linking.openURL('https://www.linkedin.com/in/rafabsilva/')}>
-                            Rafael Bezerra,
-                        </Text>
-                        <Text style={styles.h2} onPress={() => Linking.openURL('https://www.linkedin.com/in/jean-carlo-costa')}>
-                            Jean Carlo Costa,
-                        </Text>
-                        <Text style={styles.h2} onPress={() => Linking.openURL('https://github.com/PedroHAXGDev')}>
-                            Pedro Henrique,
-                        </Text>
-                        <Text style={styles.h2} onPress={() => Linking.openURL('https://www.linkedin.com/in/gerson-soares-063b552b0/')}>
-                            Gerson Soares,
-                        </Text>
-                        <Text style={styles.h2} onPress={() => Linking.openURL('https://www.linkedin.com/in/gelson-lli/')}>
-                            Gelson Lima
-                        </Text>
+                        {[
+                            { name: 'Daniew Cruz', url: 'https://www.linkedin.com/in/daniewcruz/' },
+                            { name: 'Alex Abreu Gomes', url: 'https://www.linkedin.com/in/alexdeabreu/' },
+                            { name: 'Wesllen Ferreira', url: 'https://www.linkedin.com/in/wesllen-d-b-ferreira/' },
+                            { name: 'Rafael Bezerra', url: 'https://www.linkedin.com/in/rafabsilva/' },
+                            { name: 'Jean Carlo Costa', url: 'https://www.linkedin.com/in/jean-carlo-costa' },
+                            { name: 'Pedro Henrique', url: 'https://github.com/PedroHAXGDev' },
+                            
+                        ].map((developer, index) => (
+                            <TouchableOpacity
+                                key={index}
+                                onPress={() => Linking.openURL(developer.url)}
+                                activeOpacity={0.7} // Dá um leve efeito ao toque
+                            >
+                                <Text style={styles.linkText}>
+                                    {developer.name}
+                                    {index < 6 ? '' : ''}
+                                </Text>
+                            </TouchableOpacity>
+                        ))}
+
+                       
                     </View>
+
                 </View>
 
                 <View style={styles.textFor}>
@@ -119,8 +117,12 @@ export default function Screen() {
                 </View>
 
                 <View style={styles.formulario}>
-                    <Text style={styles.h3}>Gostou do app? Deixe sua opinião no formulário de feedback</Text>
+                    <Text style={styles.h3}>Gostou do app? Deixe sua opinião no </Text>
+                    <TouchableOpacity onPress={() => Linking.openURL('https://formulario.com')}>
+                        <Text style={styles.linkText2}>formulário de feedback</Text>
+                    </TouchableOpacity>
                 </View>
+
             </ScrollView>
         </SafeAreaView>
     )
@@ -148,24 +150,29 @@ const styles = StyleSheet.create({
 
     },
     iconOne: {
-        width: 57,
-        height: 36,
-        marginTop: 20
+        width: 55,
+        height: 53,
+        resizeMode: "cover",
+        marginBottom: 10,
+        marginTop: 30,
+
+
     },
     h1: {
         fontFamily: "LuckiestGuy",
-        fontSize: 16,
+        fontSize: 22,
         textAlign: "justify",
         color: "#ffffff",
         paddingTop: 5
     },
     h2: {
-        fontFamily: "arial",
+        fontFamily: "IBMPlexMonoRegular",
         fontSize: 16,
         textAlign: "justify",
         color: "#ffffff",
-        padding: 5,
-        lineHeight: 24      // Reduz o padding para ocupar menos espaço
+        padding: 10,
+        lineHeight: 26,      // Reduz o padding para ocupar menos espaço
+        marginBottom: 10
     },
     textTwo: {
         width: '100%',
@@ -173,6 +180,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         backgroundColor: '#044B8B',
         padding: 10
+
     },
     textThree: {
         width: '100%',
@@ -180,6 +188,13 @@ const styles = StyleSheet.create({
         alignItems: "center",
         backgroundColor: '#044B8B',
         padding: 10
+    },
+    dev: {
+        fontFamily: "IBMPlexMonoRegular",
+        fontSize: 16,
+        textAlign: "justify",
+        color: "#ffffff",
+        padding: 10,
     },
     linking: {
         flexDirection: "row", // Deixa os itens em linha
@@ -189,6 +204,16 @@ const styles = StyleSheet.create({
         padding: 5,          // Espaçamento interno
         gap: 0,              // Espaço entre os itens
     },
+    linkText: {
+        fontSize: 17,
+        color: '#ffffff', 
+        textDecorationLine: 'underline', // Indica que é um link
+        marginHorizontal: 20, // Espaço entre os nomes
+        textAlign: 'center',
+        marginBottom: 20,
+        marginTop: 10
+    },
+
     textFor: {
         width: '100%',
         justifyContent: "center",
@@ -204,9 +229,18 @@ const styles = StyleSheet.create({
     },
     h3: {
         fontFamily: "IBMPlexMonoRegular",
-        fontSize: 10,
+        fontSize: 14,
         textAlign: "center",
         color: "#ffffff",
-        padding: 10
+        marginTop: 30
+
     },
+    linkText2: {
+        fontSize: 14,
+        color: '#ffffff',  // Mantém o contraste com o fundo
+        textDecorationLine: 'underline',  // Deixa claro que é um link
+        fontFamily: "IBMPlexMonoRegular",
+        marginBottom: 15
+    }
+
 })
