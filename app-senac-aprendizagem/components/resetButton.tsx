@@ -25,7 +25,7 @@ export const ResetButton = () => {
 const styles = StyleSheet.create({
   button: {
     backgroundColor: '#044B8B',
-    padding: 2,
+    padding: 3,
     width: 80,
     borderRadius: 10,
     marginLeft: 10,
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   text: {
-    color: '#ffffff57',
+    color: '#ffffff',
     fontFamily: 'IBM-Plex-Mono',
     fontSize: 12,
     textAlign: 'center',
