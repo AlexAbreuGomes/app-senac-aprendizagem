@@ -23,27 +23,7 @@ export default function Screen (){
         const openGoogleForm = () => {
           Linking.openURL('https://forms.gle/Qg8ygLfhHoSMDBtd8');
         };
-
-        const [currentIndex, setCurrentIndex] = useState(0);
-        const flatListRef = useRef<FlatList>(null);
         
-      // Intervalo do carrossel
-        useEffect(() => {
-          const interval = setInterval(() => {
-            setCurrentIndex((prevIndex) => {
-              const nextIndex = (prevIndex + 1) % imagensCarrossel.length;
-      
-              if (flatListRef.current) {
-                flatListRef.current.scrollToIndex({ index: nextIndex, animated: true });
-              }
-      
-              return nextIndex;
-            });
-          }, 3000);
-      
-          return () => clearInterval(interval);
-        }, []);
-
     return(
         <SafeAreaView style={styles.container}>
             <StatusBar/>
