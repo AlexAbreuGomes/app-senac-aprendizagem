@@ -111,7 +111,7 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
     }).start();
   };
 
-  // Adicione no topo do arquivo
+
   const [showCongratsModal, setShowCongratsModal] = useState(false);
 
   const finishQuiz = () => {
@@ -134,8 +134,6 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
       router.replace("/quiz");
     }
   };
-
-
 
 
 
