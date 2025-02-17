@@ -118,7 +118,7 @@ export default function Screen() {
 
                 <View style={styles.formulario}>
                     <Text style={styles.h3}>Gostou do app? Deixe sua opinião no </Text>
-                    <TouchableOpacity onPress={() => Linking.openURL('https://formulario.com')}>
+                    <TouchableOpacity onPress={() => Linking.openURL('https://forms.gle/U7FGFs3SeCi16jh6A')}>
                         <Text style={styles.linkText2}>formulário de feedback</Text>
                     </TouchableOpacity>
                 </View>

@@ -125,6 +125,7 @@ const styles = StyleSheet.create({
     fontFamily: "LuckiestGuy",
     color: "#044B8B"
   },
+
   title: {
     fontSize: 35,
     width: screenWidth -20 ,

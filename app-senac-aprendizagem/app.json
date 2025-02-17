@@ -1,15 +1,15 @@
 {
   "expo": {
-    "name": "Senac Aprendizagem",
+    "name": "Conecta Aprendiz",
      "slug": "app-senac-aprendizagem",
     "version": "1.0.0",
     "scheme": "senac-aprendizagem",
     "orientation": "portrait",
-    "icon": "./assets/senac-logo-0.png",
+    "icon": "./assets/icone_conectaAprendiz.jpeg",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/senac-logo-0.png",
+      "image": "./assets/icone_conectaAprendiz.jpeg",
       "resizeMode": "contain",
       "backgroundColor": "#fff"
     },
@@ -18,7 +18,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/senac-logo-0.png",
+        "foregroundImage": "./assets/icone_conectaAprendiz.jpeg",
         "backgroundColor": "#b7e4c7"
       },
       "package": "com.alexdevmobile007.senacaprendizagem"
