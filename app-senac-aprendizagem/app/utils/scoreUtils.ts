@@ -50,10 +50,13 @@ export const generateFinalMessage = (score: number, totalQuestions: number): str
 
 // Função para salvar a pontuação ao finalizar o quiz
 export const saveQuizScore = async (nameScore: string, score: number, totalQuestions: number) => {
-  
+  if ((score / totalQuestions) * 100 < 70) return; // Não salva se <70%
+
   try {
-    await AsyncStorage.setItem(nameScore, JSON.stringify({ score, totalQuestions }));
-    console.log("Pontuação salva:", { score, totalQuestions }); // Adicione esta linha
+    const existing = await AsyncStorage.getItem(nameScore);
+    if (!existing || (existing && JSON.parse(existing).score < score)) {
+      await AsyncStorage.setItem(nameScore, JSON.stringify({ score, totalQuestions }));
+    }
   } catch (error) {
     console.error("Erro ao salvar pontuação:", error);
   }

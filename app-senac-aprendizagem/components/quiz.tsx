@@ -8,7 +8,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { calculateScorePercentage, generateFinalMessage, getScoreColor, saveQuizScore } from '../app/utils/scoreUtils';
-import { storeData } from '../app/utils/storage';
+import { getData, storeData } from '../app/utils/storage';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type QuizProps = {
@@ -65,20 +65,24 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
   const handleNext = async () => {
     if (currentQuestionIndex === allQuestions.length - 1) {
       setShowScoreModal(true);
-
+  
       const value = parseFloat(calculateScorePercentage(score, allQuestions.length));
-
-
-      // Verifica se já existe uma pontuação salva
-      const existingScore = await getStoredData(`quizScore${level}`);
-
-      if (!existingScore) {
-        saveQuizScore(`quizScore${level}`, value, allQuestions.length);
+  
+      // ✅ Verifica se a pontuação é suficiente para salvar
+      if (value >= 70) {
+        const existingScore = await getStoredData(`quizScore${level}`);
+  
+        // Salva apenas se não existir ou se a nova pontuação for maior
+        if (!existingScore || (existingScore && JSON.parse(existingScore).score < value)) {
+          saveQuizScore(`quizScore${level}`, value, allQuestions.length);
+        }
+  
+        // ✅ Marca o nível como concluído
+        await storeData(`quizCompletedLevel${level}`, "true");
+      } else {
+        // Remove o status de concluído se a pontuação for insuficiente
+        await AsyncStorage.removeItem(`quizCompletedLevel${level}`);
       }
-
-      // ✅ Agora salvamos que este nível foi concluído
-      await storeData(`quizCompletedLevel${level}`, "true");
-
     } else {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setCurrentOptionSelected(null);
@@ -86,13 +90,14 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
       setIsOptionsDisabled(false);
       setShowNextButton(false);
     }
-
+  
     Animated.timing(progress, {
       toValue: currentQuestionIndex + 1,
       duration: 1000,
       useNativeDriver: false,
     }).start();
   };
+  
 
 
 
@@ -119,22 +124,23 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
   };
 
 
-
   const goToNextLevel = async () => {
     const currentLevel = level;
     const nextLevel = currentLevel + 1;
-
-    if (nextLevel <= 3) {
-      console.log("Teste storeData");
-      await storeData(`quizLevel${nextLevel}`, "unlocked");
-      await storeData(`quizCompletedLevel${currentLevel}`, "true"); // ✅ Marca o nível como concluído
-
-      setUnlockedLevels((prev) => Math.max(prev, nextLevel)); // ✅ Atualiza o estado corretamente
-
-      router.replace("/quiz");
+  
+    // ✅ Verifica a pontuação antes de desbloquear
+    const scoreData = await getData(`quizScore${currentLevel}`);
+    if (scoreData) {
+      const { score, totalQuestions } = JSON.parse(scoreData);
+      const percentage = (score / totalQuestions) * 100;
+  
+      if (percentage >= 70 && nextLevel <= 3) {
+        await storeData(`quizLevel${nextLevel}`, "unlocked");
+        setUnlockedLevels((prev) => Math.max(prev, nextLevel));
+        router.replace("/quiz");
+      }
     }
   };
-
 
 
   //alert para voltar para home
@@ -355,7 +361,7 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
 
 
 
-        {/* Modal de Parabéns */}
+       
         <Modal visible={showCongratsModal} transparent={true} animationType="fade">
           <View style={styles.modalOverlay2}>
             <View style={styles.customAlertContainer2}>
@@ -369,7 +375,7 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
                 style={[styles.alertButton2, styles.confirmButton]}
                 onPress={() => {
                   setShowCongratsModal(false);
-                  router.replace("/quiz"); // Ajuste conforme necessário
+                  router.replace("/quiz"); 
                 }}
               >
                 <Text style={styles.alertButtonText2}>OK</Text>
@@ -436,7 +442,7 @@ const styles = StyleSheet.create({
   },
   questionContainer: {
     marginTop: 20,
-    marginBottom: 15,
+    marginBottom: 20,
 
 
   },
@@ -447,7 +453,7 @@ const styles = StyleSheet.create({
   },
   indexText: {
     color: COLORS.accent,
-    fontSize: 26,
+    fontSize: 30,
     fontFamily: 'LuckiestGuy-Regular',
     opacity: 0.99,
     marginRight: 2,
@@ -463,11 +469,14 @@ const styles = StyleSheet.create({
   questionText: {
     color: COLORS.white,
     fontFamily: 'LuckiestGuy-Regular',
-    fontSize: 23,
-    textAlign: 'justify',
-    lineHeight: 25,
+    fontSize: 24,
+    alignItems:'center',
+    justifyContent:'center',
+    alignContent:'center',
+    textAlign: 'center',
     maxWidth: '95%',
-    marginTop: 5,
+    marginTop: 10,
+
 
   },
   optionButton: {
@@ -529,6 +538,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   progressBarContainer: {
+    marginTop: 20,
     width: '100%',
     height: 20,
     borderRadius: 20,

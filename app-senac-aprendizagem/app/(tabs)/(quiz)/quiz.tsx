@@ -54,11 +54,20 @@ export default function Screen() {
     useEffect(() => {
       const checkCompletion = async () => {
         const completed = await getData(`quizCompletedLevel${level}`);
-        setIsCompleted(completed === "true");
+        const scoreData = await getData(`quizScore${level}`);
+        
+        // ✅ Verifica se o nível foi concluído com ≥70%
+        if (completed === "true" && scoreData) {
+          const { score, totalQuestions } = JSON.parse(scoreData);
+          const percentage = (score / totalQuestions) * 100;
+          setIsCompleted(percentage >= 70);
+        } else {
+          setIsCompleted(false);
+        }
       };
       checkCompletion();
-    }, [unlockedLevels]); // ✅ Verifica sempre que unlockedLevels mudar
-
+    }, [unlockedLevels]);
+    
     useEffect(() => {
       if (level === unlockedLevels) {
         Animated.loop(
@@ -137,7 +146,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.background,
   },
   description: {
-    fontSize: 16,
+    fontSize: 20,
     color: COLORS.white,
     textAlign: "justify",
     fontFamily: "IBMPlexMonoRegular",
@@ -145,7 +154,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   title: {
-    fontSize: 20,
+    fontSize: 30,
     marginBottom: 5,
     width: "100%",
     textAlign: "center",
@@ -154,9 +163,9 @@ const styles = StyleSheet.create({
   },
  
   imgIcon: {
-    // width: width * 0.15, // 20% da largura da tela (ajustável)
-    // height: width * 0.15, // Mantém a proporção quadrada
-    // resizeMode: "contain",
+    width: width * 0.15, // 20% da largura da tela (ajustável)
+    height: width * 0.15, // Mantém a proporção quadrada
+    resizeMode: "contain",
   
   },
   coinContainer: {
@@ -202,6 +211,6 @@ const styles = StyleSheet.create({
     bottom: 20,
     width: "100%",
     alignItems: "flex-start",
-    
+    marginBottom: 5,
   },
 });
