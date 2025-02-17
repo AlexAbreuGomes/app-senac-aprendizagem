@@ -1,23 +1,26 @@
-// components/ResetButton.tsx
 import { Alert, Pressable, Text, StyleSheet } from 'react-native';
-import { fullReset } from '../app/utils/storage';
 import React from 'react';
 
-export const ResetButton = () => {
-  const handleReset = () => {
+type ResetButtonProps = {
+  onReset: () => void; // Aceita uma função como argumento
+  title?: string; // Permite personalizar o texto do botão
+};
+
+export const ResetButton: React.FC<ResetButtonProps> = ({ onReset, title = "Resetar" }) => {
+  const handlePress = () => {
     Alert.alert(
-      'Resetar Progresso',
-      'Tem certeza que deseja apagar todo seu progresso?',
+      'Confirmação',
+      'Tem certeza que deseja apagar os dados?',
       [
         { text: 'Cancelar', style: 'cancel' },
-        { text: 'Confirmar', onPress: () => fullReset() }
+        { text: 'Confirmar', onPress: onReset }
       ]
     );
   };
 
   return (
-    <Pressable onPress={handleReset} style={styles.button}>
-      <Text style={styles.text}>Resetar Progresso</Text>
+    <Pressable onPress={handlePress} style={styles.button}>
+      <Text style={styles.text}>{title}</Text>
     </Pressable>
   );
 };
@@ -28,8 +31,7 @@ const styles = StyleSheet.create({
     padding: 3,
     width: 80,
     borderRadius: 10,
-    marginLeft: 10,
-    marginTop: 20,
+    margin: 10,
     elevation: 3,
   },
   text: {

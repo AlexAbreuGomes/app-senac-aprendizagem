@@ -154,8 +154,9 @@ export default function Screen() {
                 {userImage && <Image source={userImage} style={styles.userImage} />}
 
                 <Text style={styles.welcome}>
-                  {userName ? `Bem-vindo(a), ${userName}!` : "Bem-vindo(a)!"}
-                </Text>
+  {userName ? `Bem-vindo(a).\n${userName}` : "Bem-vindo(a)."}
+</Text>
+
               </View>
               {/* Pontuação abaixo do nome */}
 
@@ -206,6 +207,7 @@ const styles = StyleSheet.create({
     color: "#044B8B",
     textAlign: "left",
     fontFamily: "LuckiestGuy",
+    width: '85%'
   },
   userImage: {
     width: 50,

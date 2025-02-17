@@ -3,7 +3,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { StyleSheet, Text, Pressable, View, StatusBar, Image, Animated } from "react-native";
 import React, { useCallback, useState, useEffect, useRef } from "react";
 import { Ionicons } from "@expo/vector-icons"; // Importando o ícone de check
-import { getData } from "../../utils/storage";
+import { getData, resetProgress } from "../../utils/storage";
 import { COLORS } from "../../../constants/colors";
 import { ResetButton } from "../../../components/resetButton";
 import { Dimensions } from "react-native";
@@ -109,20 +109,14 @@ export default function Screen() {
             Acumule pontos, complete os três desafios.
           </Text>
         </View>
-
-        
-        
         <View style={styles.coinContainer}>
-
-        
-        
           <View style={styles.coinPosition3}><CoinButton level={3} unlocked={unlockedLevels >= 3} /></View>
           <View style={styles.coinPosition2}><CoinButton level={2} unlocked={unlockedLevels >= 2} /></View>
           <View style={styles.coinPosition1}><CoinButton level={1} unlocked={true} />
           </View>
         </View>
         <View style={styles.resetSection}>
-          <ResetButton />
+          <ResetButton onReset={resetProgress} title="Resetar Progresso" />
         </View>
       </SafeAreaView>
     </>
@@ -138,7 +132,6 @@ const styles = StyleSheet.create({
   },
   header: {
     width: "100%",
-    height: 165,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: COLORS.background,
@@ -149,7 +142,6 @@ const styles = StyleSheet.create({
     textAlign: "justify",
     fontFamily: "IBMPlexMonoRegular",
     width: "100%",
-    height: 125,
     paddingHorizontal: 20,
   },
   title: {
@@ -162,17 +154,15 @@ const styles = StyleSheet.create({
   },
  
   imgIcon: {
-    width: width * 0.15, // 20% da largura da tela (ajustável)
-    height: width * 0.15, // Mantém a proporção quadrada
-    resizeMode: "contain",
+    // width: width * 0.15, // 20% da largura da tela (ajustável)
+    // height: width * 0.15, // Mantém a proporção quadrada
+    // resizeMode: "contain",
   
   },
   coinContainer: {
     width: "100%",
     height: "58%",
-    marginTop: 70,
-    paddingHorizontal: 20,
-    justifyContent: "space-evenly",
+    justifyContent: "center",
 
   },
   coinPosition1: {
@@ -191,7 +181,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   coinImage: {
-    width: width * 0.28, // 20% da largura da tela (ajustável)
+    width: width * 0.30, // 20% da largura da tela (ajustável)
     height: width * 0.35, // Mantém a proporção quadrada
     resizeMode: "contain",
   },
@@ -212,6 +202,6 @@ const styles = StyleSheet.create({
     bottom: 20,
     width: "100%",
     alignItems: "flex-start",
-    marginBottom: 5,
+    
   },
 });

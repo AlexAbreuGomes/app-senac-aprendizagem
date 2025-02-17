@@ -55,7 +55,6 @@ export default function Screen() {
 
         <Text style={styles.h1}>Exemplos de ATA</Text>
 
-        {/* Lista de PDFs */}
         <FlatList
           data={PDF} // A lista de PDFs
           keyExtractor={(item) => item.id.toString()} // Converte o ID para string
@@ -82,6 +81,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: "#044B8B",
     textAlign: "center",
+    marginTop: 15,
     marginBottom: 10,
     fontFamily: "LuckiestGuy",
   },

@@ -4,7 +4,7 @@ export type ConteudoAprendizagem = {
   descricao: string;
   texto: string;
   icon?: any;
-  onPress: () => void;
+  onPress?: () => void;
   
 };
 

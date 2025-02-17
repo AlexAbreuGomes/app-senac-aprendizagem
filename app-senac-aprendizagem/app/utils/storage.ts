@@ -18,12 +18,35 @@ export const getData = async (key: string) => {
   }
 };
 
-// storage.ts
-export const fullReset = async () => {
+export const resetProgress = async () => {
     try {
-      await 
-      AsyncStorage.clear();
+        // Remove os dados de conclusão dos níveis
+        await AsyncStorage.removeItem("quizCompletedLevel1");
+        await AsyncStorage.removeItem("quizCompletedLevel2");
+        await AsyncStorage.removeItem("quizCompletedLevel3");
+
+        // Remove as pontuações
+        await AsyncStorage.removeItem("quizScore1");
+        await AsyncStorage.removeItem("quizScore2");
+        await AsyncStorage.removeItem("quizScore3");
+
+        // Mantém os níveis desbloqueados apenas até o primeiro
+        await AsyncStorage.setItem("quizLevel2", "locked");
+        await AsyncStorage.setItem("quizLevel3", "locked");
+
+        console.log("Progresso do quiz resetado com sucesso!");
     } catch (e) {
-      console.error('Erro no reset completo:', e);
+        console.error("Erro ao resetar o progresso:", e);
     }
-  };
+};
+
+
+export const resetData = async () => {
+  try{
+    await AsyncStorage.removeItem("name");
+    await AsyncStorage.removeItem("selectedAvatar");
+  } catch (e){
+    console.error("erro ao resetar dados",e)
+  }
+  
+}

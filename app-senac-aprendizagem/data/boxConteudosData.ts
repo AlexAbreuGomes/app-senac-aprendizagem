@@ -3,6 +3,14 @@ import { ConteudoAprendizagem } from "../types/boxConteudosTypes";
 export const conteudosAprendizagem: ConteudoAprendizagem[] = [
   {
     id: 1,
+    titulo: "Ativando legendas",
+    descricao: "Aprenda a ativar e personalizar legendas no YouTube! 🎥💬",
+    texto:"Neste vídeo, mostramos o passo a passo para ativar as legendas e ajustar configurações como idioma. Ideal para quem precisa de mais acessibilidade ou quer melhorar a compreensão dos vídeos seguintes. Não perca! 😉✅",
+    icon: require("../assets/icons8-communication-96.png"),
+    
+  },
+  {
+    id: 2,
     titulo: "Primeiro dia no Curso",
     descricao: "Expectativas, desafios e dicas para um bom começo..",
     texto: `O primeiro dia no curso de aprendizagem é um momento de grande expectativa para os jovens aprendizes. É natural sentir um misto de ansiedade e empolgação ao ingressar em um ambiente de formação profissional.
@@ -16,7 +24,7 @@ Além disso, é importante desenvolver a responsabilidade com horários, prazos 
     onPress: () => console.log("Comunicação"),
   },
   {
-    id: 2,
+    id: 3,
     titulo: "Primeiro dia na empresa",
     descricao: "Como se adaptar e causar uma boa primeira impressão.",
     texto: `O primeiro dia na empresa como jovem aprendiz é um momento marcante e repleto de novos desafios. É natural sentir um pouco de nervosismo, mas a chave para um bom início é manter a calma e estar disposto a aprender. 
@@ -32,7 +40,7 @@ Por fim, é importante lembrar que erros fazem parte do aprendizado, e o mais im
     onPress: () => console.log("Educação"),
   },
   {
-    id: 3,
+    id: 4,
     titulo: "Mudança de Setor: Adaptação ao Novo",
     descricao: "Estratégias para uma transição tranquila e produtiva.",
     texto: `A mudança de setor para um jovem aprendiz pode ser um desafio, mas também uma grande oportunidade de aprendizado. Adaptar-se a um novo ambiente exige paciência, flexibilidade e disposição para aprender. 
@@ -46,7 +54,7 @@ Ser educado, respeitoso e demonstrar interesse em contribuir para o time ajudar�
     onPress: () => console.log("Trabalho em Equipe"),
   },
   {
-    id: 4,
+    id: 5,
     titulo: "Experiências com Clientes",
     descricao: "Aprendizados essenciais no atendimento e na comunicação.",
     texto: `Lidar com clientes é uma experiência que exige não apenas conhecimento técnico, mas também inteligência emocional. Como jovem aprendiz, é essencial manter a calma, ser educado e ouvir atentamente as necessidades do cliente. 
@@ -62,7 +70,7 @@ Demonstrar paciência e interesse pelo cliente cria um atendimento mais humaniza
     onPress: () => console.log("Gestão do Tempo"),
   },
   {
-    id: 5,
+    id: 6,
     titulo: "Como se dirigir ao cliente",
     descricao: "Boas práticas para um atendimento profissional e eficiente.",
     texto: `A forma como o jovem aprendiz se dirige ao cliente faz toda a diferença no atendimento e na imagem da empresa. A comunicação assertiva é essencial para transmitir informações com clareza, respeito e profissionalismo.
@@ -76,7 +84,7 @@ Se não souber a resposta para alguma dúvida, ser sincero e buscar ajuda com um
     onPress: () => console.log("Resolução de Problemas"),
   },
   {
-    id: 6,
+    id: 7,
     titulo: "Importância do uso de EPI",
     descricao: "Proteção e segurança no ambiente de trabalho.",
     texto: `O uso de Equipamentos de Proteção Individual (EPI) é fundamental para garantir a segurança dos jovens aprendizes no ambiente de trabalho.
@@ -94,7 +102,7 @@ Fonte: Norma Regulamentadora 06`,
     onPress: () => console.log("Resolução de Problemas"),
   },
   {
-    id: 7,
+    id: 8,
     titulo: "Experiência na Aprendizagem da Instrutora",
     descricao: "Reflexões e insights sobre o processo de ensino.",
     texto: `Minha trajetória profissional começou como a de muitos dos meus alunos: fui uma jovem aprendiz. Lembro-me bem da ansiedade do primeiro dia, das dúvidas sobre o mercado de trabalho e do desafio de conciliar estudo e prática. 
@@ -108,7 +116,7 @@ Cada turma me ensina algo novo, e minha missão é ser um guia nesse processo, a
     onPress: () => console.log("Resolução de Problemas"),
   },
   {
-    id: 8,
+    id: 9,
     titulo: "Jornada de Sucesso Jovens Aprendizes",
     descricao: "Histórias e lições para um futuro promissor.",
     texto: `Concluir o curso de aprendizagem é mais do que encerrar uma etapa; é o marco de um começo repleto de possibilidades. 
@@ -128,7 +136,7 @@ Lembrem-se: o aprendizado é uma ponte que conecta o presente aos sonhos do futu
     onPress: () => console.log("Resolução de Problemas"),
   },
   {
-    id: 9,
+    id: 10,
     titulo: "Conecta Aprendiz",
     descricao: "",
     texto: `No universo da aprendizagem, a criatividade e a inovação são ferramentas poderosas para inspirar e engajar. Foi com essa visão que dois aprendizes, Wivilly Martins de Oliveira e João Victor da Silva Galdino, uniram seus talentos e ideias para criar uma música que chama-se "Conecta Aprendiz". 
@@ -148,7 +156,7 @@ Com "Conecta Aprendiz", eles deixam uma mensagem clara: aprender pode ser desafi
     onPress: () => console.log("Resolução de Problemas"),
   },
   {
-    id: 10,
+    id: 11,
     titulo: "Carteira de Trabalho Digital",
     descricao: "Como acessar e utilizar esse documento digital.",
     texto: `A Carteira de Trabalho Digital é a versão eletrônica da tradicional Carteira de Trabalho e Previdência Social (CTPS) em papel. 
@@ -166,7 +174,7 @@ Fonte: Gov.br`,
     onPress: () => console.log("Resolução de Problemas"),
   },
   {
-    id: 11,
+    id: 12,
     titulo: "Verificando CBO e Informações Salarial",
     descricao: "Entenda a classificação das ocupações no mercado de trabalho e saiba como calcular corretamente a remuneração do jovem aprendiz.",
     texto: `A CBO (Classificação Brasileira de Ocupações), é uma tabela criada pelo Ministério do Trabalho e Emprego do Brasil para organizar e classificar as diversas profissões existentes no mercado de trabalho. 
@@ -190,7 +198,7 @@ Fonte: Portal Emprega Brasil`,
     onPress: () => console.log("Resolução de Problemas"),
   },
   {
-    id: 12,
+    id: 13,
     titulo: "Playlist para estudo e relaxamento",
     descricao: "Músicas que ajudam na concentração e no bem-estar.",
     texto: `Para tornar sua rotina de aprendizado mais leve e produtiva, o link que direciona para o Spotify traz uma seleção especial de playlist sugerida e pensada para atender às diferentes necessidades do seu dia a dia.
