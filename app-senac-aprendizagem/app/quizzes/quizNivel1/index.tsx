@@ -75,7 +75,7 @@ const Index = () => {
 
       <View style={styles.pointsContainer}>
         <Text style={styles.pointTitle}>O que esperar:</Text>
-        <Text style={styles.pointDescription}>Testar seus conhecimentos sobre [assunto específico do curso].</Text>
+        <Text style={styles.pointDescription}>Testar seus conhecimentos sobre a aprendizagem.</Text>
       </View>
 
       <View style={styles.pointsContainer}>

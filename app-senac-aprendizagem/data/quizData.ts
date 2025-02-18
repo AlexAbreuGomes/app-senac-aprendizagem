@@ -73,7 +73,7 @@ const quizData = [
     question: 'Quais são as verbas rescisórias devidas após o término do contrato de aprendizagem?',
     options: [
       'Em qualquer rescisão, o aprendiz recebe apenas o salário do mês.',
-      'Se for demitido sem justa causa, o aprendiz tem direito ao saldo de salário, aviso prévio e FGTS.',
+      'O aprendiz tem direito ao saldo de salário, aviso prévio e FGTS.',
       'O aprendiz nunca recebe verbas rescisórias, pois o contrato é temporário.',
       'Independentemente do motivo da rescisão, o aprendiz recebe todos os direitos de um trabalhador efetivo.'
     ],
