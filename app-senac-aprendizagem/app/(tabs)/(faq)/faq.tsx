@@ -38,7 +38,7 @@ export default function Screen (){
                 />
             </View>
             <View style={styles.viewFlatlist}>
-           <ButtonGeneric onpress={openGoogleForm} style={styles.button} name="Dúvidas" />
+           <ButtonGeneric onpress={openGoogleForm} style={styles.button} name="Ajuda" />
            </View>
         </SafeAreaView>
     )

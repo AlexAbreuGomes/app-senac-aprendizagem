@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SafeAreaView, Text, Pressable, View, Modal, Animated, StatusBar, StyleSheet, Alert } from 'react-native';
+import { SafeAreaView, Text, Pressable, View, Modal, Animated, StatusBar, StyleSheet, Alert, ScrollView } from 'react-native';
 import { useRouter, useLocalSearchParams } from 'expo-router';  // Importando useRouter
 import { COLORS } from '../constants/colors';
 import Button from '../components/ButtonQuiz';
@@ -65,18 +65,18 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
   const handleNext = async () => {
     if (currentQuestionIndex === allQuestions.length - 1) {
       setShowScoreModal(true);
-  
+
       const value = parseFloat(calculateScorePercentage(score, allQuestions.length));
-  
+
       // ✅ Verifica se a pontuação é suficiente para salvar
       if (value >= 70) {
         const existingScore = await getStoredData(`quizScore${level}`);
-  
+
         // Salva apenas se não existir ou se a nova pontuação for maior
         if (!existingScore || (existingScore && JSON.parse(existingScore).score < value)) {
           saveQuizScore(`quizScore${level}`, value, allQuestions.length);
         }
-  
+
         // ✅ Marca o nível como concluído
         await storeData(`quizCompletedLevel${level}`, "true");
       } else {
@@ -90,14 +90,14 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
       setIsOptionsDisabled(false);
       setShowNextButton(false);
     }
-  
+
     Animated.timing(progress, {
       toValue: currentQuestionIndex + 1,
       duration: 1000,
       useNativeDriver: false,
     }).start();
   };
-  
+
 
 
 
@@ -127,13 +127,13 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
   const goToNextLevel = async () => {
     const currentLevel = level;
     const nextLevel = currentLevel + 1;
-  
+
     // ✅ Verifica a pontuação antes de desbloquear
     const scoreData = await getData(`quizScore${currentLevel}`);
     if (scoreData) {
       const { score, totalQuestions } = JSON.parse(scoreData);
       const percentage = (score / totalQuestions) * 100;
-  
+
       if (percentage >= 70 && nextLevel <= 3) {
         await storeData(`quizLevel${nextLevel}`, "unlocked");
         setUnlockedLevels((prev) => Math.max(prev, nextLevel));
@@ -267,52 +267,53 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar barStyle="light-content" backgroundColor={COLORS.background} />
-      <View style={styles.container}>
-        {renderProgressBar()}
-        {renderQuestion()}
-        {renderOptions()}
-        {renderNextButton()}
-        <Modal animationType="slide" transparent={true} visible={showScoreModal}>
-          <View style={styles.modalContainer}>
-            <View style={styles.modalContent}>
-              <Image
-                source={imageSource}
-                style={styles.logoImage}
-              />
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <View style={styles.container}>
+          {renderProgressBar()}
+          {renderQuestion()}
+          {renderOptions()}
+          {renderNextButton()}
+          <Modal animationType="slide" transparent={true} visible={showScoreModal}>
+            <View style={styles.modalContainer}>
+              <View style={styles.modalContent}>
+                <Image
+                  source={imageSource}
+                  style={styles.logoImage}
+                />
 
-              <Text style={styles.modalTitle}>Quiz Finalizado!</Text>
+                <Text style={styles.modalTitle}>Quiz Finalizado!</Text>
 
-              <Text style={styles.modalText}>
-                Você acertou {score} de {allQuestions.length} questões.
-              </Text>
-
-
-              <Text style={styles.modalText2}>
-                Pontuação:{' '}
-                <Text style={{ color: getScoreColor(score, allQuestions.length) }}>
-                  {calculateScorePercentage(score, allQuestions.length)}
+                <Text style={styles.modalText}>
+                  Você acertou {score} de {allQuestions.length} questões.
                 </Text>
-              </Text>
 
 
-              <Text style={styles.modalFinalMessage}>
-                {generateFinalMessage(score, allQuestions.length)}
-              </Text>
+                <Text style={styles.modalText2}>
+                  Pontuação:{' '}
+                  <Text style={{ color: getScoreColor(score, allQuestions.length) }}>
+                    {calculateScorePercentage(score, allQuestions.length)}
+                  </Text>
+                </Text>
 
-              {/* <Button
+
+                <Text style={styles.modalFinalMessage}>
+                  {generateFinalMessage(score, allQuestions.length)}
+                </Text>
+
+                {/* <Button
                 title="Reiniciar Quiz"
                 onPress={restartQuiz}
                 style={styles.restartButton}
               /> */}
 
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
 
-                <Pressable style={styles.restartButton} onPress={restartQuiz}>
-                  <MaterialIcons name="restart-alt" size={50} color="#ffffff" />
-                  {/* <Text style={styles.restartButtonText}>Reiniciar</Text> */}
-                </Pressable>
+                  <Pressable style={styles.restartButton} onPress={restartQuiz}>
+                    <MaterialIcons name="restart-alt" size={50} color="#ffffff" />
+                    {/* <Text style={styles.restartButtonText}>Reiniciar</Text> */}
+                  </Pressable>
 
-                {/* <Pressable
+                  {/* <Pressable
                   onPress={goToNextLevel}
                   style={[styles.nextLevelButton, isButtonDisabled && { opacity: 0.5 }]}
                   disabled={isButtonDisabled}
@@ -322,67 +323,39 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
                 </Pressable> */}
 
 
-                {level === 3 ? (
-                  <Pressable
-                    onPress={finishQuiz}
-                    style={[styles.nextLevelButton, isButtonDisabled && { opacity: 0.5 }]}
-                    disabled={isButtonDisabled}
-                  >
-                    <Text style={styles.nextLevelTextFinal}>Finalizar</Text>
-                    <MaterialIcons name="stairs" size={30} color="#ffffff" />
-                  </Pressable>
-                ) : (
-                  <Pressable
-                    onPress={goToNextLevel}
-                    style={[styles.nextLevelButton, isButtonDisabled && { opacity: 0.5 }]}
-                    disabled={isButtonDisabled}
-                  >
-                    <Text style={styles.nextLevelText}>Próximo Nível</Text>
-                    <MaterialIcons name="navigate-next" size={35} color="#ffffff" />
-                  </Pressable>
-                )}
+                  {level === 3 ? (
+                    <Pressable
+                      onPress={finishQuiz}
+                      style={[styles.nextLevelButton, isButtonDisabled && { opacity: 0.5 }]}
+                      disabled={isButtonDisabled}
+                    >
+                      <Text style={styles.nextLevelTextFinal}>Finalizar</Text>
+                      <MaterialIcons name="stairs" size={30} color="#ffffff" />
+                    </Pressable>
+                  ) : (
+                    <Pressable
+                      onPress={goToNextLevel}
+                      style={[styles.nextLevelButton, isButtonDisabled && { opacity: 0.5 }]}
+                      disabled={isButtonDisabled}
+                    >
+                      <Text style={styles.nextLevelText}>Próximo Nível</Text>
+                      <MaterialIcons name="navigate-next" size={35} color="#ffffff" />
+                    </Pressable>
+                  )}
 
+
+                </View>
 
               </View>
 
-            </View>
 
-
-            <Pressable onPress={goToHome} style={styles.backButton}>
-              <MaterialCommunityIcons name="exit-to-app" style={styles.iconHome} />
-              <Text style={styles.backButtonText}>Voltar para home</Text>
-            </Pressable>
-
-          </View>
-        </Modal>
-
-
-
-
-
-
-       
-        <Modal visible={showCongratsModal} transparent={true} animationType="fade">
-          <View style={styles.modalOverlay2}>
-            <View style={styles.customAlertContainer2}>
-              <Text style={styles.customAlertTitle2}>🎉 Parabéns! 🎉</Text>
-              
-                <Text style={{ fontFamily: 'IBM-Plex-Mono', fontSize: 16, marginBottom: 10, color: COLORS.primary }}>Você concluiu com sucesso!</Text> <Text style={styles.customAlertMessage2}> Cada desafio superado é um degrau rumo a um futuro brilhante.
-                Continue evoluindo com determinação, pois o sucesso é construído um passo de cada vez. Lembre-se: o futuro é de quem nunca para de crescer! 
-              </Text>
-
-              <Pressable
-                style={[styles.alertButton2, styles.confirmButton]}
-                onPress={() => {
-                  setShowCongratsModal(false);
-                  router.replace("/quiz"); 
-                }}
-              >
-                <Text style={styles.alertButtonText2}>OK</Text>
+              <Pressable onPress={goToHome} style={styles.backButton}>
+                <MaterialCommunityIcons name="exit-to-app" style={styles.iconHome} />
+                <Text style={styles.backButtonText}>Voltar para home</Text>
               </Pressable>
+
             </View>
-          </View>
-        </Modal>
+          </Modal>
 
 
 
@@ -390,41 +363,70 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
 
 
 
+          <Modal visible={showCongratsModal} transparent={true} animationType="fade">
+            <View style={styles.modalOverlay2}>
+              <View style={styles.customAlertContainer2}>
+                <Text style={styles.customAlertTitle2}>🎉 Parabéns! 🎉</Text>
 
+                <Text style={{ fontFamily: 'IBM-Plex-Mono', fontSize: 16, marginBottom: 10, color: COLORS.primary }}>Você concluiu com sucesso!</Text> <Text style={styles.customAlertMessage2}> Cada desafio superado é um degrau rumo a um futuro brilhante.
+                  Continue evoluindo com determinação, pois o sucesso é construído um passo de cada vez. Lembre-se: o futuro é de quem nunca para de crescer!
+                </Text>
 
-        <Modal
-          visible={showCustomAlert}
-          transparent={true}
-          animationType="fade"
-        >
-          <View style={styles.modalOverlay}>
-            <View style={styles.customAlertContainer}>
-              <Text style={styles.customAlertTitle}>Confirmar</Text>
-              <Text style={styles.customAlertMessage}>
-                Você realmente quer voltar à página inicial?
-              </Text>
-              <View style={styles.customAlertButtons}>
                 <Pressable
-                  style={[styles.alertButton, styles.cancelButton]}
-                  onPress={() => setShowCustomAlert(false)}
-                >
-                  <Text style={styles.alertButtonText}>Cancelar</Text>
-                </Pressable>
-                <Pressable
-                  style={[styles.alertButton, styles.confirmButton]}
+                  style={[styles.alertButton2, styles.confirmButton]}
                   onPress={() => {
-                    setShowCustomAlert(false);
-                    router.replace('/quiz');
+                    setShowCongratsModal(false);
+                    router.replace("/quiz");
                   }}
                 >
-                  <Text style={styles.alertButtonText}>Sim</Text>
+                  <Text style={styles.alertButtonText2}>OK</Text>
                 </Pressable>
               </View>
             </View>
-          </View>
-        </Modal>
+          </Modal>
 
-      </View>
+
+
+
+
+
+
+
+
+          <Modal
+            visible={showCustomAlert}
+            transparent={true}
+            animationType="fade"
+          >
+            <View style={styles.modalOverlay}>
+              <View style={styles.customAlertContainer}>
+                <Text style={styles.customAlertTitle}>Confirmar</Text>
+                <Text style={styles.customAlertMessage}>
+                  Você realmente quer voltar à página inicial?
+                </Text>
+                <View style={styles.customAlertButtons}>
+                  <Pressable
+                    style={[styles.alertButton, styles.cancelButton]}
+                    onPress={() => setShowCustomAlert(false)}
+                  >
+                    <Text style={styles.alertButtonText}>Cancelar</Text>
+                  </Pressable>
+                  <Pressable
+                    style={[styles.alertButton, styles.confirmButton]}
+                    onPress={() => {
+                      setShowCustomAlert(false);
+                      router.replace('/quiz');
+                    }}
+                  >
+                    <Text style={styles.alertButtonText}>Sim</Text>
+                  </Pressable>
+                </View>
+              </View>
+            </View>
+          </Modal>
+
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -432,6 +434,10 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
+  },
+  scrollContainer: {
+    flexGrow: 1, // Permite que o conteúdo do ScrollView cresça
+    backgroundColor: COLORS.background, // Fundo azul
   },
   container: {
     flex: 1,
@@ -470,9 +476,9 @@ const styles = StyleSheet.create({
     color: COLORS.white,
     fontFamily: 'LuckiestGuy-Regular',
     fontSize: 24,
-    alignItems:'center',
-    justifyContent:'center',
-    alignContent:'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignContent: 'center',
     textAlign: 'center',
     maxWidth: '95%',
     marginTop: 10,
