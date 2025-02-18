@@ -59,13 +59,12 @@ export default function Screen() {
       <View style={styles.cxSubtitulo}>
         <Text style={styles.p}>
           Esse app é seu guia no início do programa jovem aprendiz, com
-          informações, ferramentas interativas e atividades para tornar seu
-          aprendizado mais prático.
+          informações, ferramentas interativas e atividades para lhe ajudar nessa jornada.
         </Text>
       </View>
 
       <View style={styles.cxGeral}>
-        <Text style={styles.h1Inferior}>Personalize sua experiência:</Text>
+        <Text style={styles.h1Inferior2}>Personalize sua experiência:</Text>
         <NameInput onSave={saveNameToState} />
         <Text style={styles.h1Inferior}>Escolha seu avatar:</Text>
         <CarrosselAvatar
@@ -77,11 +76,12 @@ export default function Screen() {
       </View>
 
       <View style={styles.logo}>
-        <Image
+      <Image
           resizeMode="contain"
           style={styles.imgLogo}
-          source={require("../assets/logo-senac.png")}
+          source={require("../assets/images/conectar.png")}
         />
+       <Text style={styles.logoText}>Conecta Aprendiz</Text>
       </View>
     </SafeAreaView>
   );
@@ -130,6 +130,17 @@ const styles = StyleSheet.create({
     paddingBottom: 10, // Espaçamento inferior
     
   },
+  h1Inferior2: {
+    fontFamily: "LuckiestGuy",
+    fontSize: 20,
+    marginBottom: 10,
+    color: "#F7941D",
+    textAlign: "left", // Garante alinhamento consistente
+    flexShrink: 1,     // Permite que o texto seja reduzido para evitar quebra
+    width: "100%",     // Ocupa toda a largura disponível
+    paddingBottom: 10, // Espaçamento inferior
+    
+  },
   p: {
     color: "#044B8B",
     fontFamily: "IBMPlexMonoMedium",
@@ -161,9 +172,21 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 70,
     backgroundColor: "#044B8B",
+    flexDirection: "row",
+  },
+  logoText: {
+    color: "#ffffffff",
+    width:90,
+    textAlign: "center",
+    fontFamily: "LuckiestGuy",
+    fontSize: 18,
+    
   },
   imgLogo: {
-    width: 90,
-    height: 100,
+    width: 35,
+    height: 40,
+    resizeMode: "contain",
+   
+    
   },
 });
