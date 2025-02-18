@@ -3,7 +3,7 @@ import { Video } from "../types/videosTypes";
 export const videos: Video[] = [
     {
         id: 1,
-        video: 'https://youtu.be/h3bb7WJKcAw',
+        video: 'https://youtube.com/shorts/xd7wXsm71r4',
         titulo: 'Assista: Ativando legendas no YouTube'
 
     },
@@ -47,13 +47,11 @@ export const videos: Video[] = [
         video: 'https://youtu.be/TMLOZqWY8dU',
         titulo: 'Assista: Jornada de Sucesso Jovens Aprendizes'
     },
-    /*
     {
         id: 10,
-        video: 'https://www.youtube.com/watch?v=XIcnpKo3UMs',
-        titulo: 'Conecta Aprendiz'
+        video: 'https://youtu.be/42Og_2slKJQ?feature=shared',
+        titulo: 'Ouça: Conecta Aprendiz'
     },
-    */
     {
         id: 11,
         video: 'https://www.youtube.com/watch?v=jZo1SN12EgM',
