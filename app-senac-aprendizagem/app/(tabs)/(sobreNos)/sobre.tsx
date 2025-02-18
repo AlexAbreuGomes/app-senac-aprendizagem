@@ -25,7 +25,7 @@ export default function Screen() {
             <ScrollView>
                 <View style={styles.containerImg}>
                     <Image
-                        source={require('../../../assets/img-conheca.png')}
+                        source={require('../../../assets/alunos/foto-4.jpeg')}
                         style={styles.img}
                         resizeMode="cover"
                     />
@@ -37,12 +37,11 @@ export default function Screen() {
                         style={styles.iconOne}
                     />
                     <Text style={styles.h1}>O que é o Conecta Aprendiz?</Text>
-                    <Text style={styles.h2}>O Conecta Aprendiz é um aplicativo desenvolvido por alunos do curso Técnico de
-                        Desenvolvimento de Sistemas do Senac-RN Zona Norte da turma 2023.14.109, em parceria com a turma
-                        08/2024 de Aprendizagem em Serviços de Supermercado também do CEP Zona
-                        Norte. O objetivo é oferecer suporte prático, dinâmico e motivador, tirando as
-                        dúvidas mais comuns dos aprendizes e proporcionando uma experiência de
-                        aprendizado acessível e enriquecedora.
+                    <Text style={styles.h2}>O Conecta Aprendiz é um aplicativo desenvolvido por alunos do curso Técnico de Desenvolvimento de Sistemas do Senac-RN Zona Norte da turma 2023.14.109, em parceria com a turma 08/2024 de Aprendizagem em Serviços de Supermercado também do CEP Zona Norte. 
+
+                        {"\n\n"}
+                        O objetivo é oferecer suporte prático, dinâmico e motivador, tirando as dúvidas mais comuns dos aprendizes e proporcionando uma experiência de aprendizado acessível e enriquecedora.
+                    
                     </Text>
                 </View>
 
@@ -84,7 +83,7 @@ export default function Screen() {
                             { name: 'Wesllen Ferreira', url: 'https://www.linkedin.com/in/wesllen-d-b-ferreira/' },
                             { name: 'Rafael Bezerra', url: 'https://www.linkedin.com/in/rafabsilva/' },
                             { name: 'Jean Carlo Costa', url: 'https://www.linkedin.com/in/jean-carlo-costa' },
-                            { name: 'Pedro Henrique', url: 'https://github.com/PedroHAXGDev' },
+                            { name: 'Pedro Henrique', url: 'https://www.linkedin.com/in/pedro-henrique-724778316' },
                             
                         ].map((developer, index) => (
                             <TouchableOpacity
@@ -150,7 +149,7 @@ const styles = StyleSheet.create({
 
     },
     iconOne: {
-        width: 55,
+        width: 55,  
         height: 53,
         resizeMode: "cover",
         marginBottom: 10,
@@ -180,7 +179,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         backgroundColor: '#044B8B',
         padding: 10
-
     },
     textThree: {
         width: '100%',

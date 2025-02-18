@@ -128,13 +128,16 @@ const styles = StyleSheet.create({
 
   title: {
     fontSize: 35,
-    width: screenWidth -20 ,
+    width: screenWidth,
     fontFamily: "LuckiestGuy",
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
     alignContent: "center",
     color: "#044B8B",
+    paddingLeft:10,
+    paddingRight:10
+  
 
   },
   description: {
