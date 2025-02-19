@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NameInput } from "../components/inputSaveName";
 import { router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { StyleSheet, Text, View, Image, Dimensions } from "react-native";
+import { LayoutAnimation ,StyleSheet, Text, View, Image, Dimensions, ActivityIndicator } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { ButtonGeneric } from "../components/button";
 import { CarrosselAvatar } from '../components/carrosselAvatares'; // Importando o componente CarrosselAvatar
@@ -12,25 +12,47 @@ import { CarrosselAvatares } from "../types/carrosselAvataresTypes";
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
 import { useFonts as IBMPlexMono, IBMPlexMono_400Regular, IBMPlexMono_700Bold, IBMPlexMono_500Medium } from "@expo-google-fonts/ibm-plex-mono";
 
+
 const screenWidth = Dimensions.get('window').width
 
 export default function Screen() {
   const [userName, setUserName] = useState<string>(""); // Estado para o nome do usuário
   const [selectedAvatar, setSelectedAvatar] = useState<CarrosselAvatares | null>(null); // Estado para o avatar selecionado
+  const [loading, setLoading] = useState(true); // Estado para exibir carregamento
+
+  // 🚀 Verifica se o usuário já tem cadastro ao iniciar o app
+  useEffect(() => {
+    const checkUser = async () => {
+      const storedName = await AsyncStorage.getItem("name");
+      if (storedName) {
+        setTimeout(() => {
+          router.replace("/home");
+        }, 100); // Pequeno delay para suavizar a transição
+      } else {
+        setLoading(false); // Se não tiver cadastro, exibe a tela normalmente
+      }
+    };
+
+    checkUser();
+  }, []);
 
   const start = async () => {
     try {
       if (userName) {
-        await AsyncStorage.setItem("name", userName); // Salva o nome
+        await AsyncStorage.setItem("name", userName);
       }
       if (selectedAvatar) {
-        await AsyncStorage.setItem("selectedAvatar", JSON.stringify(selectedAvatar)); // Salva o avatar selecionado
+        await AsyncStorage.setItem("selectedAvatar", JSON.stringify(selectedAvatar));
       }
-      router.replace("/home"); // Redireciona para a próxima página
+      
+      LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+      router.replace("/home");
     } catch (error) {
       console.error("Erro ao salvar dados:", error);
     }
   };
+
+  
 
   const saveNameToState = (name: string) => {
     setUserName(name);
@@ -76,12 +98,12 @@ export default function Screen() {
       </View>
 
       <View style={styles.logo}>
-      <Image
+        <Image
           resizeMode="contain"
           style={styles.imgLogo}
           source={require("../assets/images/conectar.png")}
         />
-       <Text style={styles.logoText}>Conecta Aprendiz</Text>
+        <Text style={styles.logoText}>Conecta Aprendiz</Text>
       </View>
     </SafeAreaView>
   );
@@ -92,27 +114,32 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-between",
     alignItems: "center",
-  
+
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
   cxBemVindo: {
     justifyContent: "flex-start",
     width: "100%",
     padding: 10,
     marginTop: 40,
-    
+
   },
   cxSubtitulo: {
     justifyContent: "center",
     alignItems: "center",
     alignContent: "center",
     width: "90%",
-    
+
   },
   cxGeral: {
     justifyContent: "center",
     alignItems: "flex-start",
     width: "85%",
-   
+
   },
   h1Superior: {
     fontFamily: "LuckiestGuy",
@@ -128,7 +155,7 @@ const styles = StyleSheet.create({
     flexShrink: 1,     // Permite que o texto seja reduzido para evitar quebra
     width: "100%",     // Ocupa toda a largura disponível
     paddingBottom: 10, // Espaçamento inferior
-    
+
   },
   h1Inferior2: {
     fontFamily: "LuckiestGuy",
@@ -139,7 +166,7 @@ const styles = StyleSheet.create({
     flexShrink: 1,     // Permite que o texto seja reduzido para evitar quebra
     width: "100%",     // Ocupa toda a largura disponível
     paddingBottom: 10, // Espaçamento inferior
-    
+
   },
   p: {
     color: "#044B8B",
@@ -176,17 +203,17 @@ const styles = StyleSheet.create({
   },
   logoText: {
     color: "#ffffffff",
-    width:90,
+    width: 90,
     textAlign: "center",
     fontFamily: "LuckiestGuy",
     fontSize: 18,
-    
+
   },
   imgLogo: {
     width: 35,
     height: 40,
     resizeMode: "contain",
-   
-    
+
+
   },
 });
