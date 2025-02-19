@@ -5,20 +5,20 @@
     "version": "1.0.0",
     "scheme": "senac-aprendizagem",
     "orientation": "portrait",
-    "icon": "./assets/icone_conectaAprendiz.jpeg",
+    "icon": "./assets/images/splash_logo.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/icone_conectaAprendiz.jpeg",
-      "resizeMode": "contain",
-      "backgroundColor": "#fff"
+      "image": "./assets/images/splash_logo.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#044B8B"
     },
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/icone_conectaAprendiz.jpeg",
+        "foregroundImage": "./assets/images/splash_logo.png",
         "backgroundColor": "#b7e4c7"
       },
       "package": "com.alexdevmobile007.senacaprendizagem"

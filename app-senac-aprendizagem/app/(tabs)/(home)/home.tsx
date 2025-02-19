@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
   fistBox: {
     justifyContent: "center",
     width: screenWidth - 20,
-    height: 90,
+    
     backgroundColor: "#FFFFFF", // Fundo branco
     borderRadius: 20,
     padding: 10,
@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
     color: "#044B8B",
     textAlign: "left",
     fontFamily: "LuckiestGuy",
-    width: '85%'
+    width: '80%',
   },
   userImage: {
     width: 50,
@@ -224,7 +224,7 @@ const styles = StyleSheet.create({
   },
 
   posicaoNome: {
-    width: "50%",
+    width: "75%",
     flexDirection: "row",
     alignContent: "center", // Deixa os pontos e conteúdos lado a lado
     justifyContent: "flex-start",
