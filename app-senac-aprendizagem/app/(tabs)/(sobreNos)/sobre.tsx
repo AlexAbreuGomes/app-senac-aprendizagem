@@ -53,7 +53,7 @@ export default function Screen() {
                     <Text style={styles.h1}>Por trás do Conecta Aprendiz</Text>
 
                     <Text style={styles.h2}>
-                        A ideia surgiu ao identificar a necessidade de esclarecer as dúvidas mais comuns dos aprendizes, como por exemplo: primeiro dia no Senac, primeiro dia na empresa, timidez, lidando com o público, ata, lei de aprendizagem e etc.
+                        A ideia surgiu ao identificar a necessidade de esclarecer as dúvidas mais comuns dos aprendizes, como por exemplo: primeiro dia no curso, primeiro dia na empresa, timidez, lidando com o público, ata, lei de aprendizagem e etc.
                         {"\n\n"}
 
                         O Conecta Aprendiz visa também trazer um apoio socioemocional aos iniciantes, buscando uma conexão emocional. Através dos vídeos de experiência na aprendizagem dos aprendizes concluintes dessa jornada, mostramos que eles também vivenciaram situações de medo, ansiedade, dentre outros, mas que, com apoio, conseguiram vencer.

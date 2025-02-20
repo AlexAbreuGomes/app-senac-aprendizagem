@@ -167,9 +167,10 @@ Integrada ao eSocial, a carteira digital elimina a necessidade do documento fís
 
 O eSocial (Sistema de Escrituração Digital das Obrigações Fiscais, Previdenciárias e Trabalhistas) é um sistema do governo federal que unifica o envio de informações trabalhistas, previdenciárias e fiscais das empresas em uma plataforma digital. 
 
-Ele substitui diversos formulários e obrigações acessórias, facilitando a fiscalização e garantindo maior transparência nas relações de trabalho. Com o eSocial, empregadores comunicam eventos como admissões, demissões, folhas de pagamento e afastamentos de forma padronizada, reduzindo erros e burocracias. 
+Ele substitui diversos formulários e obrigações necessárias, facilitando a fiscalização e garantindo maior transparência nas relações de trabalho. Com o eSocial, empregadores comunicam eventos como admissões, demissões, folhas de pagamento e afastamentos de forma padronizada, reduzindo erros e burocracias.
 
-Fonte: Gov.br`,
+Fonte: Governo Federal
+`,
     icon: require("../assets/icons8-communication-96.png"),
     onPress: () => console.log("Resolução de Problemas"),
   },
