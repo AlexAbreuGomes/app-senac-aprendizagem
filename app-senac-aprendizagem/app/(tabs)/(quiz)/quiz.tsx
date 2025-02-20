@@ -112,7 +112,7 @@ export default function Screen() {
           <Text style={styles.title}>Quiz do Aprendizado</Text>
           <Text style={styles.description}>
             Mostre seu conhecimento!
-            <Text style={{ fontFamily: "IBMPlexMonoBold", fontSize: 16 }}>
+            <Text style={{ fontFamily: "IBMPlexMonoBold", fontSize: 20,  }}>
               Toque nas moedas para começar, responda ao quiz e, ao completar, você desbloqueia os próximos.
             </Text>
             Acumule pontos, complete os três desafios.
