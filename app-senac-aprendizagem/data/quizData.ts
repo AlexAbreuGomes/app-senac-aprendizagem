@@ -34,10 +34,10 @@ const quizData = [
     options: [
       'Sim, ele pode ser aprendiz várias vezes na mesma empresa, sem limite de contratos.',
       'Não, ele só pode ser aprendiz uma vez, em qualquer empresa.',
-      'Sim, desde que seja em um curso de aprendizagem diferente.',
+      'Sim, desde que seja em um curso de aprendizagem diferente, e respeitando o limite de dois contratos de 1 ano cada.',
       'Não, após o primeiro contrato, o jovem deve obrigatoriamente ser efetivado.'
     ],
-    correct_option: 'Sim, desde que seja em um curso de aprendizagem diferente.',
+    correct_option: 'Sim, desde que seja em um curso de aprendizagem diferente, e respeitando o limite de dois contratos de 1 ano cada.',
   },
   {
     question: 'O jovem pode fazer o mesmo curso de aprendizagem mais de uma vez?',
@@ -73,11 +73,11 @@ const quizData = [
     question: 'Quais são as verbas rescisórias devidas após o término do contrato de aprendizagem?',
     options: [
       'Em qualquer rescisão, o aprendiz recebe apenas o salário do mês.',
-      'Se for demitido sem justa causa, o aprendiz tem direito ao saldo de salário, aviso prévio e FGTS.',
+      'Tem direito ao saldo de salário, 13º salário, férias, e FGTS.',
       'O aprendiz nunca recebe verbas rescisórias, pois o contrato é temporário.',
       'Independentemente do motivo da rescisão, o aprendiz recebe todos os direitos de um trabalhador efetivo.'
     ],
-    correct_option: 'Se for demitido sem justa causa, o aprendiz tem direito ao saldo de salário, aviso prévio e FGTS.',
+    correct_option: 'Tem direito ao saldo de salário, 13º salário, férias, e FGTS.',
   },
   {
     question: 'Qual deve ser o salário do aprendiz?',
