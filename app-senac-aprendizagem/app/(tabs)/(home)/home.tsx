@@ -143,6 +143,7 @@ export default function Screen() {
           renderItem={({ item }) => <Carrossel data={item} />}
           keyExtractor={(item) => item.id.toString()}
           horizontal
+          showsHorizontalScrollIndicator={false}
         />
       </View>
 
