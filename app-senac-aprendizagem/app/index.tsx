@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     justifyContent: "center",
     alignItems: "center",
-    paddingBottom: 80, // Garante espaço suficiente para o footer e botão
+    paddingBottom: 20, // Garante espaço suficiente para o footer e botão
   },
   cxBemVindo: {
     justifyContent: "flex-start",
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
   cxGeral: {
     justifyContent: "center",
     alignItems: "center",
-    width: "85%",
+    width: "100%",
   },
   h1Superior: {
     fontFamily: "LuckiestGuy",
@@ -155,6 +155,7 @@ const styles = StyleSheet.create({
     textAlign: "left",
     width: "100%",
     paddingBottom: 10,
+    paddingLeft: 20,
   },
   h1Inferior2: {
     fontFamily: "LuckiestGuy",
@@ -165,6 +166,7 @@ const styles = StyleSheet.create({
     width: "100%",
     paddingTop: 20,
     paddingBottom: 10,
+    paddingLeft: 20,
   },
   p: {
     color: "#044B8B",
