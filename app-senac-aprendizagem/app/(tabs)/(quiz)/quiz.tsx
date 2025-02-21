@@ -3,7 +3,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { StyleSheet, Text, Pressable, View, StatusBar, Image, Animated } from "react-native";
 import React, { useCallback, useState, useEffect, useRef } from "react";
 import { Ionicons } from "@expo/vector-icons"; // Importando o ícone de check
-import { getData, resetData, resetProgress } from "../../utils/storage";
+import { clearAppCache, getData, resetData, resetProgress } from "../../utils/storage";
 import { COLORS } from "../../../constants/colors";
 import { ResetButton,  } from "../../../components/resetButton";
 import { Dimensions } from "react-native";
@@ -125,7 +125,7 @@ export default function Screen() {
           </View>
         </View>
         <View style={styles.resetSection}>
-          <ResetButton onReset={(resetData)} title="Resetar Progresso" />
+          <ResetButton onReset={(clearAppCache)} title="Resetar Progresso" />
         </View>
       </SafeAreaView>
     </>

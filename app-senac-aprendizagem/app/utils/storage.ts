@@ -50,3 +50,11 @@ export const resetData = async () => {
   }
   
 }
+export const clearAppCache = async () => {
+  try {
+    await AsyncStorage.clear();
+    
+  } catch (e) {
+    console.error("Erro ao limpar o cache do aplicativo:", e);
+  }
+};

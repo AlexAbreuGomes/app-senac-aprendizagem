@@ -133,6 +133,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignContent: "center",
     width: "90%",
+    height: "20%",
 
   },
   cxGeral: {

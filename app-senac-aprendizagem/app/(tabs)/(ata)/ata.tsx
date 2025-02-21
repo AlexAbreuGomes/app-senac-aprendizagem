@@ -41,15 +41,14 @@ export default function Screen() {
             acordo com o plano pedagógico do curso e que contribuam para o desenvolvimento
             das competências previstas.
             {"\n\n"}
-            Além de ser um registro formal das ações do aprendiz, a ata permite que o instrutor 
-            acompanhe o progresso do aluno no contexto profissional, identifique possíveis
-            lacunas e proponha intervenções, se necessário. Assim, asseguramos que o processo
-            de aprendizagem seja significativo e promova o crescimento pessoal e profissional do
-            aprendiz.
+            Além de ser um registro formal das ações do aprendiz, a ata permite que o instrutor acompanhe
+            o progresso do aluno no contexto profissional, identifique possíveis lacunas e proponha intervenções,
+            se necessário. Assim, asseguramos que o progresso de aprendizagem seja significativo e promova o crescimento 
+            pessoal e profissional do aprendiz.
             {"\n\n"}
-            O uso da ata reforça a parceria entre a instituição de ensino, a empresa e o aprendiz, criando um
-            canal de comunicação e promovendo a excelência no desenvolvimento de
-            competências no âmbito da Educação Profissional.
+            O uso da ata reforça a parceria entre a instituição de ensino, 
+            a empresa e o aprendiz, criando um canal de comunicação e promovendo 
+            a excelência no desenvolvimento de competências no âmbito da Educação Profissional.
           </Text>
         </View>
 
