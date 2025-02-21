@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NameInput } from "../components/inputSaveName";
 import { router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { LayoutAnimation, StyleSheet, Text, View, Image, ScrollView, Dimensions } from "react-native";
+import { LayoutAnimation, StyleSheet, Text, View, Image, ScrollView, Dimensions, KeyboardAvoidingView, Platform } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { ButtonGeneric } from "../components/button";
 import { CarrosselAvatar } from '../components/carrosselAvatares';
@@ -66,40 +66,46 @@ export default function Screen() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar />
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <View style={styles.cxBemVindo}>
-          <Text style={styles.h1Superior}>BEM-VINDO À SUA JORNADA DE APRENDIZADO!</Text>
-        </View>
+      
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={styles.keyboardAvoidingView}
+      >
+        <ScrollView contentContainerStyle={styles.scrollContainer}>
+          <View style={styles.cxBemVindo}>
+            <Text style={styles.h1Superior}>BEM-VINDO À SUA JORNADA DE APRENDIZADO!</Text>
+          </View>
 
-        <View style={styles.cxSubtitulo}>
-          <Text style={styles.p}>
-            Esse app é seu guia no início do programa jovem aprendiz, com
-            informações, ferramentas interativas e atividades para lhe ajudar nessa jornada.
-          </Text>
-        </View>
+          <View style={styles.cxSubtitulo}>
+            <Text style={styles.p}>
+              Esse app é seu guia no início do programa jovem aprendiz, com
+              informações, ferramentas interativas e atividades para lhe ajudar nessa jornada.
+            </Text>
+          </View>
 
-        <View style={styles.cxGeral}>
-          <Text style={styles.h1Inferior2}>Personalize sua experiência:</Text>
-          <NameInput onSave={saveNameToState} />
-          <Text style={styles.h1Inferior}>Escolha seu avatar:</Text>
-          <CarrosselAvatar
-            data={avatares}
-            onSelectAvatar={handleSelectAvatar}
-            selectedAvatarId={selectedAvatar?.id}
+          <View style={styles.cxGeral}>
+            <Text style={styles.h1Inferior2}>Personalize sua experiência:</Text>
+            <NameInput onSave={saveNameToState} />
+            <Text style={styles.h1Inferior}>Escolha seu avatar:</Text>
+            <CarrosselAvatar
+              data={avatares}
+              onSelectAvatar={handleSelectAvatar}
+              selectedAvatarId={selectedAvatar?.id}
+            />
+            <ButtonGeneric onpress={start} style={styles.button} name="Começar" />
+          </View>
+        </ScrollView>
+
+        {/* Footer fixo, mas sem `position: absolute` */}
+        <View style={styles.logo}>
+          <Image
+            resizeMode="contain"
+            style={styles.imgLogo}
+            source={require("../assets/images/conectar.png")}
           />
-          <ButtonGeneric onpress={start} style={styles.button} name="Começar" />
+          <Text style={styles.logoText}>Conecta Aprendiz</Text>
         </View>
-      </ScrollView>
-
-      {/* Logo no footer */}
-      <View style={styles.logo}>
-        <Image
-          resizeMode="contain"
-          style={styles.imgLogo}
-          source={require("../assets/images/conectar.png")}
-        />
-        <Text style={styles.logoText}>Conecta Aprendiz</Text>
-      </View>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 }
@@ -109,11 +115,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#ffffff",
   },
+  keyboardAvoidingView: {
+    flex: 1,
+  },
   scrollContainer: {
     flexGrow: 1,
-    justifyContent: "flex-start",
+    justifyContent: "center",
     alignItems: "center",
-   
+    paddingBottom: 80, // Garante espaço suficiente para o footer e botão
   },
   cxBemVindo: {
     justifyContent: "flex-start",
@@ -126,11 +135,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     width: "90%",
-    height: "20%"
+    height: "20%",
   },
   cxGeral: {
     justifyContent: "center",
-    alignItems: "flex-start",
+    alignItems: "center",
     width: "85%",
   },
   h1Superior: {
@@ -155,6 +164,7 @@ const styles = StyleSheet.create({
     textAlign: "left",
     width: "100%",
     paddingTop: 20,
+    paddingBottom: 10,
   },
   p: {
     color: "#044B8B",
@@ -172,7 +182,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#F7941D",
     borderRadius: 30,
-    marginTop: 40,
+    marginTop: 20,
     marginBottom: 10,
     elevation: 5,
     shadowColor: "#044B8B",
@@ -181,8 +191,6 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
   },
   logo: {
-    position: "absolute",
-    bottom: 0,
     width: "100%",
     height: 70,
     backgroundColor: "#044B8B",
@@ -203,4 +211,3 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
 });
-
