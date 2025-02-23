@@ -21,7 +21,7 @@ export const NameInput: React.FC<NameInputProps> = ({ onSave }) => {
         style={styles.input}
         placeholder="Digite seu nome..."
         placeholderTextColor="#114c8099"
-        maxLength={200} // Limita a entrada a 20 caracteres
+        maxLength={15} // Limita a entrada a 20 caracteres
         onChangeText={handleChange} // Chama a função passada por props
       />
     </SafeAreaView>
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     borderColor: '#044B8B',
     borderWidth: 1,
     borderRadius: 15,
-    marginTop: - 35,
+    marginTop: - 40,
     marginBottom: 20,
     paddingLeft: 10,
     fontSize: 20,

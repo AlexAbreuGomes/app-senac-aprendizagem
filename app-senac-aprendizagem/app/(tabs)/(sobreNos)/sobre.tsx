@@ -1,10 +1,14 @@
 import { SafeAreaView } from "react-native-safe-area-context"
-import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity } from "react-native"
+import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, Dimensions } from "react-native"
 import { StatusBar } from "expo-status-bar"
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
 import { useFonts as IBMPlexMono, IBMPlexMono_400Regular, IBMPlexMono_700Bold, IBMPlexMono_500Medium } from "@expo-google-fonts/ibm-plex-mono";
 import { Linking } from "react-native";
 import React from "react";
+import { ButtonGeneric } from "../../../components/button";
+
+
+const screenWidth = Dimensions.get('window').width;
 
 export default function Screen() {
 
@@ -116,12 +120,14 @@ export default function Screen() {
                 </View>
 
                 <View style={styles.formulario}>
-                    <Text style={styles.h3}>Gostou do app? Deixe sua opinião no </Text>
-                    <TouchableOpacity onPress={() => Linking.openURL('https://forms.gle/U7FGFs3SeCi16jh6A')}>
-                        <Text style={styles.linkText2}>formulário de feedback</Text>
-                    </TouchableOpacity>
-                </View>
-
+    <Text style={styles.h3}>Gostou do app? Deixe sua opinião no </Text>
+    
+    <ButtonGeneric 
+        onPress={() => Linking.openURL('https://forms.gle/U7FGFs3SeCi16jh6A')} style={styles.button}
+        name="Formulário de Feedback"
+        
+    />
+</View>
             </ScrollView>
         </SafeAreaView>
     )
@@ -239,6 +245,21 @@ const styles = StyleSheet.create({
         textDecorationLine: 'underline',  // Deixa claro que é um link
         fontFamily: "IBMPlexMonoRegular",
         marginBottom: 15
-    }
+    },
+    button: {
+        width: screenWidth * 0.80,
+        height: 50,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#F7941D",
+        borderRadius: 30,
+        marginTop: 20,
+        marginBottom: 10,
+        elevation: 5,
+        shadowColor: "#044B8B",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+      },
 
 })

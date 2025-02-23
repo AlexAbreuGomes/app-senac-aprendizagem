@@ -44,7 +44,7 @@ export const videos: Video[] = [
     },
     {
         id: 9,
-        video: 'https://youtu.be/TMLOZqWY8dU',
+        video: 'https://youtu.be/Soqh7nsZAr4?feature=shared',
         titulo: 'Assista: Jornada de Sucesso Jovens Aprendizes'
     },
     {

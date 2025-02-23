@@ -38,7 +38,7 @@ export default function Screen (){
                 />
             </View>
             <View style={styles.viewFlatlist}>
-           <ButtonGeneric onpress={openGoogleForm} style={styles.button} name="Ajuda" />
+           <ButtonGeneric onPress={openGoogleForm} style={styles.button} name="Ajuda" />
            </View>
         </SafeAreaView>
     )
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
       },
       button: {
         width: screenWidth * 0.90,
-        height: 70,
+        height: 50,
         justifyContent: "center",
         alignItems: "center",
         textAlign: "center",

@@ -4,14 +4,14 @@ import React from 'react';
 const screenWidth = Dimensions.get('window').width
 
 type buttonProps = {
-    onpress: () => void
+    onPress: () => void
     style?: any
     name: string
     url?: string
 };
-export const ButtonGeneric = ({onpress, style, name}: buttonProps) => {
+export const ButtonGeneric = ({onPress, style, name}: buttonProps) => {
     return (
-        <Pressable onPress={onpress} style={style}>
+        <Pressable onPress={onPress} style={style}>
             <Text style={[styles.button,  { fontFamily: 'LuckiestGuy' }]}>{name}</Text>
         </Pressable>
     );

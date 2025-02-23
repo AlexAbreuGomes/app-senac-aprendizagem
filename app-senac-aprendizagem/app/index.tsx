@@ -67,10 +67,6 @@ export default function Screen() {
     <SafeAreaView style={styles.safeArea}>
       <StatusBar />
       
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={styles.keyboardAvoidingView}
-      >
         <ScrollView contentContainerStyle={styles.scrollContainer}>
           <View style={styles.cxBemVindo}>
             <Text style={styles.h1Superior}>BEM-VINDO À SUA JORNADA DE APRENDIZADO!</Text>
@@ -78,8 +74,8 @@ export default function Screen() {
 
           <View style={styles.cxSubtitulo}>
             <Text style={styles.p}>
-              Esse app é seu guia no início do programa jovem aprendiz, com
-              informações, ferramentas interativas e atividades para lhe ajudar nessa jornada.
+            Esse app é seu guia no início do programa jovem aprendiz, com informações,
+                ferramentas interativas e atividades para lhe ajudar nessa jornada
             </Text>
           </View>
 
@@ -92,7 +88,7 @@ export default function Screen() {
               onSelectAvatar={handleSelectAvatar}
               selectedAvatarId={selectedAvatar?.id}
             />
-            <ButtonGeneric onpress={start} style={styles.button} name="Começar" />
+            <ButtonGeneric onPress={start} style={styles.button} name="Começar" />
           </View>
         </ScrollView>
 
@@ -105,7 +101,6 @@ export default function Screen() {
           />
           <Text style={styles.logoText}>Conecta Aprendiz</Text>
         </View>
-      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 }
@@ -115,12 +110,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#ffffff",
   },
-  keyboardAvoidingView: {
-    flex: 1,
-  },
+  
   scrollContainer: {
     flexGrow: 1,
-    justifyContent: "center",
+    justifyContent: "space-evenly",
     alignItems: "center",
     paddingBottom: 20, // Garante espaço suficiente para o footer e botão
   },
@@ -128,14 +121,12 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     width: "100%",
     padding: 10,
-    marginTop: 40,
     marginBottom: 10,
   },
   cxSubtitulo: {
     justifyContent: "center",
     alignItems: "center",
     width: "90%",
-    height: "20%",
   },
   cxGeral: {
     justifyContent: "center",
@@ -152,10 +143,11 @@ const styles = StyleSheet.create({
     fontFamily: "LuckiestGuy",
     fontSize: 20,
     color: "#F7941D",
-    textAlign: "left",
+    textAlign: "justify",
     width: "100%",
     paddingBottom: 10,
-    paddingLeft: 20,
+    paddingLeft: 40,
+    
   },
   h1Inferior2: {
     fontFamily: "LuckiestGuy",
@@ -165,17 +157,16 @@ const styles = StyleSheet.create({
     textAlign: "left",
     width: "100%",
     paddingTop: 20,
-    paddingBottom: 10,
-    paddingLeft: 20,
+    paddingLeft: 40,
+    
   },
   p: {
     color: "#044B8B",
     fontFamily: "IBMPlexMonoMedium",
-    fontSize: 20,
-    textAlign: "center",
-    flexWrap: "wrap",
-    width: "100%",
-    lineHeight: 25,
+    fontSize: 18,
+    textAlign: "justify",
+    width: "85%",
+    lineHeight: 24,
   },
   button: {
     width: screenWidth * 0.85,

@@ -188,7 +188,7 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
             disabled={isOptionsDisabled}
             style={({ pressed }) => [
               styles.optionButton,
-              pressed && styles.pressedOption, // Adiciona estilo quando pressionado
+              pressed && styles.pressedOption, 
               {
                 borderColor:
                   option === correctOption
@@ -300,27 +300,13 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
                   {generateFinalMessage(score, allQuestions.length)}
                 </Text>
 
-                {/* <Button
-                title="Reiniciar Quiz"
-                onPress={restartQuiz}
-                style={styles.restartButton}
-              /> */}
 
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
 
                   <Pressable style={styles.restartButton} onPress={restartQuiz}>
                     <MaterialIcons name="restart-alt" size={50} color="#ffffff" />
-                    {/* <Text style={styles.restartButtonText}>Reiniciar</Text> */}
+                    
                   </Pressable>
-
-                  {/* <Pressable
-                  onPress={goToNextLevel}
-                  style={[styles.nextLevelButton, isButtonDisabled && { opacity: 0.5 }]}
-                  disabled={isButtonDisabled}
-                >
-                  <Text style={styles.nextLevelText}>Próximo Nível</Text>
-                  <MaterialIcons name="navigate-next" size={35} color="#ffffff" />
-                </Pressable> */}
 
 
                   {level === 3 ? (
@@ -436,8 +422,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollContainer: {
-    flexGrow: 1, // Permite que o conteúdo do ScrollView cresça
-    backgroundColor: COLORS.background, // Fundo azul
+    flexGrow: 1, 
+    backgroundColor: COLORS.background,
   },
   container: {
     flex: 1,
