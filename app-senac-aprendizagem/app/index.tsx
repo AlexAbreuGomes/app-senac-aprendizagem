@@ -63,47 +63,62 @@ export default function Screen() {
     IBMPlexMonoMedium: IBMPlexMono_500Medium,
   });
 
+
   return (
     <SafeAreaView style={styles.safeArea}>
-      <StatusBar />
-      
+      <StatusBar backgroundColor="#ffffff" />
+
       <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        behavior="padding"
         style={styles.keyboardAvoidingView}
       >
-        <ScrollView contentContainerStyle={styles.scrollContainer}>
-          <View style={styles.cxBemVindo}>
-            <Text style={styles.h1Superior}>BEM-VINDO À SUA JORNADA DE APRENDIZADO!</Text>
-          </View>
+        <ScrollView 
+          contentContainerStyle={styles.scrollContainer}
+          keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator={false}
+        >
+          {/* Conteúdo Principal */}
+          <View style={styles.contentContainer}>
+            <View style={styles.header}>
+              <Text style={styles.title}>
+                BEM-VINDO À{'\n'}SUA JORNADA DE{'\n'}APRENDIZADO!
+              </Text>
+            </View>
 
-          <View style={styles.cxSubtitulo}>
-            <Text style={styles.p}>
-              Esse app é seu guia no início do programa jovem aprendiz, com
-              informações, ferramentas interativas e atividades para lhe ajudar nessa jornada.
-            </Text>
-          </View>
+            <View style={styles.descriptionBox}>
+              <Text style={styles.descriptionText}>
+                Esse app é seu guia no início do programa jovem aprendiz, com informações,
+                ferramentas interativas e atividades para lhe ajudar.
+              </Text>
+            </View>
 
-          <View style={styles.cxGeral}>
-            <Text style={styles.h1Inferior2}>Personalize sua experiência:</Text>
-            <NameInput onSave={saveNameToState} />
-            <Text style={styles.h1Inferior}>Escolha seu avatar:</Text>
-            <CarrosselAvatar
-              data={avatares}
-              onSelectAvatar={handleSelectAvatar}
-              selectedAvatarId={selectedAvatar?.id}
+            <View style={styles.customizationSection}>
+              <Text style={styles.sectionTitle}>PERSONALIZE SUA EXPERIÊNCIA:</Text>
+              <NameInput onSave={saveNameToState} />
+              
+              <Text style={[styles.sectionTitle, { marginTop: 20 }]}>ESCOLHA SEU AVATAR:</Text>
+              <CarrosselAvatar
+                data={avatares}
+                onSelectAvatar={handleSelectAvatar}
+                selectedAvatarId={selectedAvatar?.id}
+              />
+            </View>
+
+            <ButtonGeneric 
+              onpress={start} 
+              style={styles.startButton} 
+              name="ComeçAR" 
             />
-            <ButtonGeneric onpress={start} style={styles.button} name="Começar" />
           </View>
         </ScrollView>
 
-        {/* Footer fixo, mas sem `position: absolute` */}
-        <View style={styles.logo}>
+        {/* Footer Fixo */}
+        <View style={styles.footer}>
           <Image
-            resizeMode="contain"
-            style={styles.imgLogo}
+            style={styles.logoImage}
             source={require("../assets/images/conectar.png")}
           />
-          <Text style={styles.logoText}>Conecta Aprendiz</Text>
+          <Text style={styles.footerText}>Conecta Aprendiz</Text>
         </View>
       </KeyboardAvoidingView>
     </SafeAreaView>
@@ -113,103 +128,91 @@ export default function Screen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#ffffff",
+    backgroundColor: '#FFFFFF',
   },
   keyboardAvoidingView: {
     flex: 1,
+    position: 'relative',
   },
   scrollContainer: {
     flexGrow: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    paddingBottom: 20, // Garante espaço suficiente para o footer e botão
+    paddingBottom: 90, // Espaço para o footer
   },
-  cxBemVindo: {
-    justifyContent: "flex-start",
-    width: "100%",
-    padding: 10,
+  contentContainer: {
+    flex: 1,
+    alignItems: 'center',
+    paddingHorizontal: 16,
+  },
+  header: {
     marginTop: 40,
-    marginBottom: 10,
+    marginBottom: 30,
+    paddingHorizontal: 10,
   },
-  cxSubtitulo: {
-    justifyContent: "center",
-    alignItems: "center",
-    width: "90%",
-    height: "20%",
+  title: {
+    fontFamily: 'LuckiestGuy',
+    fontSize: 34,
+    color: '#044B8B',
+    textAlign: 'center',
+    lineHeight: 38,
+    letterSpacing: 0.5,
   },
-  cxGeral: {
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
+  descriptionBox: {
+    width: '100%',
+    marginBottom: 30,
+    paddingHorizontal: 10,
   },
-  h1Superior: {
-    fontFamily: "LuckiestGuy",
-    fontSize: 30,
-    color: "#044B8B",
-    textAlign: "center",
+  descriptionText: {
+    fontFamily: 'IBMPlexMonoMedium',
+    fontSize: 18,
+    color: '#044B8B',
+    textAlign: 'center',
+    lineHeight: 24,
   },
-  h1Inferior: {
-    fontFamily: "LuckiestGuy",
+  customizationSection: {
+    width: '100%',
+    paddingHorizontal: 10,
+  },
+  sectionTitle: {
+    fontFamily: 'LuckiestGuy',
     fontSize: 20,
-    color: "#F7941D",
-    textAlign: "left",
-    width: "100%",
-    paddingBottom: 10,
-    paddingLeft: 20,
+    color: '#F7941D',
+    marginBottom: 15,
+    paddingLeft: 8,
   },
-  h1Inferior2: {
-    fontFamily: "LuckiestGuy",
-    fontSize: 20,
-    marginBottom: 10,
-    color: "#F7941D",
-    textAlign: "left",
-    width: "100%",
-    paddingTop: 20,
-    paddingBottom: 10,
-    paddingLeft: 20,
-  },
-  p: {
-    color: "#044B8B",
-    fontFamily: "IBMPlexMonoMedium",
-    fontSize: 20,
-    textAlign: "center",
-    flexWrap: "wrap",
-    width: "100%",
-    lineHeight: 25,
-  },
-  button: {
-    width: screenWidth * 0.85,
+  startButton: {
+    width: screenWidth * 0.9,
     height: 70,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#F7941D",
+    backgroundColor: '#F7941D',
     borderRadius: 30,
-    marginTop: 20,
-    marginBottom: 10,
-    elevation: 5,
-    shadowColor: "#044B8B",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-  },
-  logo: {
-    width: "100%",
-    height: 70,
-    backgroundColor: "#044B8B",
-    flexDirection: "row",
+    marginVertical: 25,
+    elevation: 8,
     justifyContent: "center",
     alignItems: "center",
+
   },
-  logoText: {
+  footer: {
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
+    height: 70,
+    backgroundColor: '#044B8B',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 10,
+  },
+  logoImage: {
+    width: 40,
+    height: 40,
+    resizeMode: "contain",
+  },
+  footerText: {
     color: "#ffffff",
     width: 90,
     textAlign: "center",
     fontFamily: "LuckiestGuy",
     fontSize: 18,
-  },
-  imgLogo: {
-    width: 35,
-    height: 40,
-    resizeMode: "contain",
+    letterSpacing: 0.5,
+    marginTop: 5,
   },
 });
