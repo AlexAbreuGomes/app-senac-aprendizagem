@@ -66,12 +66,6 @@ export default function Screen() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar />
-      
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={styles.keyboardAvoidingView}
-      >
-        <ScrollView contentContainerStyle={styles.scrollContainer}>
           <View style={styles.cxBemVindo}>
             <Text style={styles.h1Superior}>BEM-VINDO À SUA JORNADA DE APRENDIZADO!</Text>
           </View>
@@ -94,7 +88,6 @@ export default function Screen() {
             />
             <ButtonGeneric onpress={start} style={styles.button} name="Começar" />
           </View>
-        </ScrollView>
 
         {/* Footer fixo, mas sem `position: absolute` */}
         <View style={styles.logo}>
@@ -105,7 +98,6 @@ export default function Screen() {
           />
           <Text style={styles.logoText}>Conecta Aprendiz</Text>
         </View>
-      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 }
@@ -114,33 +106,30 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: "#ffffff",
-  },
-  keyboardAvoidingView: {
-    flex: 1,
-  },
-  scrollContainer: {
-    flexGrow: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    paddingBottom: 20, // Garante espaço suficiente para o footer e botão
+    justifyContent: 'space-between',
+    borderWidth: 0,
   },
   cxBemVindo: {
     justifyContent: "flex-start",
     width: "100%",
     padding: 10,
     marginTop: 40,
-    marginBottom: 10,
+    borderWidth: 0,
   },
   cxSubtitulo: {
     justifyContent: "center",
     alignItems: "center",
-    width: "90%",
+    width: "100%",
     height: "20%",
+    borderWidth: 0
   },
   cxGeral: {
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
+    borderWidth: 1,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   h1Superior: {
     fontFamily: "LuckiestGuy",
