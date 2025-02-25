@@ -1,0 +1,20 @@
+Licença Proprietária
+
+Copyright (c) 2025 Alex de Abreu Gomes, Daniel Cruz, Jean Carlos, Rafael Bezerra, Wesllen D. B. Ferreira, Pedro Henrique, Tahlissa Vitoria.
+
+1. O código-fonte deste projeto é de propriedade exclusiva dos autores e está protegido por direitos autorais.
+   
+2. É **estritamente proibido**:
+   - Usar, copiar, modificar, adaptar, distribuir, vender ou sublicenciar este código de qualquer forma, para qualquer fim, sem a permissão expressa por escrito dos autores.
+   - Criar obras derivadas com base neste código.
+   - Redistribuir o código original ou modificado, de qualquer forma.
+
+3. O uso comercial deste código é **proibido**, a menos que expressamente autorizado pelos autores.
+
+4. Este código é fornecido **"no estado em que se encontra"**, sem qualquer garantia de qualquer tipo, expressa ou implícita, incluindo, mas não se limitando, a garantias de comercialização ou adequação a um propósito específico.
+
+5. Os autores não serão responsáveis por quaisquer danos diretos, indiretos, especiais, acidentais ou consequenciais resultantes do uso deste código.
+
+6. Quaisquer permissões concedidas pelos autores devem ser registradas e documentadas por escrito.
+
+Se você precisar de uma permissão explícita para algum uso ou distribuição, entre em contato com os autores.

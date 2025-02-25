@@ -1,3 +1,6 @@
+// Copyright (c) 2025 Alex de Abreu Gomes, Daniel Cruz, Jean Carlos, Rafael Bezerra, Wesllen D. B. Ferreira, Pedro Henrique, Tahlissa Vitoria.
+// Licensed under Proprietary License - All rights reserved. Unauthorized usage or distribution is prohibited.
+
 import AntDesign from "@expo/vector-icons/build/AntDesign";
 import Entypo from "@expo/vector-icons/build/Entypo";
 import { useRouter } from "expo-router";

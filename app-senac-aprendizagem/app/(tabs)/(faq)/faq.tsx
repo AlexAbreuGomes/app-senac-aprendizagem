@@ -1,3 +1,6 @@
+// Copyright (c) 2025 Alex de Abreu Gomes, Daniel Cruz, Jean Carlos, Rafael Bezerra, Wesllen D. B. Ferreira, Pedro Henrique, Tahlissa Vitoria.
+// Licensed under Proprietary License - All rights reserved. Unauthorized usage or distribution is prohibited.
+
 import { SafeAreaView } from "react-native-safe-area-context"
 import { StyleSheet,Text, View, FlatList, Linking, Dimensions } from "react-native"
 import { StatusBar } from "expo-status-bar"

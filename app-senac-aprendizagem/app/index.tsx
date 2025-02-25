@@ -1,3 +1,6 @@
+// Copyright (c) 2025 Alex de Abreu Gomes, Daniel Cruz, Jean Carlos, Rafael Bezerra, Wesllen D. B. Ferreira, Pedro Henrique, Tahlissa Vitoria.
+// Licensed under Proprietary License - All rights reserved. Unauthorized usage or distribution is prohibited.
+
 import React, { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NameInput } from "../components/inputSaveName";
@@ -74,8 +77,8 @@ export default function Screen() {
 
           <View style={styles.cxSubtitulo}>
             <Text style={styles.p}>
-            Esse app é seu guia no início do programa jovem aprendiz, com informações,
-                ferramentas interativas e atividades para lhe ajudar nessa jornada
+            Esse app é seu guia de início no programa de aprendizagem, com informações,
+            ferramentas interativas e atividades para lhe ajudar nessa jornada.
             </Text>
           </View>
 
@@ -123,11 +126,14 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 10,
   },
-  cxSubtitulo: {
-    justifyContent: "center",
-    alignItems: "center",
-    width: "90%",
-  },
+ 
+    cxSubtitulo: {
+      justifyContent: "center",
+      alignItems: "center",
+      width: "100%", // Antes estava 90%, o que pode estar limitando o texto
+      paddingHorizontal: 20, // Adiciona espaçamento lateral para evitar corte
+      marginBottom: 20,
+    },
   cxGeral: {
     justifyContent: "center",
     alignItems: "center",
@@ -162,10 +168,10 @@ const styles = StyleSheet.create({
   },
   p: {
     color: "#044B8B",
-    fontFamily: "IBMPlexMonoMedium",
     fontSize: 18,
-    textAlign: "justify",
-    width: "85%",
+    textAlign: "center", // Alterado de "justify" para "center" temporariamente
+    width: "100%", // Antes estava 85%, pode estar limitando o texto
+    paddingHorizontal: 20, // Adiciona espaçamento interno para evitar corte
     lineHeight: 24,
   },
   button: {
