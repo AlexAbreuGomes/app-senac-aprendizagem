@@ -44,7 +44,7 @@ export default function Screen() {
                         style={styles.iconOne}
                     />
                     <Text style={styles.h1}>O que é o Conecta Aprendiz?</Text>
-                    <Text style={styles.h2}>O Conecta Aprendiz é um aplicativo desenvolvido por alunos do curso Técnico de Desenvolvimento de Sistemas do Senac-RN Zona Norte da turma 2023.14.109, em parceria com a turma 08/2024 de Aprendizagem em Serviços de Supermercado também do CEP Zona Norte. 
+                    <Text style={styles.h2}>O Conecta Aprendiz é um aplicativo desenvolvido por alunos do curso Técnico de Desenvolvimento de Sistemas do Senac-RN Zona Norte da turma 2023.14.109, em parceria com a turma 2024.14.8 de Aprendizagem em Serviços de Supermercado também do CEP Zona Norte. 
 
                         {"\n\n"}
                         O objetivo é oferecer suporte prático, dinâmico e motivador, tirando as dúvidas mais comuns dos aprendizes e proporcionando uma experiência de aprendizado acessível e enriquecedora.
@@ -69,7 +69,7 @@ export default function Screen() {
                         A dedicação dos alunos de ambos os cursos e a orientação dos professores foram fundamentais para criar uma ferramenta que apoiasse e fortalecesse o aprendizado do aprendiz.
                         {"\n\n"}
 
-                        O aplicativo foi desenvolvido como parte do Projeto Integrador dos alunos de Desenvolvimento de Sistemas da turma 2023.14.109 e Projeto Integrador III da turma 08/2024 de Supermercado.
+                        O aplicativo foi desenvolvido pelos alunos de Desenvolvimento de Sistemas da turma 2023.14.109 e Projeto Integrador III da turma 2024.14.8 de Supermercado.
                     </Text>
 
                 </View>
@@ -116,7 +116,7 @@ export default function Screen() {
                         style={styles.iconOne}
                     />
                     <Text style={styles.h1}>Conteúdo educativo</Text>
-                    <Text style={styles.h2}>Elaborado pelos alunos Jovens Aprendizes da turma 08/2024 CEP Zona Norte/RN,
+                    <Text style={styles.h2}>Elaborado pelos alunos Jovens Aprendizes da turma 2024.14.8 CEP Zona Norte/RN,
                         e pela Instrutora Thalissa Vitória, garantindo que o conteúdo seja relevante e
                         acessível para os iniciantes dessa jornada.
                     </Text>

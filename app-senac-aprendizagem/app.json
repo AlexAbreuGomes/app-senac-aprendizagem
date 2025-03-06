@@ -21,7 +21,8 @@
         "foregroundImage": "./assets/images/splash_logo2.png",
         "backgroundColor": "#b7e4c7"
       },
-      "package": "com.alexdevmobile007.senacaprendizagem"
+      "package": "com.alexdevmobile007.senacaprendizagem",
+      "softwareKeyboardLayoutMode":"pan"
     },
     "web": {
       "favicon": "./assets/favicon.png"

@@ -45,12 +45,12 @@ const quizData2 = [
     {
       question: 'Qual deve ser a jornada diária de trabalho do aprendiz?',
       options: [
-        'A jornada deve ser de no máximo 6 horas diárias.',
+        'A jornada do aprendiz é aquela definida no curso e contrato de aprendizagem. A regra geral para a jornada diária é que sua duração não exceda 6 horas diárias (Art. 432 da CLT). Contudo, a legislação admite jornada diária excepcional de 8 horas, desde que o aprendiz tenha concluído o ensino fundamental e que a jornada diária envolva tanto atividades teóricas como práticas.',
         'A jornada deve ser decidida pelo empregador.',
         'Pode trabalhar até 10 horas por dia, dependendo da empresa.',
         'Deve ser igual à de um funcionário comum, até 44 horas semanais.'
       ],
-      correct_option: 'A jornada deve ser de no máximo 6 horas diárias.'
+      correct_option: 'A jornada do aprendiz é aquela definida no curso e contrato de aprendizagem. A regra geral para a jornada diária é que sua duração não exceda 6 horas diárias (Art. 432 da CLT). Contudo, a legislação admite jornada diária excepcional de 8 horas, desde que o aprendiz tenha concluído o ensino fundamental e que a jornada diária envolva tanto atividades teóricas como práticas.'
     },
     {
       question: 'O aprendiz pode trabalhar nos feriados?',
@@ -78,9 +78,9 @@ const quizData2 = [
         'Sim, podendo até exceder o limite de horas',
         'Não pode trabalhar na empresa durante as folgas das atividades teóricas',
         'Não precisa cumprir jornada na empresa',
-        'Sim, desde que esteja previsto no programa de aprendizagem e que a jornada seja rigorosamente respeitada.'
+        'Sim, desde que esteja previsto no cronograma da turma, visto que a carga horária do curso deve ser rigorosamente respeitada.'
       ],
-      correct_option: 'Sim, desde que esteja previsto no programa de aprendizagem e que a jornada seja rigorosamente respeitada.'
+      correct_option: 'Sim, desde que esteja previsto no cronograma da turma, visto que a carga horária do curso deve ser rigorosamente respeitada.'
     },
     {
       question: 'O horário de trabalho do aprendiz pode ser alterado durante o curso do contrato?',

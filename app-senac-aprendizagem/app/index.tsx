@@ -77,8 +77,9 @@ export default function Screen() {
 
           <View style={styles.cxSubtitulo}>
             <Text style={styles.p}>
-            Esse app é seu guia de início no programa de aprendizagem, com informações,
+            Esse app é seu guia de inicio no programa de aprendizagem, com informações, 
             ferramentas interativas e atividades para lhe ajudar nessa jornada.
+            
             </Text>
           </View>
 

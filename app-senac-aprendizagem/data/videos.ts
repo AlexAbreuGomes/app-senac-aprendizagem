@@ -42,7 +42,7 @@ export const videos: Video[] = [
     },
     {
         id: 8,
-        video: 'https://youtu.be/TMLOZqWY8dU',
+        video: 'https://youtu.be/-TLytt9RQa0',
         titulo: 'Assista: Experiência na Aprendizagem da Instrutora'
     },
     {

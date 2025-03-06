@@ -47,10 +47,10 @@ const quizData = [
     options: [
       'Sim, pode repetir o mesmo curso de aprendizagem quantas vezes quiser.',
       'Não, só pode fazer um curso de aprendizagem uma única vez.',
-      'Não, a legislação não permite repetir o mesmo curso de aprendizagem.',
+      'Não é possível a pactuação de contratos de aprendizagem sucessivos com o mesmo empregado sob pena de o segundo contrato ser considerado por prazo indeterminado, salvo quando for observado o interstício mínimo de 6 (seis) meses entre o término do primeiro contrato de aprendizagem e o início do segundo contrato de aprendizagem.',
       'Sim, mas apenas se for em empresas diferentes'
     ],
-    correct_option: 'Não, a legislação não permite repetir o mesmo curso de aprendizagem.',
+    correct_option: 'Não é possível a pactuação de contratos de aprendizagem sucessivos com o mesmo empregado sob pena de o segundo contrato ser considerado por prazo indeterminado, salvo quando for observado o interstício mínimo de 6 (seis) meses entre o término do primeiro contrato de aprendizagem e o início do segundo contrato de aprendizagem.',
   },
   {
     question: 'Quais os detalhes do contrato do aprendiz PCD?',
