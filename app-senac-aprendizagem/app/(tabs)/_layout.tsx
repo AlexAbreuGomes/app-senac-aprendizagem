@@ -56,6 +56,23 @@ export default function TabLayout(){
                 }}
             />
             <Tabs.Screen
+                name="(chatbot)"
+                options={{
+                  title: 'Chatbot',
+                  tabBarIcon: ({ focused }) => (
+                    <Image
+                      source={
+                        focused
+                        ? require("../../assets/icon-tab-medalha-active.png")
+                        : require("../../assets/icon-tab-medalha-inative.png")
+                      }
+                      style={{ width: 34, height: 35 }}
+                      resizeMode="contain"
+                    />
+                  ),
+                }}
+            />
+            <Tabs.Screen
                 name="(ata)"
                 options={{
                     title:  'Ata',
