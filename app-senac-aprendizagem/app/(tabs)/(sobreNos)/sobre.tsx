@@ -122,6 +122,19 @@ export default function Screen() {
                     </Text>
                 </View>
 
+                <View style={styles.textFor}>
+                    <Image
+                        source={require('../../../assets/icon-linguagem-de-sinais.png')}
+                        style={styles.iconOne}
+                    />
+                    <Text style={styles.h1}>Tradução em Libras</Text>
+                    <Text style={styles.h2}>A tradução em Libras foi realizada pela turma do curso Técnico em Tradução e Interpretação de Libras do Senac Piauí, 
+                        sob a orientação da instrutora Maria do Rosário Alves da Silva.
+                        O trabalho foi desenvolvido em parceria e com dedicação para promover a acessibilidade e inclusão. 
+                        Agradecemos o empenho de todos os envolvidos nesse importante projeto.
+                    </Text>
+                </View>
+
                 <View style={styles.formulario}>
     <Text style={styles.h3}>Gostou do app? Deixe sua opinião no </Text>
     

@@ -6,9 +6,15 @@ import { ConteudoAprendizagem } from "../types/boxConteudosTypes";
 export const conteudosAprendizagem: ConteudoAprendizagem[] = [
   {
     id: 1,
-    titulo: "Ativando legendas",
+    titulo: "Ativando legendas e explicação do Aplicativo",
     descricao: "Aprenda a ativar e personalizar legendas no YouTube! 🎥💬",
-    texto:"Neste vídeo, mostramos o passo a passo para ativar as legendas e ajustar configurações como idioma. Ideal para quem precisa de mais acessibilidade ou quer melhorar a compreensão dos vídeos seguintes. Não perca! 😉✅",
+    texto:`📽️ Nesta aba, você vai encontrar um vídeo especial que vai te ajudar a aproveitar melhor o nosso aplicativo!💡
+    
+🎯 Nele, você aprende como ativar as legendas e deixar sua navegação mais acessível e personalizada, assim como uma breve explicação sobre a funcionalidade do APP.
+
+🤟 Ah! E tem mais: o vídeo conta com tradução em Libras, garantindo mais inclusão para todo mundo! 🧡
+
+✨ E tem mais: todos os próximos vídeos que você verá aqui também terão tradução em Libras, porque acessibilidade é prioridade por aqui! 😉`,
     icon: require("../assets/icons8-communication-96.png"),
     
   },
@@ -58,7 +64,7 @@ Ser educado, respeitoso e demonstrar interesse em contribuir para o time ajudar�
   },
   {
     id: 5,
-    titulo: "Experiências com Clientes",
+    titulo: "Experiências com Clientes - Inteligência Emocional",
     descricao: "Aprendizados essenciais no atendimento e na comunicação.",
     texto: `Lidar com clientes é uma experiência que exige não apenas conhecimento técnico, mas também inteligência emocional. Como jovem aprendiz, é essencial manter a calma, ser educado e ouvir atentamente as necessidades do cliente. 
 
@@ -74,7 +80,7 @@ Demonstrar paciência e interesse pelo cliente cria um atendimento mais humaniza
   },
   {
     id: 6,
-    titulo: "Como se dirigir ao cliente",
+    titulo: "Como se dirigir ao cliente - Comunicação Assertiva",
     descricao: "Boas práticas para um atendimento profissional e eficiente.",
     texto: `A forma como o jovem aprendiz se dirige ao cliente faz toda a diferença no atendimento e na imagem da empresa. A comunicação assertiva é essencial para transmitir informações com clareza, respeito e profissionalismo.
 
@@ -88,7 +94,7 @@ Se não souber a resposta para alguma dúvida, ser sincero e buscar ajuda com um
   },
   {
     id: 7,
-    titulo: "Importância do uso de EPI",
+    titulo: "Importância do Uso de EPI (Equipamento de Proteção Individual)",
     descricao: "Proteção e segurança no ambiente de trabalho.",
     texto: `O uso de Equipamentos de Proteção Individual (EPI) é fundamental para garantir a segurança dos jovens aprendizes no ambiente de trabalho.
 
@@ -185,7 +191,9 @@ Fonte: Governo Federal
 
 Ela descreve as ocupações de acordo com suas características, funções e responsabilidades, ajudando a identificar o perfil de cada profissão. 
 
-A partir de 1º de janeiro de 2025, o salário mínimo no Brasil foi reajustado para R$ 1.518,00. Com base nesse valor, o salário-hora é de R$ 6,90. 
+A partir de 1º de janeiro de 2025, o salário mínimo no Brasil foi reajustado para R$ 1.518,00. Com base nesse valor, o salário-hora é de R$ 6,90.
+
+O valor do salário-hora é reajustado anualmente, ou seja, em 2026 será outro valor diferente de R$6,90, e assim sucessivamente.
 
 O salário deve ser anotado uniformemente na CTPS, no contrato de aprendizagem e na ficha de registro, identificando se o valor é mensal ou por hora. Para jovens aprendizes, a remuneração é calculada de acordo com a carga horária semanal.
 
