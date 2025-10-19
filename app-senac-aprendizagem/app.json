@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Conecta Aprendiz",
-     "slug": "app-senac-aprendizagem",
+    "slug": "app-senac-aprendizagem",
     "version": "1.0.4",
     "scheme": "senac-aprendizagem",
     "orientation": "portrait",
@@ -22,14 +22,21 @@
         "backgroundColor": "#b7e4c7"
       },
       "package": "com.alexdevmobile007.senacaprendizagem",
-      "softwareKeyboardLayoutMode":"pan"
+      "softwareKeyboardLayoutMode": "pan"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
       "expo-router",
-      "expo-font"
+      "expo-font",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "O aplicativo acessa suas fotos para permitir que você selecione uma imagem como avatar personalizado.",
+          "cameraPermission": "O aplicativo acessa sua câmera para permitir que você tire uma foto como avatar personalizado."
+        }
+      ]
     ],
     "extra": {
       "router": {

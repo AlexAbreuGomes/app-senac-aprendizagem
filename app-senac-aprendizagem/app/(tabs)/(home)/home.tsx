@@ -43,9 +43,16 @@ export default function Screen() {
 
       if (savedName) setUserName(savedName);
       if (savedAvatar) {
-        const { id } = JSON.parse(savedAvatar); // Decodifica o objeto salvo
-        const avatar = avatares.find((item) => item.id === id); // Busca o avatar correspondente
-        if (avatar) setUserImage(avatar.img); // Define a imagem com require()
+        const avatarData = JSON.parse(savedAvatar);
+
+        // Verifica se é um avatar personalizado (com URI)
+        if (avatarData.isCustom && avatarData.uri) {
+          setUserImage({ uri: avatarData.uri });
+        } else {
+          // Avatar pré-definido
+          const avatar = avatares.find((item) => item.id === avatarData.id);
+          if (avatar) setUserImage(avatar.img);
+        }
       }
     } catch (error) {
       console.error("Erro ao recuperar os dados:", error);
@@ -158,8 +165,8 @@ export default function Screen() {
                 {userImage && <Image source={userImage} style={styles.userImage} />}
 
                 <Text style={styles.welcome}>
-  {userName ? `Bem-vindo(a).\n${userName}` : "Bem-vindo(a)."}
-</Text>
+                  {userName ? `Bem-vindo(a).\n${userName}` : "Bem-vindo(a)."}
+                </Text>
 
               </View>
               {/* Pontuação abaixo do nome */}
@@ -167,8 +174,8 @@ export default function Screen() {
               <View style={styles.pontosContainer}>
                 <MaterialIcons name="stars" size={25} color="#F7941D" />
                 <View style={styles.pontosTexto}>
-                <Text style={styles.pontos}>Score:</Text>
-                <Text style={styles.pontos}>{percentage.toFixed(2)}%</Text>
+                  <Text style={styles.pontos}>Score:</Text>
+                  <Text style={styles.pontos}>{percentage.toFixed(2)}%</Text>
                 </View>
               </View>
             </View>
@@ -192,7 +199,7 @@ const styles = StyleSheet.create({
   fistBox: {
     justifyContent: "center",
     width: screenWidth - 20,
-    
+
     backgroundColor: "#FFFFFF", // Fundo branco
     borderRadius: 20,
     padding: 10,

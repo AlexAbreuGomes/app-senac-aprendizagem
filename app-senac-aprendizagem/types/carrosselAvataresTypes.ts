@@ -3,5 +3,7 @@
 
 export type CarrosselAvatares = {
     id: string;
-    img: any; // Aceita apenas objetos retornados pelo require
+    img: any; // Aceita objetos retornados pelo require ou URIs de imagens
+    isCustom?: boolean; // Indica se é uma foto personalizada
+    uri?: string; // URI da imagem personalizada
 };

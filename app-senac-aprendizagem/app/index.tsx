@@ -6,12 +6,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NameInput } from "../components/inputSaveName";
 import { router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { LayoutAnimation, StyleSheet, Text, View, Image, ScrollView, Dimensions, KeyboardAvoidingView, Platform } from "react-native";
+import { LayoutAnimation, StyleSheet, Text, View, Image, ScrollView, Dimensions, KeyboardAvoidingView, Platform, Alert } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { ButtonGeneric } from "../components/button";
 import { CarrosselAvatar } from '../components/carrosselAvatares';
 import { avatares } from '../data/carrosselAvatares';
 import { CarrosselAvatares } from "../types/carrosselAvataresTypes";
+import { getAllAvatars, saveCustomAvatar } from '../utils/avatarUtils';
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
 import { useFonts as IBMPlexMono, IBMPlexMono_400Regular, IBMPlexMono_700Bold, IBMPlexMono_500Medium } from "@expo-google-fonts/ibm-plex-mono";
 
@@ -21,6 +22,7 @@ export default function Screen() {
   const [userName, setUserName] = useState<string>("");
   const [selectedAvatar, setSelectedAvatar] = useState<CarrosselAvatares | null>(null);
   const [loading, setLoading] = useState(true);
+  const [allAvatars, setAllAvatars] = useState<CarrosselAvatares[]>(avatares);
 
   useEffect(() => {
     const checkUser = async () => {
@@ -33,7 +35,18 @@ export default function Screen() {
         setLoading(false);
       }
     };
+
+    const loadAvatars = async () => {
+      try {
+        const avatarsList = await getAllAvatars();
+        setAllAvatars(avatarsList);
+      } catch (error) {
+        console.error('Erro ao carregar avatares:', error);
+      }
+    };
+
     checkUser();
+    loadAvatars();
   }, []);
 
   const start = async () => {
@@ -59,6 +72,20 @@ export default function Screen() {
     setSelectedAvatar(avatar);
   };
 
+  const handleAddCustomPhoto = async (uri: string) => {
+    try {
+      console.log('Adicionando foto personalizada na tela inicial:', uri);
+      const newAvatar = await saveCustomAvatar(uri);
+      setAllAvatars(prevAvatars => [...prevAvatars, newAvatar]);
+      setSelectedAvatar(newAvatar);
+      console.log('Foto personalizada adicionada com sucesso!');
+      Alert.alert('Sucesso!', 'Sua foto foi adicionada como avatar!');
+    } catch (error) {
+      console.error('Erro ao adicionar foto personalizada:', error);
+      Alert.alert('Erro', 'Não foi possível adicionar a foto personalizada.');
+    }
+  };
+
   useFonts({
     LuckiestGuy: LuckiestGuy_400Regular,
     IBMPlexMonoRegular: IBMPlexMono_400Regular,
@@ -69,42 +96,43 @@ export default function Screen() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar />
-      
-        <ScrollView contentContainerStyle={styles.scrollContainer}>
-          <View style={styles.cxBemVindo}>
-            <Text style={styles.h1Superior}>BEM-VINDO À SUA JORNADA DE APRENDIZADO!</Text>
-          </View>
 
-          <View style={styles.cxSubtitulo}>
-            <Text style={styles.p}>
-            Esse app é seu guia de inicio no programa de aprendizagem, com informações, 
-            ferramentas interativas e atividades para lhe ajudar nessa jornada.
-            
-            </Text>
-          </View>
-
-          <View style={styles.cxGeral}>
-            <Text style={styles.h1Inferior2}>Personalize sua experiência:</Text>
-            <NameInput onSave={saveNameToState} />
-            <Text style={styles.h1Inferior}>Escolha seu avatar:</Text>
-            <CarrosselAvatar
-              data={avatares}
-              onSelectAvatar={handleSelectAvatar}
-              selectedAvatarId={selectedAvatar?.id}
-            />
-            <ButtonGeneric onPress={start} style={styles.button} name="Começar" />
-          </View>
-        </ScrollView>
-
-        {/* Footer fixo, mas sem `position: absolute` */}
-        <View style={styles.logo}>
-          <Image
-            resizeMode="contain"
-            style={styles.imgLogo}
-            source={require("../assets/images/conectar.png")}
-          />
-          <Text style={styles.logoText}>Conecta Aprendiz</Text>
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <View style={styles.cxBemVindo}>
+          <Text style={styles.h1Superior}>BEM-VINDO À SUA JORNADA DE APRENDIZADO!</Text>
         </View>
+
+        <View style={styles.cxSubtitulo}>
+          <Text style={styles.p}>
+            Esse app é seu guia de inicio no programa de aprendizagem, com informações,
+            ferramentas interativas e atividades para lhe ajudar nessa jornada.
+
+          </Text>
+        </View>
+
+        <View style={styles.cxGeral}>
+          <Text style={styles.h1Inferior2}>Personalize sua experiência:</Text>
+          <NameInput onSave={saveNameToState} />
+          <Text style={styles.h1Inferior}>Escolha seu avatar:</Text>
+          <CarrosselAvatar
+            data={allAvatars}
+            onSelectAvatar={handleSelectAvatar}
+            selectedAvatarId={selectedAvatar?.id}
+            onAddCustomPhoto={handleAddCustomPhoto}
+          />
+          <ButtonGeneric onPress={start} style={styles.button} name="Começar" />
+        </View>
+      </ScrollView>
+
+      {/* Footer fixo, mas sem `position: absolute` */}
+      <View style={styles.logo}>
+        <Image
+          resizeMode="contain"
+          style={styles.imgLogo}
+          source={require("../assets/images/conectar.png")}
+        />
+        <Text style={styles.logoText}>Conecta Aprendiz</Text>
+      </View>
     </SafeAreaView>
   );
 }
@@ -114,7 +142,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#ffffff",
   },
-  
+
   scrollContainer: {
     flexGrow: 1,
     justifyContent: "space-evenly",
@@ -127,14 +155,14 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 10,
   },
- 
-    cxSubtitulo: {
-      justifyContent: "center",
-      alignItems: "center",
-      width: "100%", // Antes estava 90%, o que pode estar limitando o texto
-      paddingHorizontal: 20, // Adiciona espaçamento lateral para evitar corte
-      marginBottom: 20,
-    },
+
+  cxSubtitulo: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%", // Antes estava 90%, o que pode estar limitando o texto
+    paddingHorizontal: 20, // Adiciona espaçamento lateral para evitar corte
+    marginBottom: 20,
+  },
   cxGeral: {
     justifyContent: "center",
     alignItems: "center",
@@ -154,7 +182,7 @@ const styles = StyleSheet.create({
     width: "100%",
     paddingBottom: 10,
     paddingLeft: 40,
-    
+
   },
   h1Inferior2: {
     fontFamily: "LuckiestGuy",
@@ -165,7 +193,7 @@ const styles = StyleSheet.create({
     width: "100%",
     paddingTop: 20,
     paddingLeft: 40,
-    
+
   },
   p: {
     color: "#044B8B",
