@@ -95,7 +95,7 @@ export default function Screen() {
 
         return nextIndex;
       });
-    }, 3000);
+    }, 3800);
 
     return () => clearInterval(interval);
   }, []);

@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: 35,
+    fontSize: 32,
     width: screenWidth,
     fontFamily: "LuckiestGuy",
     justifyContent: "center",
