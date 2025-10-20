@@ -7,7 +7,7 @@ import { useRouter, useLocalSearchParams } from 'expo-router';  // Importando us
 import { COLORS } from '../constants/colors';
 import Button from '../components/ButtonQuiz';
 import { Image } from 'expo-image';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { calculateScorePercentage, generateFinalMessage, getScoreColor, saveQuizScore } from '../app/utils/scoreUtils';
@@ -215,10 +215,8 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
                 backgroundColor: COLORS.success,
                 justifyContent: 'center', alignItems: 'center',
               }}>
-                <MaterialCommunityIcons name="check" style={{
-                  color: COLORS.white,
-                  fontSize: 27
-                }} />
+                {/* MUDANÇA AQUI: usar props em vez de style */}
+                <MaterialCommunityIcons name="check" size={27} color={COLORS.white} />
               </View>
             ) : option === currentOptionSelected ? (
               <View style={{
@@ -226,10 +224,8 @@ const Quiz: React.FC<QuizProps> = ({ questions, level }) => {
                 backgroundColor: COLORS.error,
                 justifyContent: 'center', alignItems: 'center'
               }}>
-                <MaterialCommunityIcons name="close" style={{
-                  color: COLORS.white,
-                  fontSize: 27
-                }} />
+                {/* MUDANÇA AQUI: usar props em vez de style */}
+                <MaterialCommunityIcons name="close" size={27} color={COLORS.white} />
               </View>
             ) : null}
           </Pressable>
@@ -485,20 +481,21 @@ const styles = StyleSheet.create({
     paddingVertical: 2,
     marginVertical: 8,
   },
+
   pressedOption: {
     opacity: 0.7, // Reduz a opacidade quando pressionado
   },
+
   optionText: {
     paddingVertical: 5,
-    fontSize: 19,
+    fontSize: 16,
     color: COLORS.white,
     fontFamily: 'LuckiestGuy-Regular',
-    lineHeight: 21,
-    width: '88%',
-    textAlign: 'justify',
-
-
+    lineHeight: 20,
+    width: '92%',
+    textAlign: 'auto',
   },
+
   iconContainer: {
     width: 32, // Tamanho exato do ícone
     height: 32, // Tamanho exato do ícone

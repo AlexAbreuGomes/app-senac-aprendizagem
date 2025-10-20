@@ -37,10 +37,8 @@ const quizData = [
     options: [
       'Sim, ele pode ser aprendiz várias vezes na mesma empresa, sem limite de contratos.',
       'Não, ele só pode ser aprendiz uma vez, em qualquer empresa.',
-      'Sim, desde que seja em um curso de aprendizagem diferente, e respeitando o limite de dois contratos de 1 ano cada.',
       'Não, após o primeiro contrato, o jovem deve obrigatoriamente ser efetivado.',
-      `Não é possível a pactuação de contratos de aprendizagem sucessivos com o mesmo empregado sob pena de o segundo contrato ser considerado por prazo indeterminado, 
-salvo quando for observado o interstício mínimo de 6 (seis) meses entre o término do primeiro contrato de aprendizagem e o início do segundo contrato de aprendizagem.`
+      'Não é possível a pactuação de contratos de aprendizagem sucessivos com o mesmo empregado sob pena de o segundo contrato ser considerado por prazo indeterminado, salvo quando for observado o interstício mínimo de 6 (seis) meses entre o término do primeiro contrato de aprendizagem e o início do segundo contrato de aprendizagem.'
     ],
     correct_option: 'Não é possível a pactuação de contratos de aprendizagem sucessivos com o mesmo empregado sob pena de o segundo contrato ser considerado por prazo indeterminado, salvo quando for observado o interstício mínimo de 6 (seis) meses entre o término do primeiro contrato de aprendizagem e o início do segundo contrato de aprendizagem.',
   },

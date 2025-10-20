@@ -2,6 +2,8 @@
 // Licensed under Proprietary License - All rights reserved. Unauthorized usage or distribution is prohibited.
 
 import React from 'react';
+
+
 import { FlatList, Image, TouchableOpacity, StyleSheet, Text, View, Alert } from 'react-native';
 import { CarrosselAvatares } from '../types/carrosselAvataresTypes';
 import * as ImagePicker from 'expo-image-picker';
