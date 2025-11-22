@@ -142,7 +142,7 @@ export default function Screen() {
 
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
       <StatusBar />
       <Text style={styles.h1}>CONECTA APRENDIZ</Text>
 

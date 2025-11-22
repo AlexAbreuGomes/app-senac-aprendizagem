@@ -6,7 +6,7 @@ import { Video } from "../types/videosTypes";
 export const videos: Video[] = [
     {
         id: 1,
-        video: 'https://youtu.be/k69akaD3poY',
+        video: 'https://youtu.be/43QXWXMQ1Dg',
         titulo: 'Assista: Ativando legendas e explicação do Aplicativo'
 
     },
