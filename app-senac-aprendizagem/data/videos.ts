@@ -6,53 +6,53 @@ import { Video } from "../types/videosTypes";
 export const videos: Video[] = [
     {
         id: 1,
-        video: 'https://youtube.com/shorts/xd7wXsm71r4',
-        titulo: 'Assista: Ativando legendas no YouTube'
+        video: 'https://youtu.be/43QXWXMQ1Dg',
+        titulo: 'Assista: Ativando legendas e explicação do Aplicativo'
 
     },
     {
         id: 2,
-        video: 'https://youtu.be/h3bb7WJKcAw',
+        video: 'https://youtu.be/rEWDa5oLFSE',
         titulo: 'Assista: Primeiro dia no Curso'
     },
     {
         id: 3,
-        video: 'https://youtu.be/zVUFlmkluw8',
+        video: 'https://youtu.be/XoxSiukIoc4',
         titulo: 'Assista: Primeiro dia na empresa'
     },
     {
         id: 4,
-        video: 'https://youtu.be/DQr8v3J6xs4',
+        video: 'https://youtu.be/m8QXhc_ElGM',
         titulo: 'Assista: Mudança de Setor: Adaptação ao Novo'
     },
     {
         id: 5,
-        video: 'https://youtu.be/07lUJpbq0DM',
-        titulo: 'Assista: Experiências com Clientes'
+        video: 'https://youtu.be/10_-IHUy3HY',
+        titulo: 'Assista: Experiências com Clientes - Inteligência Emocional'
     },
     {
         id: 6,
-        video: 'https://youtu.be/93FbMSmx1kg',
-        titulo: 'Assista: Como se dirigir ao cliente'
+        video: 'https://youtu.be/L5TOo5vFI5s',
+        titulo: 'Assista: Como se dirigir ao cliente - Comunicação Assertiva'
     },
     {
         id: 7,
-        video: 'https://youtu.be/6PQrwPgp8Lg',
-        titulo: 'Assista: Importância do uso de EPI '
+        video: 'https://youtu.be/GTA57xE1RlM',
+        titulo: 'Assista: Importância do Uso de EPI (Equipamento de Proteção Individual)'
     },
     {
         id: 8,
-        video: 'https://youtu.be/-TLytt9RQa0',
+        video: 'https://youtu.be/FP4UvaHslmw',
         titulo: 'Assista: Experiência na Aprendizagem da Instrutora'
     },
     {
         id: 9,
-        video: 'https://youtu.be/Soqh7nsZAr4?feature=shared',
+        video: 'https://youtu.be/YRZJklOtOi4',
         titulo: 'Assista: Jornada de Sucesso Jovens Aprendizes'
     },
     {
         id: 10,
-        video: 'https://youtu.be/42Og_2slKJQ?feature=shared',
+        video: 'https://youtu.be/fY6bQi0sZNo',
         titulo: 'Ouça: Conecta Aprendiz'
     },
     {
@@ -62,7 +62,7 @@ export const videos: Video[] = [
     },
     {
         id: 12,
-        video: 'https://www.youtube.com/watch?v=Ym83VfVjnK0&t=4s',
+        video: 'https://youtu.be/aJ3gtJmJjKA',
         titulo: 'Assista: Verificando CBO e Informações Salarial'
     },
     {

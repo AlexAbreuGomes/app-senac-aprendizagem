@@ -9,7 +9,8 @@ export default function TabLayout(){
     return(
        <Tabs screenOptions={{
             headerShown: false,
-            tabBarStyle: {backgroundColor: '#ffffff', height: 60, paddingTop: 5,},
+            
+            tabBarStyle: {backgroundColor: '#ffffff', paddingTop: 5, marginBottom: 8, },
             tabBarLabelStyle: {fontSize: 12,   fontWeight: 'bold'}, 
             tabBarAccessibilityLabel: 'Navegação de abas',
             

@@ -28,7 +28,7 @@ export default function Screen (){
         };
         
     return(
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
             <StatusBar/>
             <View style={styles.areaFaq}>
                 <Text style={styles.tituloFAQ}>Dúvidas Frequentes</Text>

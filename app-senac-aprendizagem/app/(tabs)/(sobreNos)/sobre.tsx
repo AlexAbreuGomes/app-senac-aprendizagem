@@ -2,16 +2,22 @@
 // Licensed under Proprietary License - All rights reserved. Unauthorized usage or distribution is prohibited.
 
 import { SafeAreaView } from "react-native-safe-area-context"
-import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, Dimensions } from "react-native"
+import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, Dimensions, Linking } from "react-native"
 import { StatusBar } from "expo-status-bar"
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
 import { useFonts as IBMPlexMono, IBMPlexMono_400Regular, IBMPlexMono_700Bold, IBMPlexMono_500Medium } from "@expo-google-fonts/ibm-plex-mono";
-import { Linking } from "react-native";
 import React from "react";
 import { ButtonGeneric } from "../../../components/button";
 
 
 const screenWidth = Dimensions.get('window').width;
+const SITE_URL = 'https://sway.cloud.microsoft/2YTCcNNevP82CCY9?ref=Link';
+
+const openSiteLink = () => {
+    Linking.openURL(SITE_URL).catch(err =>
+        console.error("Não foi possível abrir o link do Site:", err)
+    );
+};
 
 export default function Screen() {
 
@@ -27,7 +33,7 @@ export default function Screen() {
     });
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
             <StatusBar />
             <ScrollView>
                 <View style={styles.containerImg}>
@@ -44,11 +50,11 @@ export default function Screen() {
                         style={styles.iconOne}
                     />
                     <Text style={styles.h1}>O que é o Conecta Aprendiz?</Text>
-                    <Text style={styles.h2}>O Conecta Aprendiz é um aplicativo desenvolvido por alunos do curso Técnico de Desenvolvimento de Sistemas do Senac-RN Zona Norte da turma 2023.14.109, em parceria com a turma 2024.14.8 de Aprendizagem em Serviços de Supermercado também do CEP Zona Norte. 
+                    <Text style={styles.h2}>O Conecta Aprendiz é um aplicativo desenvolvido por alunos do curso Técnico de Desenvolvimento de Sistemas do Senac-RN Zona Norte da turma 2023.14.109, em parceria com a turma 2024.14.8 de Aprendizagem em Serviços de Supermercado também do CEP Zona Norte.
 
                         {"\n\n"}
                         O objetivo é oferecer suporte prático, dinâmico e motivador, tirando as dúvidas mais comuns dos aprendizes e proporcionando uma experiência de aprendizado acessível e enriquecedora.
-                    
+
                     </Text>
                 </View>
 
@@ -81,7 +87,7 @@ export default function Screen() {
                     />
 
                     <Text style={styles.h1}>Aplicativo Desenvolvido por:</Text>
-                    
+
 
                     <View style={styles.linking}>
                         {[
@@ -91,7 +97,7 @@ export default function Screen() {
                             { name: 'Rafael Bezerra', url: 'https://www.linkedin.com/in/rafabsilva/' },
                             { name: 'Jean Carlo Costa', url: 'https://www.linkedin.com/in/jean-carlo-costa' },
                             { name: 'Pedro Henrique', url: 'https://www.linkedin.com/in/pedro-henrique-724778316' },
-                            
+
                         ].map((developer, index) => (
                             <TouchableOpacity
                                 key={index}
@@ -105,7 +111,7 @@ export default function Screen() {
                             </TouchableOpacity>
                         ))}
 
-                       
+
                     </View>
 
                 </View>
@@ -122,15 +128,51 @@ export default function Screen() {
                     </Text>
                 </View>
 
+                <View style={styles.textFor}>
+                    <Image
+                        source={require('../../../assets/icon-linguagem-de-sinais.png')}
+                        style={styles.iconOne}
+                    />
+                    <Text style={styles.h1}>Tradução em Libras</Text>
+                    <Text style={styles.h2}>A tradução em Libras foi realizada pela turma do curso Técnico em Tradução e Interpretação de Libras do Senac Piauí,
+                        sob a orientação da instrutora Maria do Rosário Alves da Silva.
+                        O trabalho foi desenvolvido em parceria e com dedicação para promover a acessibilidade e inclusão.
+                        Agradecemos o empenho de todos os envolvidos nesse importante projeto.
+                    </Text>
+                </View>
+                <View style={styles.textOne}>
+                    <TouchableOpacity onPress={openSiteLink}>
+                        <Image
+                            source={require('../../../assets/local-na-rede-internet.png')}
+                            style={styles.iconOne}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={openSiteLink}>
+                        <Text style={styles.h1}>Conheça o nosso Site</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={openSiteLink}>
+                        <Text style={styles.h2}>
+                            O Conecta Aprendiz é um site desenvolvido para facilitar o acesso de jovens aprendizes a materiais,
+                            atividades e informações sobre o curso. Embora tenha sido otimizado para celulares iOS,
+                            o Conecta Aprendiz também pode ser acessado por qualquer pessoa, em outros dispositivos e sistemas operacionais,
+                            como Android ou computador, bastando utilizar o navegador de internet. A proposta é promover uma experiência
+                            interativa e acessível, conectando o aprendizado ao mundo digital de forma simples e prática.
+                        </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={openSiteLink}>
+                        <Text style={styles.linkTextSite}>Acesse nosso site!</Text>
+                    </TouchableOpacity>
+                </View>
+
                 <View style={styles.formulario}>
-    <Text style={styles.h3}>Gostou do app? Deixe sua opinião no </Text>
-    
-    <ButtonGeneric 
-        onPress={() => Linking.openURL('https://forms.gle/U7FGFs3SeCi16jh6A')} style={styles.button}
-        name="Formulário de Feedback"
-        
-    />
-</View>
+                    <Text style={styles.h3}>Gostou do app? Deixe sua opinião abaixo!</Text>
+
+                    <ButtonGeneric
+                        onPress={() => Linking.openURL('https://forms.gle/U7FGFs3SeCi16jh6A')} style={styles.button}
+                        name="Formulário de Feedback"
+
+                    />
+                </View>
             </ScrollView>
         </SafeAreaView>
     )
@@ -158,7 +200,7 @@ const styles = StyleSheet.create({
 
     },
     iconOne: {
-        width: 55,  
+        width: 55,
         height: 53,
         resizeMode: "cover",
         marginBottom: 10,
@@ -179,7 +221,7 @@ const styles = StyleSheet.create({
         textAlign: "justify",
         color: "#ffffff",
         padding: 10,
-        lineHeight: 26,      // Reduz o padding para ocupar menos espaço
+        lineHeight: 26,
         marginBottom: 10
     },
     textTwo: {
@@ -213,7 +255,7 @@ const styles = StyleSheet.create({
     },
     linkText: {
         fontSize: 17,
-        color: '#ffffff', 
+        color: '#ffffff',
         textDecorationLine: 'underline', // Indica que é um link
         marginHorizontal: 20, // Espaço entre os nomes
         textAlign: 'center',
@@ -249,6 +291,15 @@ const styles = StyleSheet.create({
         fontFamily: "IBMPlexMonoRegular",
         marginBottom: 15
     },
+
+    linkTextSite: {
+        fontSize: 18,
+        color: '#ffffff',  // Mantém o contraste com o fundo
+        textDecorationLine: 'underline',  // Deixa claro que é um link
+        fontFamily: "IBMPlexMonoRegular",
+        marginBottom: 15
+    },
+
     button: {
         width: screenWidth * 0.80,
         height: 50,
@@ -263,6 +314,6 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
-      },
+    },
 
 })

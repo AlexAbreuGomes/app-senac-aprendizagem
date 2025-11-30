@@ -45,12 +45,12 @@ const quizData2 = [
     {
       question: 'Qual deve ser a jornada diária de trabalho do aprendiz?',
       options: [
-        'A jornada do aprendiz é aquela definida no curso e contrato de aprendizagem. A regra geral para a jornada diária é que sua duração não exceda 6 horas diárias (Art. 432 da CLT). Contudo, a legislação admite jornada diária excepcional de 8 horas, desde que o aprendiz tenha concluído o ensino fundamental e que a jornada diária envolva tanto atividades teóricas como práticas.',
         'A jornada deve ser decidida pelo empregador.',
         'Pode trabalhar até 10 horas por dia, dependendo da empresa.',
-        'Deve ser igual à de um funcionário comum, até 44 horas semanais.'
+        'Deve ser igual à de um funcionário comum, até 44 horas semanais.',
+        `A jornada do aprendiz é aquela definida no curso e contrato de aprendizagem. A regra geral para a jornada diária é que sua duração não exceda 6 horas diárias (Art. 432 da CLT). Contudo, a legislação admite jornada diária excepcional de 8 horas, desde que o aprendiz tenha concluído o ensino fundamental e que a jornada diária envolva tanto atividades teóricas como práticas`
       ],
-      correct_option: 'A jornada do aprendiz é aquela definida no curso e contrato de aprendizagem. A regra geral para a jornada diária é que sua duração não exceda 6 horas diárias (Art. 432 da CLT). Contudo, a legislação admite jornada diária excepcional de 8 horas, desde que o aprendiz tenha concluído o ensino fundamental e que a jornada diária envolva tanto atividades teóricas como práticas.'
+      correct_option: 'A jornada do aprendiz é aquela definida no curso e contrato de aprendizagem. A regra geral para a jornada diária é que sua duração não exceda 6 horas diárias (Art. 432 da CLT). Contudo, a legislação admite jornada diária excepcional de 8 horas, desde que o aprendiz tenha concluído o ensino fundamental e que a jornada diária envolva tanto atividades teóricas como práticas'
     },
     {
       question: 'O aprendiz pode trabalhar nos feriados?',
