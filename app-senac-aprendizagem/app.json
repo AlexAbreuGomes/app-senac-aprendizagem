@@ -2,7 +2,7 @@
   "expo": {
     "name": "Conecta Aprendiz",
     "slug": "app-senac-aprendizagem",
-    "version": "1.0.4",
+    "version": "1.1.0",
     "scheme": "senac-aprendizagem",
     "orientation": "portrait",
     "icon": "./assets/images/splash_logo2.png",
@@ -22,6 +22,7 @@
         "backgroundColor": "#b7e4c7"
       },
       "package": "com.alexdevmobile007.senacaprendizagem",
+      "versionCode": 5,
       "softwareKeyboardLayoutMode": "pan"
     },
     "web": {
